@@ -3,8 +3,6 @@ package com.gigacoffeebackend.auth.ui;
 import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.dto.AccessTokenResponse;
 import com.gigacoffeebackend.global.dto.ApiResponse;
-import com.gigacoffeebackend.global.exceptions.BusinessException;
-import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseCookie;
@@ -45,8 +43,6 @@ public class AuthApi {
         return ResponseEntity.status(CREATED).body(ApiResponse.ok(new AccessTokenResponse(accessAndRefreshToken.getAccessToken())));
     }
 
-    @GetMapping("/ppp")
-    public void asd() {
-        throw new BusinessException(ErrorCode.JWT_INVALID);
-    }
+
+
 }
