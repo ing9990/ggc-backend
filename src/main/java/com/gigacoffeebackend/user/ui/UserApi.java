@@ -21,9 +21,12 @@ public class UserApi {
     private final IntegrateUserService integrateUserService;
 
     @GetMapping("/me")
-    public ResponseEntity<ApiResponse<UserResponse>> me(
-            @CurrentUser Accessor accessor
-    ) {
+    public ResponseEntity<ApiResponse<UserResponse>> me(@CurrentUser Accessor accessor) {
         return status(OK).body(ok(integrateUserService.findUserByAccesoor(accessor)));
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "1234";
     }
 }
