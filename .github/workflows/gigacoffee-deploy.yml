@@ -22,16 +22,6 @@ jobs:
           java-version: "11"
           distribution: "adopt"
 
-      - name: Gradle Caching
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
       - name: Build with Gradle For RestDocs
         run: ./gradlew bootJar
 
@@ -44,7 +34,7 @@ jobs:
           host: ${{secrets.HOST}}
           username: ${{secrets.USERNAME}}
           key: ${{secrets.KEY}}
-          source: "/build/libs/*.jar"
+          source: "/build/libs/gigacoffee-backend.jar"
           target: "/root/gigacoffee/"
 
       - name: Run Application use SSH
