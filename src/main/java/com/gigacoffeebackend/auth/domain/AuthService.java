@@ -1,16 +1,48 @@
 package com.gigacoffeebackend.auth.domain;
 
-
+import com.gigacoffeebackend.global.aop.BearerAuthorizationExtractor;
+import com.gigacoffeebackend.login.infra.JwtProvider;
+import com.gigacoffeebackend.login.ui.AuthException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.JWT_FAIL_TO_MAKE;
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.JWT_INVALID_REF;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
-@Slf4j
 public class AuthService {
 
+    private final RefreshTokenRepository refreshTokenRepository;
+    private final BearerAuthorizationExtractor bearerExtractor;
+    private final JwtProvider jwtProvider;
 
+    public String renewalAccessToken(final String refreshTokenRequest, final String authorizationHeader) {
+        final String accessToken = bearerExtractor.extractAccessToken(authorizationHeader);
+        if (jwtProvider.isValidRefreshAndValidAccess(refreshTokenRequest, accessToken)) {
+            final RefreshToken refreshToken = refreshTokenRepository.findByToken(refreshTokenRequest).orElseThrow(() -> new AuthException(JWT_INVALID_REF));
+            return jwtProvider.regenerateAccessToken(refreshToken.getUserId().toString());
+        }
+        if (jwtProvider.isValidRefreshAndValidAccess(refreshTokenRequest, accessToken)) {
+            return accessToken;
+        }
+        throw new AuthException(JWT_FAIL_TO_MAKE);
+    }
+
+    public void removeRefreshToken(final String refreshToken) {
+        refreshTokenRepository.deleteById(Long.valueOf(refreshToken));
+    }
+
+    public AccessAndRefreshToken generateToken(Long id) {
+        removeToken(id);
+        AccessAndRefreshToken tokens = jwtProvider.generateLoginToken(String.valueOf(id));
+        refreshTokenRepository.save(new RefreshToken(tokens.getRefreshToken(), id));
+        return tokens;
+    }
+
+
+    private void removeToken(Long id) {
+        refreshTokenRepository.deleteByUserId(id);
+    }
 }

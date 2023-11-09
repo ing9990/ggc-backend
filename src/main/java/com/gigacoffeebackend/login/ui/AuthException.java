@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.auth.ui;
+package com.gigacoffeebackend.login.ui;
 
 import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import lombok.Getter;

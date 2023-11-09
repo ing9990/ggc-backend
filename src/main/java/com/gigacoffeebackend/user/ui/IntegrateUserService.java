@@ -1,5 +1,6 @@
 package com.gigacoffeebackend.user.ui;
 
+import com.gigacoffeebackend.auth.domain.AuthService;
 import com.gigacoffeebackend.user.domain.Accessor;
 import com.gigacoffeebackend.user.domain.User;
 import com.gigacoffeebackend.user.domain.UserService;
@@ -15,6 +16,7 @@ import static com.gigacoffeebackend.user.ui.UserResponse.fromUser;
 public class IntegrateUserService {
 
     private final UserService userService;
+    private final AuthService authService;
 
     public User findUser(String socialLoginId, String nickname) {
         return userService.findBySocialLoginIdAndNickName(socialLoginId, nickname);

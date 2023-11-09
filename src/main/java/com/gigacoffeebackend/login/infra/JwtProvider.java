@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.auth.infra;
+package com.gigacoffeebackend.login.infra;
 
 import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import io.jsonwebtoken.*;
@@ -78,6 +78,10 @@ public class JwtProvider {
         }
     }
 
+    public String regenerateAccessToken(final String subject) {
+        return createToken(subject, accessExpirationTime);
+    }
+
 
     public String getSubject(final String token) {
         return parseToken(token)
@@ -94,5 +98,15 @@ public class JwtProvider {
 
     public void validateToken(String accessToken) {
         validateAccessToken(accessToken);
+    }
+
+    public boolean isValidRefreshAndValidAccess(final String refreshToken, final String accessToken) {
+        try {
+            validateRefreshToken(refreshToken);
+            validateAccessToken(accessToken);
+            return true;
+        } catch (final JwtException e) {
+            return false;
+        }
     }
 }

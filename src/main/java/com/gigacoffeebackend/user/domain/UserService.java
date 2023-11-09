@@ -18,7 +18,7 @@ public class UserService {
     }
 
     public User save(String socialLoginId, String nickname, String imageUrl) {
-        return userRepository.save(User.registration(socialLoginId, nickname, imageUrl));
+        return userRepository.save(User.user(socialLoginId, nickname, imageUrl));
     }
 
     public Optional<User> findUserByuserId(Long userId) {

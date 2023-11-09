@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.user.ui;
 
-import com.gigacoffeebackend.auth.infra.JwtProvider;
+import com.gigacoffeebackend.login.infra.JwtProvider;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;

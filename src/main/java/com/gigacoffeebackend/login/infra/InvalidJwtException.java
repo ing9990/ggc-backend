@@ -1,6 +1,6 @@
-package com.gigacoffeebackend.auth.infra;
+package com.gigacoffeebackend.login.infra;
 
-import com.gigacoffeebackend.auth.ui.AuthException;
+import com.gigacoffeebackend.login.ui.AuthException;
 import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import lombok.Getter;
 

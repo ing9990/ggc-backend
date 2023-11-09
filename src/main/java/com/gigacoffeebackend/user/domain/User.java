@@ -37,11 +37,12 @@ public class User extends BaseEntity {
         this.socialLoginId = socialLoginId;
         this.nickName = nickName;
         this.imageUrl = imageUrl;
+        this.authority = Authority.USER;
 
         this.displayName = extractDisplayName(socialLoginId, nickName);
     }
 
-    public static User registration(String socialLoginId, String nickname, String imageUrl) {
+    public static User user(String socialLoginId, String nickname, String imageUrl) {
         return new User(socialLoginId, nickname, imageUrl);
     }
 

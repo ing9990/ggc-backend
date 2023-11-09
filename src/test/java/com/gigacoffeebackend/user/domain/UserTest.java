@@ -16,7 +16,7 @@ class UserTest {
         String image = "https://cataas.com/cat";
 
         // when
-        User user = User.registration(socialLoginId, username, image);
+        User user = User.user(socialLoginId, username, image);
 
         // then
         assertThat(user.getDisplayName()).isEqualTo("김기가#6789");

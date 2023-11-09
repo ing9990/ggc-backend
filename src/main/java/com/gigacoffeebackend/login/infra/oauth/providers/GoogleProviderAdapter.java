@@ -1,9 +1,9 @@
-package com.gigacoffeebackend.auth.infra.oauth.providers;
+package com.gigacoffeebackend.login.infra.oauth.providers;
 
-import com.gigacoffeebackend.auth.infra.oauth.OauthAccessToken;
-import com.gigacoffeebackend.auth.infra.oauth.info.GoogleUserInfo;
-import com.gigacoffeebackend.auth.infra.oauth.info.OauthUserInfo;
-import com.gigacoffeebackend.auth.ui.AuthException;
+import com.gigacoffeebackend.login.infra.oauth.OauthAccessToken;
+import com.gigacoffeebackend.login.infra.oauth.info.GoogleUserInfo;
+import com.gigacoffeebackend.login.infra.oauth.info.OauthUserInfo;
+import com.gigacoffeebackend.login.ui.AuthException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;

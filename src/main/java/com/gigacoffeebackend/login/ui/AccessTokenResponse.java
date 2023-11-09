@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.auth.dto;
+package com.gigacoffeebackend.login.ui;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,6 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = PRIVATE)
-public class LoginRequest {
-    private String code;
+public class AccessTokenResponse {
+    private String accessToken;
 }
