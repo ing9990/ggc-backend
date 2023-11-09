@@ -22,9 +22,6 @@ jobs:
           java-version: "11"
           distribution: "adopt"
 
-      - name: Build with Gradle For RestDocs
-        run: ./gradlew bootJar
-
       - name: Build with Gradle
         run: ./gradlew bootJar
 
@@ -34,7 +31,7 @@ jobs:
           host: ${{secrets.HOST}}
           username: ${{secrets.USERNAME}}
           key: ${{secrets.KEY}}
-          source: "/build/libs/gigacoffee-backend.jar"
+          source: "./build/libs/gigacoffee-backend.jar"
           target: "/root/gigacoffee/"
 
       - name: Run Application use SSH
