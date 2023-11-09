@@ -32,7 +32,7 @@ jobs:
           username: ${{secrets.USERNAME}}
           key: ${{secrets.KEY}}
           source: "./build/libs/gigacoffee-backend.jar"
-          target: "/root/gigacoffee/"
+          target: "/var/www/gigacoffee/api"
 
       - name: Run Application use SSH
         uses: appleboy/ssh-action@master
@@ -40,5 +40,5 @@ jobs:
           host: ${{secrets.HOST}}
           username: ${{secrets.USERNAME}}
           password: ${{secrets.KEY}}
-          script: sh /root/gigacoffee/deploy.sh
+          script: sh /var/www/gigacoffee/api
           script_stop: true
