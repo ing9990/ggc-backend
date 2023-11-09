@@ -45,8 +45,7 @@ public class KakaoProviderAdapter implements OAuthProviderPort {
     }
 
     @Override
-    public OauthUserInfo getUserInfo(final String code) {
-        final String accessToken = requestAccessToken(code);
+    public OauthUserInfo getUserInfo(final String accessToken) {
         final ResponseEntity<KakaoUserInfo> response = getKakaoUserInfo(accessToken);
         if (response.getStatusCode().is2xxSuccessful()) {
             return response.getBody();

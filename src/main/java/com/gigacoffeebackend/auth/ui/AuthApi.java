@@ -26,10 +26,10 @@ public class AuthApi {
     @GetMapping("/login/{provider}")
     public ResponseEntity<ApiResponse<AccessTokenResponse>> login(
             @PathVariable final String provider,
-            @RequestParam(value = "code") String code,
+            @RequestParam(value = "token") String token,
             final HttpServletResponse response
     ) {
-        final AccessAndRefreshToken accessAndRefreshToken = authLogin.connect(provider, code);
+        final AccessAndRefreshToken accessAndRefreshToken = authLogin.connect(provider, token);
 
         final ResponseCookie cookie = ResponseCookie.from("refresh-token", accessAndRefreshToken.getRefreshToken())
                 .maxAge(COOKIE_AGE_SECONDS)
@@ -42,7 +42,6 @@ public class AuthApi {
 
         return ResponseEntity.status(CREATED).body(ApiResponse.ok(new AccessTokenResponse(accessAndRefreshToken.getAccessToken())));
     }
-
 
 
 }

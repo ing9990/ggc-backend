@@ -23,9 +23,9 @@ public class AuthLogin {
     private final IntegrateUserService integrateUserService;
     private final JwtProvider jwtProvider;
 
-    public AccessAndRefreshToken connect(final String providerName, final String code) {
+    public AccessAndRefreshToken connect(final String providerName, final String token) {
         final OAuthProviderPort provider = OAuthProviderMapper.mapping(providerName);
-        final OauthUserInfo oauthUserInfo = provider.getUserInfo(code);
+        final OauthUserInfo oauthUserInfo = provider.getUserInfo(token);
         log.info("Now connect socialid, Nickname is " + oauthUserInfo.getSocialLoginId() + ":" + oauthUserInfo.getNickname());
         User user = ofNullable(integrateUserService.findUser(
                 oauthUserInfo.getSocialLoginId(),

@@ -15,4 +15,6 @@ else
     echo "No process found using port 8080."
 fi
 
-nohup java -jar /root/gigacoffee/build/libs/gigacoffee-backend.jar --spring.profiles.active=prod &
+nohup java -jar /root/gigacoffee/build/libs/gigacoffee-backend.jar --spring.profiles.active=prod > /dev/null 2>&1 &
+echo "Start Gigacoffee-Backend Application" &
+exit
