@@ -49,7 +49,8 @@ public class GoogleProviderAdapter implements OAuthProviderPort {
     }
 
     @Override
-    public OauthUserInfo getUserInfo(final String accessToken) {
+    public OauthUserInfo getUserInfo(final String code) {
+        final String accessToken = requestAccessToken(code);
         final HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(accessToken);
         final HttpEntity<MultiValueMap<String, String>> userInfoRequestEntity = new HttpEntity<>(headers);

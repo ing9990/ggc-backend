@@ -29,6 +29,10 @@ public class User extends BaseEntity {
     @Column(name = "image_url", length = 4096)
     private String imageUrl;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Authority authority;
+
     private User(String socialLoginId, String nickName, String imageUrl) {
         this.socialLoginId = socialLoginId;
         this.nickName = nickName;

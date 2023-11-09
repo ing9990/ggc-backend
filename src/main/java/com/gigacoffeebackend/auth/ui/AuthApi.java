@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import static org.springframework.http.HttpHeaders.SET_COOKIE;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -24,12 +25,12 @@ public class AuthApi {
     private final AuthLogin authLogin;
 
     @GetMapping("/login/{provider}")
-    public ResponseEntity<ApiResponse<AccessTokenResponse>> login(
+    public ResponseEntity<ApiResponse<AccessTokenResponse>> loginWithOAuth(
             @PathVariable final String provider,
-            @RequestParam(value = "token") String token,
+            @RequestParam(value = "code") String code,
             final HttpServletResponse response
     ) {
-        final AccessAndRefreshToken accessAndRefreshToken = authLogin.connect(provider, token);
+        final AccessAndRefreshToken accessAndRefreshToken = authLogin.connect(provider, code);
 
         final ResponseCookie cookie = ResponseCookie.from("refresh-token", accessAndRefreshToken.getRefreshToken())
                 .maxAge(COOKIE_AGE_SECONDS)
@@ -43,5 +44,26 @@ public class AuthApi {
         return ResponseEntity.status(CREATED).body(ApiResponse.ok(new AccessTokenResponse(accessAndRefreshToken.getAccessToken())));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<AccessTokenResponse>> loginWithInfo(
+            @Valid @RequestBody final OAuthLoginRequest oAuthLoginRequest,
+            final HttpServletResponse response
+    ) {
+        final AccessAndRefreshToken accessAndRefreshToken = authLogin.connect(
+                oAuthLoginRequest.getSocialLoginId(),
+                oAuthLoginRequest.getNickname(),
+                oAuthLoginRequest.getImage()
+        );
 
+        final ResponseCookie cookie = ResponseCookie.from("refresh-token", accessAndRefreshToken.getRefreshToken())
+                .maxAge(COOKIE_AGE_SECONDS)
+                .sameSite("None")
+                .secure(true)
+                .httpOnly(false)
+                .path("/")
+                .build();
+        response.addHeader(SET_COOKIE, cookie.toString());
+
+        return ResponseEntity.status(CREATED).body(ApiResponse.ok(new AccessTokenResponse(accessAndRefreshToken.getAccessToken())));
+    }
 }

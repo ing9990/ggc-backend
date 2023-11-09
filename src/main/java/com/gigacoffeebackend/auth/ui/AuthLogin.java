@@ -23,9 +23,9 @@ public class AuthLogin {
     private final IntegrateUserService integrateUserService;
     private final JwtProvider jwtProvider;
 
-    public AccessAndRefreshToken connect(final String providerName, final String token) {
+    public AccessAndRefreshToken connect(final String providerName, final String code) {
         final OAuthProviderPort provider = OAuthProviderMapper.mapping(providerName);
-        final OauthUserInfo oauthUserInfo = provider.getUserInfo(token);
+        final OauthUserInfo oauthUserInfo = provider.getUserInfo(code);
         log.info("Now connect socialid, Nickname is " + oauthUserInfo.getSocialLoginId() + ":" + oauthUserInfo.getNickname());
         User user = ofNullable(integrateUserService.findUser(
                 oauthUserInfo.getSocialLoginId(),
@@ -34,6 +34,15 @@ public class AuthLogin {
                 oauthUserInfo.getSocialLoginId(),
                 oauthUserInfo.getNickname(),
                 oauthUserInfo.getImageUrl()
+        ));
+        return jwtProvider.generateLoginToken(user.getId().toString());
+    }
+
+    public AccessAndRefreshToken connect(String socialLoginId, String nickname, String image) {
+        User user = ofNullable(integrateUserService.findUser(
+                socialLoginId, nickname
+        )).orElseGet(() -> integrateUserService.registerUser(
+                socialLoginId, nickname, image
         ));
         return jwtProvider.generateLoginToken(user.getId().toString());
     }
