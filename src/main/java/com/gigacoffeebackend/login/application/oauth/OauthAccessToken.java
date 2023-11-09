@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.login.infra.oauth;
+package com.gigacoffeebackend.login.application.oauth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

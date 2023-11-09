@@ -33,17 +33,17 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private Authority authority;
 
-    private User(String socialLoginId, String nickName, String imageUrl) {
+    private User(String socialLoginId, String nickName, String imageUrl, Authority authority) {
         this.socialLoginId = socialLoginId;
         this.nickName = nickName;
         this.imageUrl = imageUrl;
-        this.authority = Authority.USER;
+        this.authority = authority;
 
         this.displayName = extractDisplayName(socialLoginId, nickName);
     }
 
     public static User user(String socialLoginId, String nickname, String imageUrl) {
-        return new User(socialLoginId, nickname, imageUrl);
+        return new User(socialLoginId, nickname, imageUrl, Authority.USER);
     }
 
 

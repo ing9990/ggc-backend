@@ -1,7 +1,7 @@
 package com.gigacoffeebackend.auth.domain;
 
 import com.gigacoffeebackend.global.aop.BearerAuthorizationExtractor;
-import com.gigacoffeebackend.login.infra.JwtProvider;
+import com.gigacoffeebackend.login.application.JwtProvider;
 import com.gigacoffeebackend.login.ui.AuthException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,8 @@ public class AuthService {
     public String renewalAccessToken(final String refreshTokenRequest, final String authorizationHeader) {
         final String accessToken = bearerExtractor.extractAccessToken(authorizationHeader);
         if (jwtProvider.isValidRefreshAndValidAccess(refreshTokenRequest, accessToken)) {
-            final RefreshToken refreshToken = refreshTokenRepository.findByToken(refreshTokenRequest).orElseThrow(() -> new AuthException(JWT_INVALID_REF));
+            final RefreshToken refreshToken = refreshTokenRepository.findByToken(refreshTokenRequest)
+                    .orElseThrow(() -> new AuthException(JWT_INVALID_REF));
             return jwtProvider.regenerateAccessToken(refreshToken.getUserId().toString());
         }
         if (jwtProvider.isValidRefreshAndValidAccess(refreshTokenRequest, accessToken)) {
@@ -30,19 +31,15 @@ public class AuthService {
         throw new AuthException(JWT_FAIL_TO_MAKE);
     }
 
-    public void removeRefreshToken(final String refreshToken) {
-        refreshTokenRepository.deleteById(Long.valueOf(refreshToken));
+    public void removeRefreshToken(final Long refreshToken) {
+        refreshTokenRepository.deleteById(refreshToken);
     }
 
     public AccessAndRefreshToken generateToken(Long id) {
-        removeToken(id);
+        removeRefreshToken(id);
         AccessAndRefreshToken tokens = jwtProvider.generateLoginToken(String.valueOf(id));
         refreshTokenRepository.save(new RefreshToken(tokens.getRefreshToken(), id));
         return tokens;
     }
 
-
-    private void removeToken(Long id) {
-        refreshTokenRepository.deleteByUserId(id);
-    }
 }

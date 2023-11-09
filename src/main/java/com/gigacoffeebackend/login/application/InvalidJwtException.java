@@ -1,13 +1,13 @@
-package com.gigacoffeebackend.login.infra;
+package com.gigacoffeebackend.login.application;
 
 import com.gigacoffeebackend.login.ui.AuthException;
 import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class ExpiredPeriodJwtException extends AuthException {
+public class InvalidJwtException extends AuthException {
 
-    public ExpiredPeriodJwtException(final ErrorCode exceptionCode) {
+    public InvalidJwtException(final ErrorCode exceptionCode) {
         super(exceptionCode);
     }
 }
