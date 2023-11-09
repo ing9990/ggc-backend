@@ -7,7 +7,6 @@
             <pattern>%d{HH:mm:ss} [%thread] [%-5level] %logger{36} - %msg%n```%ex{full}```</pattern>
         </layout>
         <username>GigaLogger</username>
-        <avatarUrl>http://i.imgur.com/UoiA3OQ.png</avatarUrl>
         <tts>false</tts>
     </appender>
 
