@@ -39,6 +39,6 @@ jobs:
         with:
           host: ${{secrets.HOST}}
           username: ${{secrets.USERNAME}}
-          password: ${{secrets.KEY}}
+          key: ${{secrets.KEY}}
           script: sh /root/gigacoffee/deploy.sh
           script_stop: true
