@@ -31,8 +31,8 @@ public class AuthService {
         throw new AuthException(JWT_FAIL_TO_MAKE);
     }
 
-    public void removeRefreshToken(final Long refreshToken) {
-        refreshTokenRepository.deleteById(refreshToken);
+    public void removeRefreshToken(final Long userId) {
+        refreshTokenRepository.deleteByUserId(userId);
     }
 
     public AccessAndRefreshToken generateToken(Long id) {
