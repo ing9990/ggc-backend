@@ -44,6 +44,7 @@ dependencies {
 
     // log
     compileOnly 'com.github.napstr:logback-discord-appender:1.0.0'
+    implementation 'com.github.maricn:logback-slack-appender:1.0.0'
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
