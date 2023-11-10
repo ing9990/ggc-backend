@@ -43,7 +43,7 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
     // log
-    implementation 'com.github.napstr:logback-discord-appender:1.0.0'
+    compileOnly 'com.github.napstr:logback-discord-appender:1.0.0'
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

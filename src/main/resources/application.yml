@@ -1,11 +1,3 @@
 spring:
   config:
-    import: classpath:/config/application.yml
-
----
-spring:
-  config:
-    activate:
-      on-profile: prod
-logging:
-  config: classpath:config/logback.xml
+    import: classpath:/config/config/application.yml
