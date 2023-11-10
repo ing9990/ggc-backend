@@ -2,7 +2,7 @@ package com.gigacoffeebackend.auth.domain;
 
 import com.gigacoffeebackend.global.aop.BearerAuthorizationExtractor;
 import com.gigacoffeebackend.login.application.JwtProvider;
-import com.gigacoffeebackend.login.ui.AuthException;
+import com.gigacoffeebackend.auth.AuthException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +41,4 @@ public class AuthService {
         refreshTokenRepository.save(new RefreshToken(tokens.getRefreshToken(), id));
         return tokens;
     }
-
 }

@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.login.application.oauth.providers;
 
-import com.gigacoffeebackend.login.ui.AuthException;
+import com.gigacoffeebackend.auth.AuthException;
 import com.gigacoffeebackend.login.application.oauth.OauthAccessToken;
 import com.gigacoffeebackend.login.application.oauth.info.KakaoUserInfo;
 import com.gigacoffeebackend.login.application.oauth.info.OauthUserInfo;

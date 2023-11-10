@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.global.aop;
 
-import com.gigacoffeebackend.login.ui.AuthException;
+import com.gigacoffeebackend.auth.AuthException;
 import com.gigacoffeebackend.login.application.RefreshTokenException;
 import com.gigacoffeebackend.global.aop.annotation.CurrentUser;
 import com.gigacoffeebackend.global.exceptions.ErrorCode;

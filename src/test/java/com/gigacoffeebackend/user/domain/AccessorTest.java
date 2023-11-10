@@ -21,6 +21,4 @@ class AccessorTest {
         assertThat(guest.getUserId()).isEqualTo(1L);
         assertThat(guest.getAuthority()).isEqualTo(Authority.USER);
     }
-
-
 }

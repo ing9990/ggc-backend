@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.global.exceptions;
 
-import com.gigacoffeebackend.login.ui.AuthException;
+import com.gigacoffeebackend.auth.AuthException;
 import com.gigacoffeebackend.global.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.*;
+import static org.springframework.http.HttpStatus.*;
+
 
 @RestControllerAdvice
 @Slf4j
@@ -19,9 +22,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error("handleMethodArgumentNotValidException", e);
-        final ErrorResponse response = ErrorResponse.of(ErrorCode.INVALID_INPUT, e.getBindingResult());
+        final ErrorResponse response = ErrorResponse.of(INVALID_INPUT, e.getBindingResult());
 
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
@@ -30,7 +33,7 @@ public class GlobalExceptionHandler {
 
         final ErrorResponse response = ErrorResponse.of(e);
 
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, BAD_REQUEST);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
@@ -64,8 +67,8 @@ public class GlobalExceptionHandler {
     protected ResponseEntity<ErrorResponse> handleException(Exception e) {
         log.error("handleEntityNotFoundException", e);
 
-        final ErrorResponse response = ErrorResponse.of(ErrorCode.SERVER_ERROR);
+        final ErrorResponse response = ErrorResponse.of(SERVER_ERROR);
 
-        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(response, INTERNAL_SERVER_ERROR);
     }
 }
