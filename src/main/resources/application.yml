@@ -1,3 +1,6 @@
 spring:
   config:
     import: classpath:/config/application.yml
+
+logging:
+  import: classpath:/config/application.yml
