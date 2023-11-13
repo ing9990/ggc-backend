@@ -20,13 +20,13 @@ import static java.util.Optional.ofNullable;
 @Slf4j
 public class LoginService {
 
-    private final OAuthProviderMapper OauthProviderMappper;
+    private final OAuthProviderMapper oAuthProviderMapper;
     private final IntegrateUserService integrateUserService;
 
     private final AuthService authService;
 
     public AccessAndRefreshToken connect(final String providerName, final String code) {
-        final OAuthProviderPort provider = OauthProviderMappper.mapping(providerName);
+        final OAuthProviderPort provider = oAuthProviderMapper.mapping(providerName);
         final OauthUserInfo oauthUserInfo = provider.getUserInfo(code);
 
         return connect(oauthUserInfo.getSocialLoginId(), oauthUserInfo.getNickname(), oauthUserInfo.getImageUrl());
