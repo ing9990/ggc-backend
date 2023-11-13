@@ -25,7 +25,7 @@ public enum ErrorCode {
     JWT_FAIL_TO_MAKE(401, "A405", "JWT 발급에 실패했습니다."),
 
     INVALID_AUTHORITY(401, "A10", "로그인되지 않은 사용자입니다."),
-
+    INVALID_BEARER(401, "A11", "Bearer를 찾을 수 없습니다."),
     // OAuth, 8xx,
     OAUTH_SERVICE_NOT_FOUND(400, "O00", "지원하지 않는 SNS 로그인입니다."),
 
