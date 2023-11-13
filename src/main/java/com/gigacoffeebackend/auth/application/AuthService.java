@@ -1,5 +1,8 @@
-package com.gigacoffeebackend.auth.domain;
+package com.gigacoffeebackend.auth.application;
 
+import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
+import com.gigacoffeebackend.auth.domain.RefreshToken;
+import com.gigacoffeebackend.auth.domain.RefreshTokenRepository;
 import com.gigacoffeebackend.global.aop.BearerAuthorizationExtractor;
 import com.gigacoffeebackend.login.application.JwtProvider;
 import com.gigacoffeebackend.auth.AuthException;

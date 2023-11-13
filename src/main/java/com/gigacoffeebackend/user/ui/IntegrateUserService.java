@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.user.ui;
 
-import com.gigacoffeebackend.auth.domain.AuthService;
+import com.gigacoffeebackend.auth.application.AuthService;
 import com.gigacoffeebackend.user.domain.Accessor;
 import com.gigacoffeebackend.user.domain.User;
 import com.gigacoffeebackend.user.domain.UserService;
