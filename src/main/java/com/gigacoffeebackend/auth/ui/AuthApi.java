@@ -18,7 +18,6 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RequiredArgsConstructor
 @Slf4j
 public class AuthApi {
-
     public static final int COOKIE_AGE_SECONDS = 604800;
     private final AuthService authService;
 

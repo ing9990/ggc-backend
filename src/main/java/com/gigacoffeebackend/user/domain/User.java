@@ -46,7 +46,6 @@ public class User extends BaseEntity {
         return new User(socialLoginId, nickname, imageUrl, Authority.USER);
     }
 
-
     private String extractDisplayName(String socialLoginId, String nickName) {
         return nickName + "#" + socialLoginId.substring(socialLoginId.length() - 4);
     }
