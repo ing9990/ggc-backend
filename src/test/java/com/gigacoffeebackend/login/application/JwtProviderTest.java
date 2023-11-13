@@ -5,14 +5,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.gigacoffeebackend.login.application.JwtProvider.EMPTY_SUBJECT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 @Transactional
+@ActiveProfiles("test")
 class JwtProviderTest {
 
     @Autowired
@@ -44,7 +45,7 @@ class JwtProviderTest {
 
         // then
         assertThat(subject).isEqualTo(userId);
-        assertThat(refreshSubject).isEqualTo(EMPTY_SUBJECT);
+        assertThat(refreshSubject).isNull();
     }
 
 
@@ -68,9 +69,10 @@ class JwtProviderTest {
         // given
         Long userId = 14L;
         AccessAndRefreshToken accessAndRefreshToken = jwtProvider.generateLoginToken(String.valueOf(userId));
+        String token = accessAndRefreshToken.getAccessToken() + " doesn't have any salt?";
 
         // when // then
-        assertThatThrownBy(() -> jwtProvider.validateToken(accessAndRefreshToken.getAccessToken() + " doesn't have any salt?"))
+        assertThatThrownBy(() -> jwtProvider.validateToken(token))
                 .isInstanceOf(InvalidJwtException.class);
     }
 }

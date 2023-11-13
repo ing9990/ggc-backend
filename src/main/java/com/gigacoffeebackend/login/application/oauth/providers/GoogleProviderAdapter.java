@@ -3,7 +3,7 @@ package com.gigacoffeebackend.login.application.oauth.providers;
 import com.gigacoffeebackend.login.application.oauth.OauthAccessToken;
 import com.gigacoffeebackend.login.application.oauth.info.GoogleUserInfo;
 import com.gigacoffeebackend.login.application.oauth.info.OauthUserInfo;
-import com.gigacoffeebackend.auth.AuthException;
+import com.gigacoffeebackend.auth.application.AuthException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;

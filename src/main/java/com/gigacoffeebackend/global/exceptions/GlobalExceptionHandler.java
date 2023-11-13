@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.global.exceptions;
 
-import com.gigacoffeebackend.auth.AuthException;
+import com.gigacoffeebackend.auth.application.AuthException;
 import com.gigacoffeebackend.global.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
