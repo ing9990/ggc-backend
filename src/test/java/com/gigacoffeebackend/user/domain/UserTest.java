@@ -42,6 +42,4 @@ class UserTest {
         assertThat(user.getSocialLoginId()).isEqualTo(socialLoginId);
         assertThat(user.getAuthority()).isEqualTo(USER);
     }
-
-
 }

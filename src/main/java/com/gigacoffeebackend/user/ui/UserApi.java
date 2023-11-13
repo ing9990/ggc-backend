@@ -2,6 +2,7 @@ package com.gigacoffeebackend.user.ui;
 
 import com.gigacoffeebackend.global.dto.ApiResponse;
 import com.gigacoffeebackend.global.aop.annotation.CurrentUser;
+import com.gigacoffeebackend.user.application.IntegrateUserService;
 import com.gigacoffeebackend.user.domain.Accessor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

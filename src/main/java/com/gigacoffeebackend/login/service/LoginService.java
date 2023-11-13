@@ -6,7 +6,7 @@ import com.gigacoffeebackend.login.application.oauth.OAuthProviderMapper;
 import com.gigacoffeebackend.login.application.oauth.info.OauthUserInfo;
 import com.gigacoffeebackend.login.application.oauth.providers.OAuthProviderPort;
 import com.gigacoffeebackend.user.domain.User;
-import com.gigacoffeebackend.user.ui.IntegrateUserService;
+import com.gigacoffeebackend.user.application.IntegrateUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

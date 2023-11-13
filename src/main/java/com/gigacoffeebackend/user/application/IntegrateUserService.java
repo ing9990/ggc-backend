@@ -1,9 +1,10 @@
-package com.gigacoffeebackend.user.ui;
+package com.gigacoffeebackend.user.application;
 
 import com.gigacoffeebackend.auth.application.AuthService;
 import com.gigacoffeebackend.user.domain.Accessor;
 import com.gigacoffeebackend.user.domain.User;
 import com.gigacoffeebackend.user.domain.UserService;
+import com.gigacoffeebackend.user.ui.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
