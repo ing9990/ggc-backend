@@ -82,7 +82,6 @@ public class JwtProvider {
         return createToken(subject, accessExpirationTime);
     }
 
-
     public String getSubject(final String token) {
         return parseToken(token)
                 .getBody()

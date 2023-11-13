@@ -17,9 +17,9 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "U00", "유저가 존재하지 않습니다."),
 
     // Authorize, 7xx
-    JWT_INVALID(401, "A00", "유효하지 않은 토큰입니다."),
+    JWT_INVALID(401, "A00", "유효하지 않은 JWT 토큰입니다."),
     JWT_REFRESH_NOT_FOUND(401, "A01", "Refresh 토큰이 없습니다."),
-    JWT_EXPIRED(401, "A02", "만료된 토큰입니다."),
+    JWT_EXPIRED(401, "A02", "만료된 JWT 토큰입니다."),
     JWT_INVALID_REF(401, "A03", "유효하지 않은 Refresh 토큰입니다."),
     JWT_EXPIRED_REF(401, "A04", "만료된 Refresh 토큰입니다."),
     JWT_FAIL_TO_MAKE(401, "A405", "JWT 발급에 실패했습니다."),
