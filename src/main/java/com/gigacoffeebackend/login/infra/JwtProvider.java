@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.login.application;
+package com.gigacoffeebackend.login.infra;
 
 import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import io.jsonwebtoken.*;

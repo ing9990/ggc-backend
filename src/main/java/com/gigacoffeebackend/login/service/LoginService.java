@@ -2,9 +2,9 @@ package com.gigacoffeebackend.login.service;
 
 import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.application.AuthService;
-import com.gigacoffeebackend.login.application.oauth.OAuthProviderMapper;
-import com.gigacoffeebackend.login.application.oauth.info.OauthUserInfo;
-import com.gigacoffeebackend.login.application.oauth.providers.OAuthProviderPort;
+import com.gigacoffeebackend.login.application.OAuthProviderMapper;
+import com.gigacoffeebackend.login.application.info.OauthUserInfo;
+import com.gigacoffeebackend.login.application.providers.OAuthProviderPort;
 import com.gigacoffeebackend.user.domain.User;
 import com.gigacoffeebackend.user.application.IntegrateUserService;
 import lombok.RequiredArgsConstructor;

@@ -1,11 +1,11 @@
 package com.gigacoffeebackend.global.aop;
 
 import com.gigacoffeebackend.auth.application.AuthException;
-import com.gigacoffeebackend.login.application.RefreshTokenException;
+import com.gigacoffeebackend.login.infra.RefreshTokenException;
 import com.gigacoffeebackend.global.aop.annotation.CurrentUser;
 import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import com.gigacoffeebackend.user.domain.Accessor;
-import com.gigacoffeebackend.login.application.JwtProvider;
+import com.gigacoffeebackend.login.infra.JwtProvider;
 import com.gigacoffeebackend.auth.domain.RefreshTokenRepository;
 import com.gigacoffeebackend.global.exceptions.BadRequestException;
 import lombok.RequiredArgsConstructor;

@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @SpringBootTest
 @Transactional
@@ -38,14 +40,15 @@ class RefreshTokenRepositoryTest {
         String token = "eythisisjwttoken";
         Long userId = 1L;
         RefreshToken refreshToken = new RefreshToken(token, userId);
+        refreshTokenRepository.save(refreshToken);
 
         // when
-        refreshTokenRepository.save(refreshToken);
+        Optional<RefreshToken> byToken = refreshTokenRepository.findByToken(token);
 
         // then
         Assertions.assertThat(refreshTokenRepository.findAll()).hasSize(1);
-        Assertions.assertThat(refreshTokenRepository.findByToken(token)).isPresent();
-        Assertions.assertThat(refreshTokenRepository.findByToken(token).get().getToken()).isEqualTo(token);
+        Assertions.assertThat(byToken).isPresent();
+        Assertions.assertThat(byToken.get().getToken()).isEqualTo(token);
     }
 
 

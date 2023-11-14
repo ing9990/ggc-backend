@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.login.application;
+package com.gigacoffeebackend.login.infra;
 
 import com.gigacoffeebackend.auth.application.AuthException;
 import com.gigacoffeebackend.global.exceptions.ErrorCode;

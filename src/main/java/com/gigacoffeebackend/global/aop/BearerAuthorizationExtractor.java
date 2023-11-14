@@ -1,11 +1,9 @@
 package com.gigacoffeebackend.global.aop;
 
-import com.gigacoffeebackend.global.exceptions.ErrorCode;
-import com.gigacoffeebackend.login.application.InvalidJwtException;
+import com.gigacoffeebackend.login.infra.InvalidJwtException;
 import org.springframework.stereotype.Component;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.INVALID_BEARER;
-import static com.gigacoffeebackend.global.exceptions.ErrorCode.JWT_INVALID;
 
 @Component
 public class BearerAuthorizationExtractor {

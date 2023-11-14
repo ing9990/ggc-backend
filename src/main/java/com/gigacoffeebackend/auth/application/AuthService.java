@@ -4,7 +4,7 @@ import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.domain.RefreshToken;
 import com.gigacoffeebackend.auth.domain.RefreshTokenRepository;
 import com.gigacoffeebackend.global.aop.BearerAuthorizationExtractor;
-import com.gigacoffeebackend.login.application.JwtProvider;
+import com.gigacoffeebackend.login.infra.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

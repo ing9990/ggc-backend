@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.login.application.oauth.info;
+package com.gigacoffeebackend.login.application.info;
 
 public interface OauthUserInfo {
     String getSocialLoginId();
