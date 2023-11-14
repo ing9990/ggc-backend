@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.login.service;
+package com.gigacoffeebackend.login.application;
 
 import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.application.AuthService;

@@ -63,7 +63,6 @@ class JwtProviderTest {
         // when // then
         assertThatThrownBy(() -> testJwtProvider.validateToken(accessAndRefreshToken.getAccessToken()))
                 .isInstanceOf(ExpiredPeriodJwtException.class);
-
     }
 
     @DisplayName("JWT를 복호화 할 수 없다면 InvalidJwtException를 던진다.")
