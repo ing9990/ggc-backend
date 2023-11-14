@@ -3,10 +3,9 @@
 > Service
  - Required
 
-> OAuth 
- > login with kakao
- > login with google
+> OAuth with kakao, google
   - Change oauth client
+  - https://console.cloud.google.com/apis/credentials?referrer=search&hl=ko&project=giga-coffee
 
 > JWT
   - Change secret key 
