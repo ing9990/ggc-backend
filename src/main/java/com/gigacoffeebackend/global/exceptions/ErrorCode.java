@@ -29,7 +29,16 @@ public enum ErrorCode {
     // OAuth, 8xx,
     OAUTH_SERVICE_NOT_FOUND(400, "O00", "지원하지 않는 SNS 로그인입니다."),
 
-    OAUTH_INVALID_TOKEN(401, "O01", "유효하지 않은 OAuth 토큰입니다.");
+    OAUTH_INVALID_TOKEN(401, "O01", "유효하지 않은 OAuth 토큰입니다."),
+
+    // Store, Product
+    STORE_NOT_FOUND(404, "S01", "찾을 수 없는 스토어입니다."),
+    STORE_NOT_FOUND_AT_ADD_PRODUCT(404, "S02", "상품을 추가할 스토어가 없습니다."),
+    STORE_DUPLICATED(400, "S03", "스토어 이름이 중복되었습니다."),
+    PRODUCT_DUPLICATE(400, "S04", "스토어에 해당 상품이 이미 추가되었습니다."),
+
+    // Category
+    CATEGORY_NOT_FOUND(404, "C01", "찾을 수 없는 카테고리입니다.");
 
     private final int status;
     private final String getStatus;
