@@ -2,7 +2,7 @@ package com.gigacoffeebackend.user.ui;
 
 import com.gigacoffeebackend.global.dto.ApiResponse;
 import com.gigacoffeebackend.global.aop.annotation.CurrentUser;
-import com.gigacoffeebackend.user.application.IntegrateUserService;
+import com.gigacoffeebackend.user.application.UserIntegration;
 import com.gigacoffeebackend.user.domain.Accessor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +19,11 @@ import static org.springframework.http.ResponseEntity.status;
 @RequiredArgsConstructor
 public class UserApi {
 
-    private final IntegrateUserService integrateUserService;
+    private final UserIntegration userIntegration;
 
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<UserResponse>> me(@CurrentUser Accessor accessor) {
-        return status(OK).body(ok(integrateUserService.findUserByAccesoor(accessor)));
+        return status(OK).body(ok(userIntegration.findUserByAccesor(accessor)));
     }
 
     @GetMapping("/test")

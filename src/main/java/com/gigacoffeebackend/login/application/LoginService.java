@@ -2,11 +2,10 @@ package com.gigacoffeebackend.login.application;
 
 import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.application.AuthService;
-import com.gigacoffeebackend.login.application.OAuthProviderMapper;
 import com.gigacoffeebackend.login.application.info.OauthUserInfo;
 import com.gigacoffeebackend.login.application.providers.OAuthProviderPort;
 import com.gigacoffeebackend.user.domain.User;
-import com.gigacoffeebackend.user.application.IntegrateUserService;
+import com.gigacoffeebackend.user.application.UserIntegration;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ import static java.util.Optional.ofNullable;
 public class LoginService {
 
     private final OAuthProviderMapper oAuthProviderMapper;
-    private final IntegrateUserService integrateUserService;
+    private final UserIntegration userIntegration;
 
     private final AuthService authService;
 
@@ -34,8 +33,8 @@ public class LoginService {
 
     public AccessAndRefreshToken connect(String socialLoginId, String nickname, String image) {
         log.info("Now connect socialid, Nickname is " + socialLoginId + ":" + nickname);
-        User user = ofNullable(integrateUserService.findUser(socialLoginId, nickname))
-                .orElseGet(() -> integrateUserService.registerUser(socialLoginId, nickname, image));
+        User user = ofNullable(userIntegration.findUser(socialLoginId, nickname))
+                .orElseGet(() -> userIntegration.registerUser(socialLoginId, nickname, image));
         return authService.generateToken(user.getId());
     }
 }

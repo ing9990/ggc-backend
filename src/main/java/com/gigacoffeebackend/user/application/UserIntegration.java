@@ -1,6 +1,5 @@
 package com.gigacoffeebackend.user.application;
 
-import com.gigacoffeebackend.auth.application.AuthService;
 import com.gigacoffeebackend.user.domain.Accessor;
 import com.gigacoffeebackend.user.domain.User;
 import com.gigacoffeebackend.user.domain.UserService;
@@ -14,10 +13,9 @@ import static com.gigacoffeebackend.user.ui.UserResponse.fromUser;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class IntegrateUserService {
+public class UserIntegration {
 
     private final UserService userService;
-    private final AuthService authService;
 
     public User findUser(String socialLoginId, String nickname) {
         return userService.findBySocialLoginIdAndNickName(socialLoginId, nickname);
@@ -27,7 +25,7 @@ public class IntegrateUserService {
         return userService.save(socialLoginId, nickname, imageUrl);
     }
 
-    public UserResponse findUserByAccesoor(Accessor accessor) {
+    public UserResponse findUserByAccesor(Accessor accessor) {
         return fromUser(userService.getUserByUserId(accessor.getUserId()));
     }
 }

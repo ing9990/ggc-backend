@@ -16,23 +16,17 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.INVALID_REQUEST;
-import static com.gigacoffeebackend.global.exceptions.ErrorCode.JWT_REFRESH_NOT_FOUND;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @RequiredArgsConstructor
 @Component
 public class CurrentUserResolver implements HandlerMethodArgumentResolver {
 
-    private static final String REFRESH_TOKEN = "refresh-token";
-
     private final JwtProvider jwtProvider;
     private final BearerAuthorizationExtractor extractor;
-    private final RefreshTokenRepository refreshTokenRepository;
 
     @Override
     public boolean supportsParameter(final MethodParameter parameter) {
@@ -59,21 +53,5 @@ public class CurrentUserResolver implements HandlerMethodArgumentResolver {
         } catch (final RefreshTokenException e) {
             throw new AuthException(ErrorCode.OAUTH_INVALID_TOKEN);
         }
-    }
-
-    private String extractRefreshToken(final Cookie... cookies) {
-        if (cookies == null) {
-            throw new RefreshTokenException(JWT_REFRESH_NOT_FOUND);
-        }
-        return Arrays.stream(cookies)
-                .filter(this::isValidRefreshToken)
-                .findFirst()
-                .orElseThrow(() -> new RefreshTokenException(JWT_REFRESH_NOT_FOUND))
-                .getValue();
-    }
-
-    private boolean isValidRefreshToken(final Cookie cookie) {
-        return REFRESH_TOKEN.equals(cookie.getName()) &&
-                refreshTokenRepository.existsByToken(cookie.getValue());
     }
 }
