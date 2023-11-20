@@ -1,6 +1,7 @@
 package com.gigacoffeebackend.store.domain;
 
 import com.gigacoffeebackend.category.domain.Category;
+import com.gigacoffeebackend.global.dto.BaseEntity;
 import com.gigacoffeebackend.product.domain.Product;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -17,7 +18,7 @@ import java.util.Set;
 )
 @Entity
 @Getter
-public class Store {
+public class Store extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -53,6 +54,10 @@ public class Store {
                 .name(name)
                 .locationName(locationName)
                 .build();
+    }
+
+    public String getFullName() {
+        return this.name + " " + this.locationName;
     }
 
     public void addProduct(Product product) {
