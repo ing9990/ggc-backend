@@ -1,5 +1,6 @@
 package com.gigacoffeebackend.auth.domain;
 
+import com.gigacoffeebackend.global.dto.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +13,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Entity
 @Getter
 @NoArgsConstructor(access = PROTECTED)
-public class RefreshToken {
+public class RefreshToken extends BaseEntity {
 
     @Id
     private String token;

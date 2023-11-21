@@ -7,6 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.PRODUCT_DUPLICATE;
 
 @Service
@@ -30,5 +35,9 @@ public class ProductService {
         if (productRepository.existsByStoreAndName(store, productName)) {
             throw new BusinessException(PRODUCT_DUPLICATE);
         }
+    }
+
+    public Set<Product> findAllByIds(List<Long> products) {
+        return new HashSet<>(productRepository.findAllById(products));
     }
 }

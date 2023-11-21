@@ -32,7 +32,6 @@ class UserApiTest extends ApiTest {
         given(jwtProvider.getSubject(any())).willReturn("1");
     }
 
-
     @DisplayName("유저의 프로필을 조회한다.")
     @Test
     void get_my_profile() throws Exception {

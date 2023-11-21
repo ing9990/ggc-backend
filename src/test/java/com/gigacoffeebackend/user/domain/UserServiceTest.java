@@ -56,7 +56,7 @@ class UserServiceTest {
         Assertions.assertThat(result.getDisplayName()).isEqualTo(displayName);
     }
 
-    private User 유저를_저장한다(String socialLoginId, String nickname) {
-        return userRepository.save(User.user(socialLoginId, nickname, "https://image.png"));
+    private void 유저를_저장한다(String socialLoginId, String nickname) {
+        userRepository.save(User.user(socialLoginId, nickname, "https://image.png"));
     }
 }

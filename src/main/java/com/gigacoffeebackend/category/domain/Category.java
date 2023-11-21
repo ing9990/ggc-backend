@@ -2,6 +2,7 @@ package com.gigacoffeebackend.category.domain;
 
 import com.gigacoffeebackend.global.dto.BaseEntity;
 import com.gigacoffeebackend.product.domain.Product;
+import com.gigacoffeebackend.store.domain.Store;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +22,26 @@ public class Category extends BaseEntity {
     @Column(nullable = false)
     private String displayName;
 
+    @ManyToOne
+    @JoinColumn(name = "store_category_name")
+    private Store store;
+
     @OneToMany
     private Set<Product> products = new HashSet<>();
 
-    public Category(String name, String displayName) {
+    protected Category(Store store, String name, String displayName, Set<Product> products) {
+        this.store = store;
         this.name = name;
         this.displayName = displayName;
-        this.products = new HashSet<>();
+        this.products = products;
+    }
+
+    public static Category makeCategory(Store store, String name, String displayName, Set<Product> products) {
+        return new Category(store, name, displayName, products);
+    }
+
+    public Category addProducts(Set<Product> products) {
+        this.products.addAll(products);
+        return this;
     }
 }

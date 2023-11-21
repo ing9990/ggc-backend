@@ -49,7 +49,9 @@ public enum ErrorCode {
     PRODUCT_DUPLICATE(400, "S04", "스토어에 해당 상품이 이미 추가되었습니다."),
 
     // Category
-    CATEGORY_NOT_FOUND(404, "C01", "찾을 수 없는 카테고리입니다.");
+    CATEGORY_NOT_FOUND(404, "C01", "찾을 수 없는 카테고리입니다."),
+    CATEGORY_NAME_IS_NOT_ALPHABET(400, "C02", "카테고리 이름이 영어가 아닙니다."),
+    CATEGORY_NOT_FOUND_IN_STORE(400, "C03", "스토어에 선택한 카테고리가 없습니다.");
 
     private final int status;
     private final String getStatus;

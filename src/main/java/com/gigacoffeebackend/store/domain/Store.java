@@ -56,7 +56,19 @@ public class Store extends BaseEntity {
         return this.name + " " + this.locationName;
     }
 
-    public void addProduct(Product product) {
+    public Store addProduct(final Product product) {
         this.products.add(product);
+        return this;
+    }
+
+    public Store addCategory(final Category category) {
+        this.storeCategory.add(category);
+        return this;
+    }
+
+    public Category getCategoryWithName(final String name) {
+        return this.storeCategory.stream().filter(category -> category.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(name + "과 일치하는 카테고리가 없습니다. " + " store Id: " + id));
     }
 }
