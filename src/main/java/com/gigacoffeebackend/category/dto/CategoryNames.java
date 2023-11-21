@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.category.ui;
+package com.gigacoffeebackend.category.dto;
 
 import lombok.Getter;
 

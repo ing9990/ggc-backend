@@ -1,9 +1,8 @@
 package com.gigacoffeebackend.category.ui;
 
+import com.gigacoffeebackend.category.dto.CategoryNames;
 import com.gigacoffeebackend.category.service.CategoryIntegration;
 import com.gigacoffeebackend.global.dto.ApiResponse;
-import com.gigacoffeebackend.product.ui.ProductResponse;
-import com.gigacoffeebackend.product.ui.StoreProductsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

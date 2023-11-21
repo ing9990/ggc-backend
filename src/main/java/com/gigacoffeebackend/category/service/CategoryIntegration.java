@@ -3,7 +3,7 @@ package com.gigacoffeebackend.category.service;
 import com.gigacoffeebackend.category.domain.Category;
 import com.gigacoffeebackend.category.domain.CategoryService;
 import com.gigacoffeebackend.category.ui.AddCategoryRequest;
-import com.gigacoffeebackend.category.ui.CategoryNames;
+import com.gigacoffeebackend.category.dto.CategoryNames;
 import com.gigacoffeebackend.category.ui.CategoryProductResponse;
 import com.gigacoffeebackend.category.ui.CategoryResponse;
 import com.gigacoffeebackend.product.domain.Product;
