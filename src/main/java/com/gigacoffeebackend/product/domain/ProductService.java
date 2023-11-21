@@ -37,7 +37,7 @@ public class ProductService {
         }
     }
 
-    public Set<Product> findAllByIds(List<Long> products) {
+    public Set<Product> findAllByIds(Set<Long> products) {
         return new HashSet<>(productRepository.findAllById(products));
     }
 }

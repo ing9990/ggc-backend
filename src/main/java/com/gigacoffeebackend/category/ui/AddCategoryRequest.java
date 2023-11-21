@@ -1,14 +1,12 @@
 package com.gigacoffeebackend.category.ui;
 
 import com.gigacoffeebackend.global.aop.annotation.AlphabetOnly;
-import lombok.*;
+import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Getter
-@NoArgsConstructor
 public class AddCategoryRequest {
 
     @NotBlank(message = "카테고리 이름을 입력하세요.")
@@ -18,5 +16,18 @@ public class AddCategoryRequest {
     @NotBlank(message = "카테고리의 표시 명을 입력하세요.")
     private String displayName;
 
-    private List<Long> products = new ArrayList<>();
+    private Set<Long> products = new HashSet<>();
+
+    public AddCategoryRequest(@NotBlank(message = "카테고리 이름을 입력하세요.") String name,
+                              @NotBlank(message = "카테고리의 표시 명을 입력하세요.") String displayName,
+                              Set<Long> products
+    ) {
+        this.name = name;
+        this.displayName = displayName;
+        this.products = Objects.isNull(products) ? Set.of() : products;
+    }
+
+    public AddCategoryRequest() {
+
+    }
 }

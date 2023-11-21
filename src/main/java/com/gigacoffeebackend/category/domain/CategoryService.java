@@ -26,12 +26,12 @@ public class CategoryService {
                 .orElseGet(() -> save(store, name, displayName, products));
     }
 
-    private Category save(Store store, String name, String displayName, Set<Product> products) {
-        return categoryRepository.save(Category.makeCategory(store, name, displayName, products));
-    }
-
     public Category findCategory(Store store, String name) {
         return categoryRepository.findCategoryByStoreAndName(store, name)
                 .orElseThrow(() -> new BusinessException(CATEGORY_NOT_FOUND_IN_STORE));
+    }
+
+    private Category save(Store store, String name, String displayName, Set<Product> products) {
+        return categoryRepository.save(Category.makeCategory(store, name, displayName, products));
     }
 }
