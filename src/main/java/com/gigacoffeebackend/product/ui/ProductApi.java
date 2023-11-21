@@ -13,11 +13,19 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.ResponseEntity.status;
 
 @RestController
-@RequestMapping("/api/v1/{storeId}/products")
+@RequestMapping("/api/v1/stores/{storeId}/products")
 @RequiredArgsConstructor
 public class ProductApi {
 
     private final ProductIntegration productIntegration;
+
+    @GetMapping
+    ResponseEntity<ApiResponse<StoreProductsResponse>> findStore(
+            @PathVariable Long storeId
+    ) {
+        StoreProductsResponse products = productIntegration.findStore(storeId);
+        return status(OK).body(ok(products));
+    }
 
     @PostMapping
     ResponseEntity<ApiResponse<ProductResponse>> addProduct(

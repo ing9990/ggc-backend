@@ -1,12 +1,16 @@
 package com.gigacoffeebackend.user.domain;
 
+import com.gigacoffeebackend.global.exceptions.BusinessException;
+import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@Transactional
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.USER_DUPLIACTED;
+
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -17,7 +21,9 @@ public class UserService {
         return userRepository.findBySocialLoginIdAndNickName(socialLoginId, nickname);
     }
 
+    @Transactional
     public User save(String socialLoginId, String nickname, String imageUrl) {
+        checkUserDuplicate(socialLoginId, nickname);
         return userRepository.save(User.user(socialLoginId, nickname, imageUrl));
     }
 
@@ -27,5 +33,11 @@ public class UserService {
 
     public User getUserByUserId(Long userId) {
         return findUserByuserId(userId).orElseThrow(UserNotFoundException::new);
+    }
+
+    private void checkUserDuplicate(String socialLoginId, String nickname) {
+        if (userRepository.existsBySocialLoginIdAndNickName(socialLoginId, nickname)) {
+            throw new BusinessException(USER_DUPLIACTED);
+        }
     }
 }

@@ -31,10 +31,6 @@ public class Store extends BaseEntity {
     @Column(name = "location_name", nullable = false)
     private String locationName;
 
-    // 스토어의 부가적인 정보들
-    @Embedded
-    private StoreInfo storeInfo;
-
     // 스토어에서 판매 중인 상품들 - 자세한건 Product 도메인에서 관리
     @OneToMany(mappedBy = "store")
     private Set<Product> products = new HashSet<>();

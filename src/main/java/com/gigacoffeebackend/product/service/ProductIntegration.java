@@ -4,12 +4,15 @@ import com.gigacoffeebackend.product.domain.Product;
 import com.gigacoffeebackend.product.domain.ProductService;
 import com.gigacoffeebackend.product.ui.AddProductRequest;
 import com.gigacoffeebackend.product.ui.ProductResponse;
+import com.gigacoffeebackend.product.ui.StoreProductsResponse;
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreNotFoundException;
 import com.gigacoffeebackend.store.domain.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_NOT_FOUND_AT_ADD_PRODUCT;
 
@@ -28,5 +31,13 @@ public class ProductIntegration {
         Product product = productService.saveProduct(foundStore, addProductRequest.getProductName(), addProductRequest.getProductPrice());
         foundStore.addProduct(product);
         return ProductResponse.from(product);
+    }
+
+    public StoreProductsResponse findStore(Long storeId) {
+        Store foundStore = storeService.findStoreById(storeId)
+                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_AT_ADD_PRODUCT));
+
+        Set<Product> products = foundStore.getProducts();
+        return StoreProductsResponse.of(foundStore, products);
     }
 }

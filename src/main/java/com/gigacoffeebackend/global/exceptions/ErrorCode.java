@@ -15,17 +15,25 @@ public enum ErrorCode {
 
     // User
     USER_NOT_FOUND(404, "U00", "유저가 존재하지 않습니다."),
+    USER_DUPLIACTED(400, "U01", "유저의 소셜 아이디와 닉네임이 중복되었습니다."),
 
     // Authorize, 7xx
     JWT_INVALID(401, "A00", "유효하지 않은 JWT 토큰입니다."),
+
     JWT_REFRESH_NOT_FOUND(401, "A01", "Refresh 토큰이 없습니다."),
+
     JWT_EXPIRED(401, "A02", "만료된 JWT 토큰입니다."),
+
     JWT_INVALID_REF(401, "A03", "유효하지 않은 Refresh 토큰입니다."),
+
     JWT_EXPIRED_REF(401, "A04", "만료된 Refresh 토큰입니다."),
+
     JWT_FAIL_TO_MAKE(401, "A405", "JWT 발급에 실패했습니다."),
 
     INVALID_AUTHORITY(401, "A10", "로그인되지 않은 사용자입니다."),
+
     INVALID_BEARER(401, "A11", "Bearer를 찾을 수 없습니다."),
+
     // OAuth, 8xx,
     OAUTH_SERVICE_NOT_FOUND(400, "O00", "지원하지 않는 SNS 로그인입니다."),
 
@@ -33,8 +41,11 @@ public enum ErrorCode {
 
     // Store, Product
     STORE_NOT_FOUND(404, "S01", "찾을 수 없는 스토어입니다."),
+
     STORE_NOT_FOUND_AT_ADD_PRODUCT(404, "S02", "상품을 추가할 스토어가 없습니다."),
+
     STORE_DUPLICATED(400, "S03", "스토어 이름이 중복되었습니다."),
+
     PRODUCT_DUPLICATE(400, "S04", "스토어에 해당 상품이 이미 추가되었습니다."),
 
     // Category

@@ -1,6 +1,7 @@
 package com.gigacoffeebackend.product.domain;
 
 import com.gigacoffeebackend.category.domain.Category;
+import com.gigacoffeebackend.global.dto.BaseEntity;
 import com.gigacoffeebackend.option.domain.ProductOption;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.AccessLevel;
@@ -18,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
         uniqueConstraints = @UniqueConstraint(columnNames = {"store_id", "product_name"}))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Product {
+public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

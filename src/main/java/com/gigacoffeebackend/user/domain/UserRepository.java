@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select u from User u where u.id = ?1")
     Optional<User> findUserById(Long userId);
+
+    @Query("select (count(u) > 0) from User u where u.socialLoginId = ?1 and u.nickName = ?2")
+    boolean existsBySocialLoginIdAndNickName(String socialLoginId, String nickname);
 }
