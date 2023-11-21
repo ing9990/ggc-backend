@@ -37,6 +37,16 @@ public class CategoryIntegration {
         return CategoryResponse.from(category);
     }
 
+    public CategoryNames findCategories(final Long storeId) {
+        final Store foundStore = storeService.findStoreById(storeId)
+                .orElseThrow(StoreNotFoundException::new);
+
+        Set<String> categoryNames = foundStore.getStoreCategory().stream().map(Category::getName)
+                .collect(Collectors.toSet());
+
+        return new CategoryNames().addAll(categoryNames);
+    }
+
     /**
      * 카테고리가 없다면 새로 만들어 상품을 추가한다.
      * 카테고리가 있다면 카테고리를 찾아 상품을 추가한다.
@@ -47,15 +57,6 @@ public class CategoryIntegration {
         return category;
     }
 
-    public CategoryNames findCategories(final Long storeId) {
-        final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(StoreNotFoundException::new);
-
-        Set<String> categoryNames = foundStore.getStoreCategory().stream().map(Category::getName)
-                .collect(Collectors.toSet());
-
-        return new CategoryNames().addAll(categoryNames);
-    }
 
     public CategoryProductResponse findProducts(Long storeId, String categoryName) {
         final Store foundStore = storeService.findStoreById(storeId)

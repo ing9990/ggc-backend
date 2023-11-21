@@ -27,7 +27,7 @@ public class AddCategoryRequest {
         this.products = Objects.isNull(products) ? Set.of() : products;
     }
 
-    public AddCategoryRequest() {
+    protected AddCategoryRequest() {
 
     }
 }
