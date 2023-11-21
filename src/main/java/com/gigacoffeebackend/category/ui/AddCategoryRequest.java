@@ -3,6 +3,7 @@ package com.gigacoffeebackend.category.ui;
 import com.gigacoffeebackend.global.aop.annotation.AlphabetOnly;
 import lombok.Getter;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.*;
 
@@ -18,9 +19,10 @@ public class AddCategoryRequest {
 
     private Set<Long> products = new HashSet<>();
 
-    public AddCategoryRequest(@NotBlank(message = "카테고리 이름을 입력하세요.") String name,
-                              @NotBlank(message = "카테고리의 표시 명을 입력하세요.") String displayName,
-                              Set<Long> products
+    public AddCategoryRequest(
+            @Valid @AlphabetOnly @NotBlank(message = "카테고리 이름을 입력하세요.") String name,
+            @Valid @NotBlank(message = "카테고리의 표시 명을 입력하세요.") String displayName,
+            Set<Long> products
     ) {
         this.name = name;
         this.displayName = displayName;

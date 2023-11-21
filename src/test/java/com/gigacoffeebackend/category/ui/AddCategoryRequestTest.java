@@ -1,13 +1,14 @@
 package com.gigacoffeebackend.category.ui;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ActiveProfiles("test")
 class AddCategoryRequestTest {
@@ -31,4 +32,16 @@ class AddCategoryRequestTest {
     }
 
 
+    @DisplayName("카테고리의 이름은 영문만 허용한다.")
+    @Test
+    void make_category_with_korean_name() {
+        // given
+        Set<Long> products = Set.of();
+        String categoryName = "한국어입니다~~";
+
+        // when // then
+        assertThatThrownBy(() -> new AddCategoryRequest(categoryName, "커피", products))
+                .isInstanceOf(MethodArgumentNotValidException.class)
+                .hasMessage("영문만 입력해주세요.");
+    }
 }
