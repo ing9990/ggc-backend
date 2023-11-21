@@ -40,6 +40,4 @@ class StoreTest {
         // then
         Assertions.assertThat(store.getFullName()).isEqualTo("메가커피 합정역점");
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.gigacoffeebackend.store.service;
 
+import com.gigacoffeebackend.global.exceptions.BusinessException;
 import com.gigacoffeebackend.store.ui.AddStoreRequest;
 import com.gigacoffeebackend.store.ui.StoreResponse;
 import org.assertj.core.api.Assertions;
@@ -22,9 +23,7 @@ class StoreIntegrationTest {
     @Test
     void create_store() {
         // given
-        String name = "메가커피";
-        String locationName = "합정역점";
-        AddStoreRequest addStoreRequest = new AddStoreRequest(name, locationName);
+        AddStoreRequest addStoreRequest = getAddStoreRequest("메가커피", "합정역점");
 
         // when
         StoreResponse storeResponse = storeIntegration.addStore(addStoreRequest);
@@ -33,5 +32,20 @@ class StoreIntegrationTest {
         Assertions.assertThat(storeResponse.getStoreFullName()).isEqualTo("메가커피 합정역점");
     }
 
+    @DisplayName("스토어의 이름과 지역이 모두 같을 수 없다.")
+    @Test
+    void store_name_and_location_cannot_duplicate() {
+        // given
+        AddStoreRequest addStoreRequest = getAddStoreRequest("메가커피", "합정역점");
+        storeIntegration.addStore(addStoreRequest);
 
+        // when then
+        Assertions.assertThatThrownBy(() -> storeIntegration.addStore(addStoreRequest))
+                .isInstanceOf(BusinessException.class);
+    }
+
+
+    private AddStoreRequest getAddStoreRequest(String name, String locationName) {
+        return new AddStoreRequest(name, locationName);
+    }
 }
