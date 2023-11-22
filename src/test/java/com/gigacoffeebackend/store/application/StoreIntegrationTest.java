@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.store.service;
+package com.gigacoffeebackend.store.application;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
 import com.gigacoffeebackend.store.ui.AddStoreRequest;

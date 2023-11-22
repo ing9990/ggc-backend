@@ -1,9 +1,9 @@
-package com.gigacoffeebackend.login.application;
+package com.gigacoffeebackend.auth.application;
 
 import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
-import com.gigacoffeebackend.login.infra.ExpiredPeriodJwtException;
-import com.gigacoffeebackend.login.infra.InvalidJwtException;
-import com.gigacoffeebackend.login.infra.JwtProvider;
+import com.gigacoffeebackend.auth.application.infra.ExpiredPeriodJwtException;
+import com.gigacoffeebackend.auth.application.infra.InvalidJwtException;
+import com.gigacoffeebackend.auth.application.infra.JwtProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

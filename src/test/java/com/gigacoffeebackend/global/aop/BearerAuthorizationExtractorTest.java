@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.global.aop;
 
-import com.gigacoffeebackend.login.infra.InvalidJwtException;
+import com.gigacoffeebackend.auth.application.infra.InvalidJwtException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

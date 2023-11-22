@@ -1,10 +1,10 @@
-package com.gigacoffeebackend.login.application.oauth;
+package com.gigacoffeebackend.auth.application.oauth;
 
 import com.gigacoffeebackend.auth.application.AuthException;
-import com.gigacoffeebackend.login.application.OAuthProviderMapper;
-import com.gigacoffeebackend.login.application.providers.GoogleProviderAdapter;
-import com.gigacoffeebackend.login.application.providers.KakaoProviderAdapter;
-import com.gigacoffeebackend.login.application.providers.OAuthProviderPort;
+import com.gigacoffeebackend.auth.application.OAuthProviderMapper;
+import com.gigacoffeebackend.auth.application.providers.GoogleProviderAdapter;
+import com.gigacoffeebackend.auth.application.providers.KakaoProviderAdapter;
+import com.gigacoffeebackend.auth.application.providers.OAuthProviderPort;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
