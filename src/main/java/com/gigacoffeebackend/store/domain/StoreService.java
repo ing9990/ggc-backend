@@ -1,6 +1,7 @@
 package com.gigacoffeebackend.store.domain;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
+import com.gigacoffeebackend.product.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,5 +54,9 @@ public class StoreService {
 
     public List<Store> findAll() {
         return storeRepository.findAll();
+    }
+
+    public void addProductToStore(Store foundStore, Product product) {
+        foundStore.addProduct(product);
     }
 }

@@ -1,5 +1,7 @@
-package com.gigacoffeebackend.product.service;
+package com.gigacoffeebackend.product.application;
 
+import com.gigacoffeebackend.category.domain.Category;
+import com.gigacoffeebackend.category.domain.CategoryService;
 import com.gigacoffeebackend.product.domain.Product;
 import com.gigacoffeebackend.product.domain.ProductService;
 import com.gigacoffeebackend.product.ui.AddProductRequest;
@@ -23,21 +25,24 @@ public class ProductIntegration {
 
     private final ProductService productService;
     private final StoreService storeService;
+    private final CategoryService categoryService;
 
     @Transactional
-    public ProductResponse addProduct(Long storeId, AddProductRequest addProductRequest) {
-        Store foundStore = storeService.findStoreById(storeId)
+    public ProductResponse addProduct(final Long storeId, final AddProductRequest addProductRequest) {
+        final Store foundStore = storeService.findStoreById(storeId)
                 .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_AT_ADD_PRODUCT));
-        Product product = productService.saveProduct(foundStore, addProductRequest.getProductName(), addProductRequest.getProductPrice());
-        foundStore.addProduct(product);
+        final Product product = productService.saveProduct(foundStore, addProductRequest.getProductName(), addProductRequest.getProductPrice());
+        storeService.addProductToStore(foundStore, product);
+        categoryService.findCategory(foundStore, addProductRequest.getCategoryName())
+                .ifPresent(category -> productService.addCategoryToProduct(product, category));
         return ProductResponse.from(product);
     }
 
-    public StoreProductsResponse findStore(Long storeId) {
-        Store foundStore = storeService.findStoreById(storeId)
+    public StoreProductsResponse findStore(final Long storeId) {
+        final Store foundStore = storeService.findStoreById(storeId)
                 .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_AT_ADD_PRODUCT));
 
-        Set<Product> products = foundStore.getProducts();
+        final Set<Product> products = foundStore.getProducts();
         return StoreProductsResponse.of(foundStore, products);
     }
 }

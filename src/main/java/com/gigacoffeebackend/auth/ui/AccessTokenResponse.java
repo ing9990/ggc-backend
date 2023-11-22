@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.login.ui;
+package com.gigacoffeebackend.auth.ui;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

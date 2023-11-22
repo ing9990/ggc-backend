@@ -1,9 +1,9 @@
-package com.gigacoffeebackend.login.application.providers;
+package com.gigacoffeebackend.auth.application.providers;
 
 import com.gigacoffeebackend.auth.application.AuthException;
-import com.gigacoffeebackend.login.application.info.KakaoUserInfo;
-import com.gigacoffeebackend.login.application.OauthAccessToken;
-import com.gigacoffeebackend.login.application.info.OauthUserInfo;
+import com.gigacoffeebackend.auth.application.info.KakaoUserInfo;
+import com.gigacoffeebackend.auth.application.OauthAccessToken;
+import com.gigacoffeebackend.auth.application.info.OauthUserInfo;
 import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;

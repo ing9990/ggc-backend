@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.global.aop;
 
-import com.gigacoffeebackend.login.infra.InvalidJwtException;
+import com.gigacoffeebackend.auth.application.infra.InvalidJwtException;
 import org.springframework.stereotype.Component;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.INVALID_BEARER;

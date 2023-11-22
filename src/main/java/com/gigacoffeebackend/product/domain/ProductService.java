@@ -1,16 +1,14 @@
 package com.gigacoffeebackend.product.domain;
 
+import com.gigacoffeebackend.category.domain.Category;
 import com.gigacoffeebackend.global.exceptions.BusinessException;
-import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.PRODUCT_DUPLICATE;
 
@@ -39,5 +37,9 @@ public class ProductService {
 
     public Set<Product> findAllByIds(Set<Long> products) {
         return new HashSet<>(productRepository.findAllById(products));
+    }
+
+    public void addCategoryToProduct(Product product, Category category) {
+        product.addCategory(category);
     }
 }

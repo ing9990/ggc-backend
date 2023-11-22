@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.login.application.info;
+package com.gigacoffeebackend.auth.application.info;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

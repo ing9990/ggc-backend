@@ -1,7 +1,7 @@
 package com.gigacoffeebackend.store.ui;
 
 import com.gigacoffeebackend.global.dto.ApiResponse;
-import com.gigacoffeebackend.store.service.StoreIntegration;
+import com.gigacoffeebackend.store.application.StoreIntegration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

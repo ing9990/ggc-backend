@@ -1,6 +1,6 @@
-package com.gigacoffeebackend.login.application.providers;
+package com.gigacoffeebackend.auth.application.providers;
 
-import com.gigacoffeebackend.login.application.info.OauthUserInfo;
+import com.gigacoffeebackend.auth.application.info.OauthUserInfo;
 import org.springframework.web.client.RestTemplate;
 
 public interface OAuthProviderPort {

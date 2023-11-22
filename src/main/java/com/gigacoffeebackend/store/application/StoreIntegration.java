@@ -1,9 +1,8 @@
-package com.gigacoffeebackend.store.service;
+package com.gigacoffeebackend.store.application;
 
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreService;
 import com.gigacoffeebackend.store.ui.AddStoreRequest;
-import com.gigacoffeebackend.store.ui.MultiStoreResponse;
 import com.gigacoffeebackend.store.ui.StoreResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

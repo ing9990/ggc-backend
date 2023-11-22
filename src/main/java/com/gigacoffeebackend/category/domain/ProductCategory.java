@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.product_category.domain;
+package com.gigacoffeebackend.category.domain;
 
 import com.gigacoffeebackend.category.domain.Category;
 import com.gigacoffeebackend.global.dto.BaseEntity;

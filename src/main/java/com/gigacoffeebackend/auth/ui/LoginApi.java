@@ -1,8 +1,8 @@
-package com.gigacoffeebackend.login.ui;
+package com.gigacoffeebackend.auth.ui;
 
 import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import com.gigacoffeebackend.global.dto.ApiResponse;
-import com.gigacoffeebackend.login.application.LoginService;
+import com.gigacoffeebackend.auth.application.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseCookie;

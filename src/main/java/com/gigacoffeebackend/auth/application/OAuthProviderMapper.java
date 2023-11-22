@@ -1,8 +1,7 @@
-package com.gigacoffeebackend.login.application;
+package com.gigacoffeebackend.auth.application;
 
 import com.gigacoffeebackend.global.exceptions.ErrorCode;
-import com.gigacoffeebackend.login.application.providers.OAuthProviderPort;
-import com.gigacoffeebackend.auth.application.AuthException;
+import com.gigacoffeebackend.auth.application.providers.OAuthProviderPort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

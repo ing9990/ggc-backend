@@ -1,7 +1,7 @@
 package com.gigacoffeebackend.category.ui;
 
 import com.gigacoffeebackend.category.dto.CategoryNames;
-import com.gigacoffeebackend.category.service.CategoryIntegration;
+import com.gigacoffeebackend.category.application.CategoryIntegration;
 import com.gigacoffeebackend.global.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,21 +23,21 @@ public class CategoryApi {
             @PathVariable Long storeId,
             @Valid @RequestBody AddCategoryRequest request
     ) {
-        CategoryResponse response = categoryIntegration.addCategory(storeId, request);
+        final CategoryResponse response = categoryIntegration.addCategory(storeId, request);
 
         return ok(ApiResponse.ok(response));
     }
 
     @GetMapping
     ResponseEntity<ApiResponse<CategoryNames>> categories(@PathVariable Long storeId) {
-        CategoryNames response = categoryIntegration.findCategories(storeId);
+        final CategoryNames response = categoryIntegration.findCategories(storeId);
 
         return ok(ApiResponse.ok(response));
     }
 
     @GetMapping("/{categoryName}/products")
     ResponseEntity<ApiResponse<CategoryProductResponse>> categorieProducts(@PathVariable Long storeId, @PathVariable String categoryName) {
-        CategoryProductResponse response = categoryIntegration.findProducts(storeId, categoryName);
+        final CategoryProductResponse response = categoryIntegration.findProducts(storeId, categoryName);
 
         return ok(ApiResponse.ok(response));
     }

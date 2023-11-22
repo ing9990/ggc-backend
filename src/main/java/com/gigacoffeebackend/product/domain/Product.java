@@ -52,4 +52,8 @@ public class Product extends BaseEntity {
     public static Product makeProductWith(Store store, String name, int price) {
         return new Product(store, name, price);
     }
+
+    public void addCategory(final Category category) {
+        categories.add(category);
+    }
 }

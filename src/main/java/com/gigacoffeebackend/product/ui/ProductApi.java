@@ -1,7 +1,7 @@
 package com.gigacoffeebackend.product.ui;
 
 import com.gigacoffeebackend.global.dto.ApiResponse;
-import com.gigacoffeebackend.product.service.ProductIntegration;
+import com.gigacoffeebackend.product.application.ProductIntegration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class ProductApi {
     private final ProductIntegration productIntegration;
 
     @GetMapping
-    ResponseEntity<ApiResponse<StoreProductsResponse>> findStore(
+    ResponseEntity<ApiResponse<StoreProductsResponse>> products(
             @PathVariable Long storeId
     ) {
         StoreProductsResponse products = productIntegration.findStore(storeId);

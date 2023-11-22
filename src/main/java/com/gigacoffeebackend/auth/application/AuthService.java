@@ -4,9 +4,10 @@ import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.domain.RefreshToken;
 import com.gigacoffeebackend.auth.domain.RefreshTokenRepository;
 import com.gigacoffeebackend.global.aop.BearerAuthorizationExtractor;
-import com.gigacoffeebackend.login.infra.JwtProvider;
+import com.gigacoffeebackend.auth.application.infra.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.JWT_FAIL_TO_MAKE;
@@ -14,6 +15,7 @@ import static com.gigacoffeebackend.global.exceptions.ErrorCode.JWT_INVALID_REF;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AuthService {
 
     private final RefreshTokenRepository refreshTokenRepository;

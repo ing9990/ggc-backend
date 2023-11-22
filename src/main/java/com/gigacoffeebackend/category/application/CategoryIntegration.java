@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.category.service;
+package com.gigacoffeebackend.category.application;
 
 import com.gigacoffeebackend.category.domain.Category;
 import com.gigacoffeebackend.category.domain.CategoryService;
@@ -47,23 +47,22 @@ public class CategoryIntegration {
         return new CategoryNames().addAll(categoryNames);
     }
 
-    /**
-     * 카테고리가 없다면 새로 만들어 상품을 추가한다.
-     * 카테고리가 있다면 카테고리를 찾아 상품을 추가한다.
-     */
-    private Category findOrSaveCategory(AddCategoryRequest request, Set<Product> products, Store store) {
-        Category category = categoryService.saveOrFind(store, request.getName(), request.getDisplayName(), products);
-        store.addCategory(category);
-        return category;
-    }
-
-
     public CategoryProductResponse findProducts(Long storeId, String categoryName) {
         final Store foundStore = storeService.findStoreById(storeId)
                 .orElseThrow(StoreNotFoundException::new);
 
-        final Category category = categoryService.findCategory(foundStore, categoryName);
+        final Category category = categoryService.getCategory(foundStore, categoryName);
 
         return CategoryProductResponse.from(category);
+    }
+
+    /**
+     * 카테고리가 없다면 새로 만들어 상품을 추가한다.
+     * 카테고리가 있다면 카테고리를 찾아 상품을 추가한다.
+     */
+    private Category findOrSaveCategory(final AddCategoryRequest request, final Set<Product> products, final Store store) {
+        Category category = categoryService.saveOrFind(store, request.getName(), request.getDisplayName(), products);
+        store.addCategory(category);
+        return category;
     }
 }
