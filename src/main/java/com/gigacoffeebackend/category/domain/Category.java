@@ -11,6 +11,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.gigacoffeebackend.category.domain.Default.*;
+
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -39,6 +41,11 @@ public class Category extends BaseEntity {
     public static Category makeCategory(Store store, String name, String displayName, Set<Product> products) {
         return new Category(store, name, displayName, products);
     }
+
+    public static Category makeDefault(Store store) {
+        return new Category(store, ALL.getName(), ALL.getDisplayName(), Set.of());
+    }
+
 
     public Category addProducts(Set<Product> products) {
         this.products.addAll(products);

@@ -20,8 +20,8 @@ public class ProductResponse {
     public static ProductResponse from(Product product) {
         return ProductResponse.builder()
                 .productId(product.getId())
-                .productName(product.getName())
-                .productPrice(product.getPrice())
+                .productName(product.getName().toString())
+                .productPrice(product.getPrice().getValue())
                 .build();
     }
 }

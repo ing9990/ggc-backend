@@ -39,4 +39,8 @@ public class CategoryService {
     private Category save(final Store store, final String name, final String displayName, final Set<Product> products) {
         return categoryRepository.save(Category.makeCategory(store, name, displayName, products));
     }
+
+    public void saveProductToCategory(Product product, Category category) {
+        category.addProducts(Set.of(product));
+    }
 }

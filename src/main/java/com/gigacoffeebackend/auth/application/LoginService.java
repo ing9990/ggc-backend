@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.auth.application;
 
-import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
+import com.gigacoffeebackend.auth.dto.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.application.info.OauthUserInfo;
 import com.gigacoffeebackend.auth.application.providers.OAuthProviderPort;
 import com.gigacoffeebackend.user.domain.User;

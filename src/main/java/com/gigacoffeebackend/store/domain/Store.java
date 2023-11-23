@@ -45,30 +45,27 @@ public class Store extends BaseEntity {
         this.locationName = locationName;
     }
 
-    public static Store makeStore(String name, String locationName) {
+    protected static Store makeStore(String name, String locationName) {
         return Store.builder()
                 .name(name)
                 .locationName(locationName)
                 .build();
     }
 
+    protected Store withDefault() {
+        storeCategory.add(Category.makeDefault(this));
+        return this;
+    }
+
     public String getFullName() {
         return this.name + " " + this.locationName;
     }
 
-    public Store addProduct(final Product product) {
+    public void addProduct(final Product product) {
         this.products.add(product);
-        return this;
     }
 
-    public Store addCategory(final Category category) {
+    public void addCategory(final Category category) {
         this.storeCategory.add(category);
-        return this;
-    }
-
-    public Category getCategoryWithName(final String name) {
-        return this.storeCategory.stream().filter(category -> category.getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException(name + "과 일치하는 카테고리가 없습니다. " + " store Id: " + id));
     }
 }

@@ -1,7 +1,7 @@
 package com.gigacoffeebackend;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
+import com.gigacoffeebackend.auth.dto.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.domain.RefreshTokenRepository;
 import com.gigacoffeebackend.global.aop.BearerAuthorizationExtractor;
 import com.gigacoffeebackend.auth.application.infra.JwtProvider;

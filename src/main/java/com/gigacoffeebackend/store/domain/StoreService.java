@@ -19,9 +19,10 @@ public class StoreService {
     private final StoreRepository storeRepository;
 
     @Transactional
-    public Store saveStore(final String name, final String locationName) {
+    public Store saveStoreWithDefault(final String name, final String locationName) {
         checkStoreDuplicate(name, locationName);
-        return storeRepository.save(Store.makeStore(name, locationName));
+
+        return storeRepository.save(Store.makeStore(name, locationName).withDefault());
     }
 
     public Store getStoreByFullName(final String name, final String locationName) {

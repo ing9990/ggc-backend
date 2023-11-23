@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.auth.ui;
 
-import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
+import com.gigacoffeebackend.auth.dto.AccessAndRefreshToken;
 import com.gigacoffeebackend.global.dto.ApiResponse;
 import com.gigacoffeebackend.auth.application.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,6 @@ public class LoginApi {
 
     public static final int COOKIE_AGE_SECONDS = 604800;
     public static final String REFRESH_TOKEN = "refresh-token";
-
     private final LoginService loginService;
 
     @GetMapping("/login/{provider}")

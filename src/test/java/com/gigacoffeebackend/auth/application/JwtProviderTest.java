@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.auth.application;
 
-import com.gigacoffeebackend.auth.domain.AccessAndRefreshToken;
+import com.gigacoffeebackend.auth.dto.AccessAndRefreshToken;
 import com.gigacoffeebackend.auth.application.infra.ExpiredPeriodJwtException;
 import com.gigacoffeebackend.auth.application.infra.InvalidJwtException;
 import com.gigacoffeebackend.auth.application.infra.JwtProvider;

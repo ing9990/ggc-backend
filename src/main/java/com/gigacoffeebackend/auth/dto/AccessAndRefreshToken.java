@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.auth.domain;
+package com.gigacoffeebackend.auth.dto;
 
 import lombok.Getter;
 

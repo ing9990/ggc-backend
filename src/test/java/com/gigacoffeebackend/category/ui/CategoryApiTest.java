@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+
 import java.util.Set;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
@@ -31,13 +32,10 @@ class CategoryApiTest extends ApiTest {
         // given
         Long storeId = 1L;
 
-        // when
+        // when // then
         mockMvc
                 .perform(get("/api/v1/stores/" + storeId + "/categories"))
                 .andDo(print());
-
-
-        // then
     }
 
 
@@ -46,14 +44,12 @@ class CategoryApiTest extends ApiTest {
     void create_category() throws Exception {
         // given
         Long storeId = 1L;
-
         Set<Long> products = Set.of();
         String name = "coffee";
         String displayName = "커피";
-
         AddCategoryRequest request = new AddCategoryRequest(name, displayName, products);
 
-        // when
+        // when // then
         mockMvc
                 .perform(post("/api/v1/stores/" + storeId + "/categories")
                         .header(AUTHORIZATION, TOKENS.getAccessToken())
@@ -64,8 +60,5 @@ class CategoryApiTest extends ApiTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("OK"))
         ;
-
-
-        // then
     }
 }

@@ -9,10 +9,12 @@ import lombok.*;
 @Builder
 public class StoreResponse {
 
+    private Long storeId;
     private String storeFullName;
 
     public static StoreResponse from(Store store) {
         return StoreResponse.builder()
+                .storeId(store.getId())
                 .storeFullName(store.getFullName())
                 .build();
     }

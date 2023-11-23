@@ -4,7 +4,6 @@ import com.gigacoffeebackend.product.domain.Product;
 import com.gigacoffeebackend.product.domain.ProductRepository;
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.groups.Tuple.tuple;
 
 @SpringBootTest
@@ -51,9 +51,9 @@ class CategoryServiceTest {
         Category category = categoryService.saveOrFind(store, name, displayName, Set.of());
 
         // then
-        Assertions.assertThat(category.getName()).isEqualTo("coffee");
-        Assertions.assertThat(category.getDisplayName()).isEqualTo("커피");
-        Assertions.assertThat(category.getProducts()).isEqualTo(Set.of());
+        assertThat(category.getName()).isEqualTo("coffee");
+        assertThat(category.getDisplayName()).isEqualTo("커피");
+        assertThat(category.getProducts()).isEqualTo(Set.of());
     }
 
     @DisplayName("등록된 카테고리가 있다면 카테고리를 찾아 상품을 추가한다.")
@@ -76,10 +76,10 @@ class CategoryServiceTest {
         Category category = categoryService.saveOrFind(store, name, displayName, Set.of(product3));
 
         // then
-        Assertions.assertThat(category.getName()).isEqualTo("coffee");
-        Assertions.assertThat(category.getDisplayName()).isEqualTo("커피");
+        assertThat(category.getName()).isEqualTo("coffee");
+        assertThat(category.getDisplayName()).isEqualTo("커피");
 
-        Assertions.assertThat(category.getProducts())
+        assertThat(category.getProducts())
                 .hasSize(3)
                 .extracting("name", "price")
                 .containsExactlyInAnyOrder(

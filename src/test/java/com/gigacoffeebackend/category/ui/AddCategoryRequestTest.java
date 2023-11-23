@@ -2,6 +2,7 @@ package com.gigacoffeebackend.category.ui;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
@@ -10,6 +11,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@SpringBootTest
 @ActiveProfiles("test")
 class AddCategoryRequestTest {
 
@@ -34,7 +36,7 @@ class AddCategoryRequestTest {
 
     @DisplayName("카테고리의 이름은 영문만 허용한다.")
     @Test
-    void make_category_with_korean_name() {
+    void make_category_with_korean() {
         // given
         Set<Long> products = Set.of();
         String categoryName = "한국어입니다~~";

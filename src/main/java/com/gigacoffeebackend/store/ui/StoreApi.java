@@ -23,7 +23,16 @@ public class StoreApi {
     ResponseEntity<ApiResponse<StoreResponse>> addStore(
             @Valid @RequestBody AddStoreRequest addStoreRequest
     ) {
-        StoreResponse storeResponse = storeIntegration.addStore(addStoreRequest);
-        return status(OK).body(ok(storeResponse));
+        StoreResponse response = storeIntegration.addStore(addStoreRequest);
+        return status(OK).body(ok(response));
+    }
+
+    @GetMapping("/{storeId}")
+    ResponseEntity<ApiResponse<TotalStoreResponse>> store(
+            @PathVariable Long storeId
+    ) {
+        TotalStoreResponse response = storeIntegration.findStore(storeId);
+
+        return status(OK).body(ok(response));
     }
 }

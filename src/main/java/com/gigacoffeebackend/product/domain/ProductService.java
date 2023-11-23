@@ -2,6 +2,8 @@ package com.gigacoffeebackend.product.domain;
 
 import com.gigacoffeebackend.category.domain.Category;
 import com.gigacoffeebackend.global.exceptions.BusinessException;
+import com.gigacoffeebackend.product.dto.ProductName;
+import com.gigacoffeebackend.product.dto.ProductPrice;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,9 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+
     @Transactional
-    public Product saveProduct(Store store, final String productName, final int productPrice) {
+    public Product saveProduct(Store store, final ProductName productName, final ProductPrice productPrice) {
         validateStoreProductDuplicate(store, productName);
 
         return productRepository.save(Product.makeProductWith(store, productName, productPrice));
@@ -29,7 +32,7 @@ public class ProductService {
     /*
         같은 스토어에 같은 이름의 메뉴가 들어간 경우 예외
      */
-    private void validateStoreProductDuplicate(Store store, String productName) {
+    private void validateStoreProductDuplicate(Store store, ProductName productName) {
         if (productRepository.existsByStoreAndName(store, productName)) {
             throw new BusinessException(PRODUCT_DUPLICATE);
         }
@@ -40,6 +43,6 @@ public class ProductService {
     }
 
     public void addCategoryToProduct(Product product, Category category) {
-        product.addCategory(category);
+        product.changeCategory(category);
     }
 }

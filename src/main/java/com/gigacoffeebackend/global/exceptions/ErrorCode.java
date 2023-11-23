@@ -47,11 +47,17 @@ public enum ErrorCode {
     STORE_DUPLICATED(400, "S03", "스토어 이름이 중복되었습니다."),
 
     PRODUCT_DUPLICATE(400, "S04", "스토어에 해당 상품이 이미 추가되었습니다."),
+    PRODUCT_NAME_IS_EMPTY(400, "S05", "상품명이 빈 값입니다."),
+    PRODUCT_PRICE_IS_INVALID(400, "S06", "가격이 음수거나 100원 단위로 나누어 떨어지지 않습니다."),
 
     // Category
     CATEGORY_NOT_FOUND(404, "C01", "찾을 수 없는 카테고리입니다."),
+
     CATEGORY_NAME_IS_NOT_ALPHABET(400, "C02", "카테고리 이름이 영어가 아닙니다."),
-    CATEGORY_NOT_FOUND_IN_STORE(400, "C03", "스토어에 선택한 카테고리가 없습니다.");
+
+    CATEGORY_NOT_FOUND_IN_STORE(400, "C03", "스토어에 선택한 카테고리가 없습니다."),
+
+    CATEGORY_IS_NOT_CHANGED(400, "C04", "카테고리가 변경되지 않았습니다.");
 
     private final int status;
     private final String getStatus;
