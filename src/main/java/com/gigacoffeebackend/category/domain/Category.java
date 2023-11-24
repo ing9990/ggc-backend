@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.gigacoffeebackend.category.domain.Default.*;
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,7 +28,7 @@ public class Category extends BaseEntity {
     @JoinColumn(name = "store_category_name")
     private Store store;
 
-    @OneToMany
+    @OneToMany(cascade = ALL, orphanRemoval = true, mappedBy = "category")
     private Set<Product> products = new HashSet<>();
 
     protected Category(Store store, String name, String displayName, Set<Product> products) {
@@ -43,7 +43,7 @@ public class Category extends BaseEntity {
     }
 
     public static Category makeDefault(Store store) {
-        return new Category(store, ALL.getName(), ALL.getDisplayName(), Set.of());
+        return new Category(store, Default.ALL.getName(), Default.ALL.getDisplayName(), Set.of());
     }
 
 

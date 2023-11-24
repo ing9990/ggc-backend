@@ -27,10 +27,10 @@ public enum ErrorCode {
     OAUTH_INVALID_TOKEN(401, "O01", "유효하지 않은 OAuth 토큰입니다."),
 
     STORE_NOT_FOUND(404, "S01", "찾을 수 없는 스토어입니다."),
-    STORE_NOT_FOUND_AT_UPDATE(404, "S02", "업데이트할 스토어가 없습니다."),
-
-    STORE_NOT_FOUND_AT_ADD_PRODUCT(404, "S02", "상품을 추가할 스토어가 없습니다."),
+    STORE_NOT_FOUND_ON_UPDATE(404, "S02", "업데이트할 스토어가 없습니다."),
+    STORE_NOT_FOUND_ON_ADD_PRODUCT(404, "S02", "상품을 추가할 스토어가 없습니다."),
     STORE_DUPLICATED(400, "S03", "스토어 이름이 중복되었습니다."),
+    STORE_DUPLICATED_ON_UPDATE(400, "S04", "스토어 이름이 중복되어 스토어 정보를 변경하지 못했습니다."),
 
     PRODUCT_DUPLICATE(400, "S04", "스토어에 해당 상품이 이미 추가되었습니다."),
     PRODUCT_NAME_IS_EMPTY(400, "S05", "상품명이 빈 값입니다."),

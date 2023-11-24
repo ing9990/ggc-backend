@@ -1,7 +1,6 @@
 package com.gigacoffeebackend.user.domain;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
-import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

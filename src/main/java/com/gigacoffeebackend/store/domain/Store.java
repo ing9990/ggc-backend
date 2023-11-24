@@ -32,11 +32,11 @@ public class Store extends BaseEntity {
     @Embedded
     private LocationName locationName;
 
-    @OneToMany(mappedBy = "store", cascade = MERGE)
+    @OneToMany(mappedBy = "store", cascade = ALL, orphanRemoval = true)
     private Set<Product> products = new HashSet<>();
 
     @OneToMany(cascade = ALL, orphanRemoval = true)
-    private Set<Category> storeCategory = new HashSet<>();
+    private Set<Category> categories = new HashSet<>();
 
     @Builder
     private Store(final StoreName name, final LocationName locationName) {
@@ -60,7 +60,7 @@ public class Store extends BaseEntity {
     }
 
     public void addCategory(final Category category) {
-        this.storeCategory.add(category);
+        this.categories.add(category);
     }
 
     public void updateNameAndLocationName(StoreName name, LocationName location) {
@@ -68,8 +68,13 @@ public class Store extends BaseEntity {
         this.locationName = location;
     }
 
-    public Store deleteCategory(Category category) {
-        storeCategory.remove(category);
+    public Store deleteCategory(final Category category) {
+        categories.remove(category);
+        return this;
+    }
+
+    public Store deleteProduct(final Product product) {
+        products.remove(product);
         return this;
     }
 }

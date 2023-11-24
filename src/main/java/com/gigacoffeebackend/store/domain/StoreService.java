@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_DUPLICATED;
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_DUPLICATED_ON_UPDATE;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +33,11 @@ public class StoreService {
 
     @Transactional
     public void updateStore(final Store foundStore, final StoreName storeName, final LocationName locationName) {
-        checkStoreDuplicate(storeName, locationName);
+        try {
+            checkStoreDuplicate(storeName, locationName);
+        } catch (BusinessException e) {
+            throw new BusinessException(STORE_DUPLICATED_ON_UPDATE);
+        }
 
         foundStore.updateNameAndLocationName(storeName, locationName);
     }

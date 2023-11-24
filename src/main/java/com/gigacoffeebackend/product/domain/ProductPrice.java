@@ -12,8 +12,6 @@ import static com.gigacoffeebackend.global.exceptions.ErrorCode.PRODUCT_PRICE_IS
 @Embeddable
 public class ProductPrice {
 
-    // 100원 단위로 허용
-    // -> 이 책임을 누가 가질 것인지 다시 생각해봐야댐
     private static final int DIVIDER = 100;
 
     @Column(name = "product_price", nullable = false)

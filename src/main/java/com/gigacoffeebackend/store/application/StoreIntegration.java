@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_NOT_FOUND_AT_UPDATE;
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_NOT_FOUND_ON_UPDATE;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +34,7 @@ public class StoreIntegration {
     @Transactional
     public TotalStoreResponse updateStore(final Long storeId, UpdateStoreRequest updateStoreRequest) {
         Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_AT_UPDATE));
+                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_ON_UPDATE));
 
         storeService.updateStore(foundStore, updateStoreRequest.toStoreName(), updateStoreRequest.toLocation());
 
@@ -45,7 +45,7 @@ public class StoreIntegration {
         final Store foundStore = storeService.findStoreById(storeId)
                 .orElseThrow(StoreNotFoundException::new);
 
-        Set<CategoryResponse> categories = foundStore.getStoreCategory()
+        Set<CategoryResponse> categories = foundStore.getCategories()
                 .stream()
                 .map(CategoryResponse::from)
                 .collect(Collectors.toSet());

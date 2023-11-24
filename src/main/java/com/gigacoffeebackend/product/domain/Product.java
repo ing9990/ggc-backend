@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.*;
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -33,6 +34,7 @@ public class Product extends BaseEntity {
     private ProductPrice price;
 
     @ManyToOne
+    @JoinColumn(name = "category_name")
     private Category category;
 
     @ManyToOne

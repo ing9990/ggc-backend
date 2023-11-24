@@ -20,8 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 import java.util.Set;
 
-import static com.gigacoffeebackend.global.exceptions.ErrorCode.CATEGORY_NOT_FOUND_IN_STORE;
-import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_NOT_FOUND_AT_ADD_PRODUCT;
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.*;
+import static java.util.Optional.of;
+import static org.springframework.data.util.Optionals.ifAllPresent;
+import static org.springframework.data.util.Optionals.mapIfAllPresent;
 
 @Service
 @Transactional(readOnly = true)
@@ -35,21 +37,29 @@ public class ProductIntegration {
     @Transactional
     public ProductResponse addProduct(final Long storeId, final AddProductRequest addProductRequest) {
         final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_AT_ADD_PRODUCT));
-
+                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_ON_ADD_PRODUCT));
         final Product product = productService.saveProduct(foundStore,
                 new ProductName(addProductRequest.getProductName()),
                 new ProductPrice(addProductRequest.getProductPrice()));
-
         storeService.addProductToStore(foundStore, product);
         addCategoryToProductIfPresent(addProductRequest, foundStore, product);
         return ProductResponse.from(product);
     }
 
+    @Transactional
+    public StoreProductsResponse deleteProduct(Long storeId, Long productId) {
+        final Store foundStore = storeService.findStoreById(storeId)
+                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND));
+        ifAllPresent(
+                of(foundStore), productService.findProductByStoreAndProductId(foundStore, productId),
+                Store::deleteProduct
+        );
+        return StoreProductsResponse.of(foundStore);
+    }
+
     public StoreProductsResponse findStore(final Long storeId) {
         final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_AT_ADD_PRODUCT));
-
+                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_ON_ADD_PRODUCT));
         final Set<Product> products = foundStore.getProducts();
         return StoreProductsResponse.of(foundStore, products);
     }
@@ -59,7 +69,6 @@ public class ProductIntegration {
         if (category.isEmpty()) {
             throw new BusinessException(CATEGORY_NOT_FOUND_IN_STORE);
         }
-
         category.ifPresent(value -> productService.addCategoryToProduct(product, value));
         category.ifPresent(value -> categoryService.saveProductToCategory(product, value));
     }

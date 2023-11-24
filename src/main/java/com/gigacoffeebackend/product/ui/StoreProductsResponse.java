@@ -23,6 +23,13 @@ public class StoreProductsResponse {
                 .build();
     }
 
+    public static StoreProductsResponse of(Store foundStore) {
+        return StoreProductsResponse.builder()
+                .storeName(foundStore.getFullName())
+                .products(toProductResponse(foundStore.getProducts()))
+                .build();
+    }
+
     private static Set<ProductResponse> toProductResponse(Set<Product> products) {
         return products.stream().map(ProductResponse::from)
                 .collect(Collectors.toSet());

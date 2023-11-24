@@ -11,18 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 import static com.gigacoffeebackend.user.ui.UserResponse.fromUser;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class UserIntegration {
 
     private final UserService userService;
 
-    public User findUser(String socialLoginId, String nickname) {
-        return userService.findBySocialLoginIdAndNickName(socialLoginId, nickname);
-    }
-
+    @Transactional
     public User registerUser(String socialLoginId, String nickname, String imageUrl) {
         return userService.save(socialLoginId, nickname, imageUrl);
+    }
+
+    public User findUser(String socialLoginId, String nickname) {
+        return userService.findBySocialLoginIdAndNickName(socialLoginId, nickname);
     }
 
     public UserResponse findUserByAccesor(Accessor accessor) {

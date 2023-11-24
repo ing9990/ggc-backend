@@ -23,7 +23,7 @@ public class StoreApi {
     ResponseEntity<ApiResponse<StoreResponse>> addStore(
             @Valid @RequestBody AddStoreRequest addStoreRequest
     ) {
-        StoreResponse response = storeIntegration.addStore(addStoreRequest);
+        final StoreResponse response = storeIntegration.addStore(addStoreRequest);
         return status(OK).body(ok(response));
     }
 
@@ -31,7 +31,7 @@ public class StoreApi {
     ResponseEntity<ApiResponse<TotalStoreResponse>> store(
             @PathVariable Long storeId
     ) {
-        TotalStoreResponse response = storeIntegration.findStore(storeId);
+        final TotalStoreResponse response = storeIntegration.findStore(storeId);
 
         return status(OK).body(ok(response));
     }
@@ -41,7 +41,7 @@ public class StoreApi {
             @PathVariable Long storeId,
             @Valid @RequestBody UpdateStoreRequest updateStoreRequest
     ) {
-        TotalStoreResponse response = storeIntegration.updateStore(storeId, updateStoreRequest);
+        final TotalStoreResponse response = storeIntegration.updateStore(storeId, updateStoreRequest);
 
         return status(OK).body(ok(response));
     }

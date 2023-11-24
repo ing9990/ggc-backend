@@ -23,8 +23,8 @@ public class ProductApi {
     ResponseEntity<ApiResponse<StoreProductsResponse>> products(
             @PathVariable Long storeId
     ) {
-        StoreProductsResponse products = productIntegration.findStore(storeId);
-        return status(OK).body(ok(products));
+        final StoreProductsResponse response = productIntegration.findStore(storeId);
+        return status(OK).body(ok(response));
     }
 
     @PostMapping
@@ -32,7 +32,16 @@ public class ProductApi {
             @PathVariable Long storeId,
             @Valid @RequestBody AddProductRequest addProductRequest
     ) {
-        ProductResponse product = productIntegration.addProduct(storeId, addProductRequest);
-        return status(OK).body(ok(product));
+        final ProductResponse response = productIntegration.addProduct(storeId, addProductRequest);
+        return status(OK).body(ok(response));
+    }
+
+    @DeleteMapping("/{productId}")
+    ResponseEntity<ApiResponse<StoreProductsResponse>> deleteProduct(
+            @PathVariable Long storeId,
+            @PathVariable Long productId
+    ) {
+        final StoreProductsResponse response = productIntegration.deleteProduct(storeId, productId);
+        return status(OK).body(ok(response));
     }
 }

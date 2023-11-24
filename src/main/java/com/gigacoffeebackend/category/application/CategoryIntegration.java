@@ -46,7 +46,7 @@ public class CategoryIntegration {
         final Store foundStore = storeService.findStoreById(storeId)
                 .orElseThrow(StoreNotFoundException::new);
 
-        Set<String> categoryNames = foundStore.getStoreCategory().stream().map(Category::getName)
+        Set<String> categoryNames = foundStore.getCategories().stream().map(Category::getName)
                 .collect(Collectors.toSet());
 
         return new CategoryNames().addAll(categoryNames);

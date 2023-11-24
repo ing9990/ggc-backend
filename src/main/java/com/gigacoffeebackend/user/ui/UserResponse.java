@@ -11,11 +11,8 @@ import lombok.NoArgsConstructor;
 public class UserResponse {
 
     private String displayName;
-
     private String profileImageUrl;
-
     private String socialLoginId;
-
     private String nickName;
 
     @Builder
