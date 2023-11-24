@@ -42,6 +42,19 @@ public class CategoryIntegration {
         return CategoryResponse.from(category);
     }
 
+    @Transactional
+    public StoreResponse deleteCategory(final Long storeId, final String categoryName) {
+        final Store foundStore = storeService.findStoreById(storeId)
+                .orElseThrow(StoreNotFoundException::new);
+
+        return mapIfAllPresent(
+                of(foundStore),
+                categoryService.findCategory(foundStore, categoryName),
+                Store::deleteCategory)
+                .map(StoreResponse::from)
+                .orElseThrow(NoSuchElementException::new);
+    }
+
     public CategoryNames findCategories(final Long storeId) {
         final Store foundStore = storeService.findStoreById(storeId)
                 .orElseThrow(StoreNotFoundException::new);
@@ -61,23 +74,6 @@ public class CategoryIntegration {
         return CategoryProductResponse.from(category);
     }
 
-    @Transactional
-    public StoreResponse deleteCategory(final Long storeId, final String categoryName) {
-        final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(StoreNotFoundException::new);
-
-        return mapIfAllPresent(
-                of(foundStore),
-                categoryService.findCategory(foundStore, categoryName),
-                Store::deleteCategory)
-                .map(StoreResponse::from)
-                .orElseThrow(NoSuchElementException::new);
-    }
-
-    /**
-     * 카테고리가 없다면 새로 만들어 상품을 추가한다.
-     * 카테고리가 있다면 카테고리를 찾아 상품을 추가한다.
-     */
     private Category findOrSaveCategory(final AddCategoryRequest request, final Set<Product> products, final Store store) {
         final Category category = categoryService.saveOrFind(store, request.getName(), request.getDisplayName(), products);
         store.addCategory(category);

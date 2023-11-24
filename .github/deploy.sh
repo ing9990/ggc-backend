@@ -16,5 +16,5 @@ else
 fi
 
 nohup java -jar /root/gigacoffee/build/libs/gigacoffee-backend.jar --spring.profiles.active=prod  > /dev/null 2>&1 &
-echo "Start Gigacoffee-Backend Application"
+echo "Start GGC-Backend Application"
 exit

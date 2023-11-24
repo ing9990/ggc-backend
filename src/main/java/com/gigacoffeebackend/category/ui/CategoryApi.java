@@ -20,9 +20,7 @@ public class CategoryApi {
     private final CategoryIntegration categoryIntegration;
 
     @PostMapping
-    ResponseEntity<ApiResponse<CategoryResponse>> addCategory(
-            @PathVariable Long storeId,
-            @Valid @RequestBody AddCategoryRequest request
+    ResponseEntity<ApiResponse<CategoryResponse>> addCategory(@PathVariable Long storeId, @Valid @RequestBody AddCategoryRequest request
     ) {
         final CategoryResponse response = categoryIntegration.addCategory(storeId, request);
 
