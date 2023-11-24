@@ -17,14 +17,14 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public User findBySocialLoginIdAndNickName(String socialLoginId, String nickname) {
-        return userRepository.findBySocialLoginIdAndNickName(socialLoginId, nickname);
-    }
-
     @Transactional
     public User save(String socialLoginId, String nickname, String imageUrl) {
         checkUserDuplicate(socialLoginId, nickname);
         return userRepository.save(User.user(socialLoginId, nickname, imageUrl));
+    }
+
+    public User findBySocialLoginIdAndNickName(String socialLoginId, String nickname) {
+        return userRepository.findBySocialLoginIdAndNickName(socialLoginId, nickname);
     }
 
     public Optional<User> findUserByuserId(Long userId) {

@@ -31,22 +31,22 @@ public class StoreService {
     }
 
     @Transactional
-    public void updateStore(Store foundStore, StoreName storeName, LocationName locationName) {
+    public void updateStore(final Store foundStore, final StoreName storeName, final LocationName locationName) {
         checkStoreDuplicate(storeName, locationName);
 
         foundStore.updateNameAndLocationName(storeName, locationName);
     }
 
     @Transactional
-    public void addProductToStore(Store foundStore, Product product) {
+    public void addProductToStore(final Store foundStore, final Product product) {
         foundStore.addProduct(product);
     }
 
-    public Optional<Store> findStoreById(Long storeId) {
+    public Optional<Store> findStoreById(final Long storeId) {
         return storeRepository.findById(storeId);
     }
 
-    private void checkStoreDuplicate(StoreName name, LocationName locationName) {
+    private void checkStoreDuplicate(final StoreName name, final LocationName locationName) {
         if (storeRepository.existsStoreByNameAndLocationName(name, locationName)) {
             throw new BusinessException(STORE_DUPLICATED);
         }

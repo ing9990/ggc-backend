@@ -8,9 +8,6 @@ import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category, String> {
 
-    @Query("select (count(c) > 0) from Category c where c.store = ?1 and c.name = ?2")
-    boolean existsByStoreAndName(Store store, String name);
-
     @Query("select c from Category c where c.store = ?1 and c.name = ?2")
     Optional<Category> findCategoryByStoreAndName(Store store, String name);
 }

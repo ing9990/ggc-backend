@@ -3,6 +3,7 @@ package com.gigacoffeebackend.category.ui;
 import com.gigacoffeebackend.category.dto.CategoryNames;
 import com.gigacoffeebackend.category.application.CategoryIntegration;
 import com.gigacoffeebackend.global.dto.ApiResponse;
+import com.gigacoffeebackend.store.ui.StoreResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,13 @@ public class CategoryApi {
     @GetMapping("/{categoryName}/products")
     ResponseEntity<ApiResponse<CategoryProductResponse>> categorieProducts(@PathVariable Long storeId, @PathVariable String categoryName) {
         final CategoryProductResponse response = categoryIntegration.findProducts(storeId, categoryName);
+
+        return ok(ApiResponse.ok(response));
+    }
+
+    @DeleteMapping("/{categoryName}")
+    ResponseEntity<ApiResponse<StoreResponse>> deleteCategory(@PathVariable Long storeId, @PathVariable String categoryName) {
+        final StoreResponse response = categoryIntegration.deleteCategory(storeId, categoryName);
 
         return ok(ApiResponse.ok(response));
     }

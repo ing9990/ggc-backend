@@ -11,12 +11,17 @@ import com.gigacoffeebackend.product.domain.ProductService;
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreNotFoundException;
 import com.gigacoffeebackend.store.domain.StoreService;
+import com.gigacoffeebackend.store.ui.StoreResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static java.util.Optional.of;
+import static org.springframework.data.util.Optionals.mapIfAllPresent;
 
 @Service
 @Transactional(readOnly = true)
@@ -47,7 +52,7 @@ public class CategoryIntegration {
         return new CategoryNames().addAll(categoryNames);
     }
 
-    public CategoryProductResponse findProducts(Long storeId, String categoryName) {
+    public CategoryProductResponse findProducts(final Long storeId, final String categoryName) {
         final Store foundStore = storeService.findStoreById(storeId)
                 .orElseThrow(StoreNotFoundException::new);
 
@@ -56,12 +61,25 @@ public class CategoryIntegration {
         return CategoryProductResponse.from(category);
     }
 
+    @Transactional
+    public StoreResponse deleteCategory(final Long storeId, final String categoryName) {
+        final Store foundStore = storeService.findStoreById(storeId)
+                .orElseThrow(StoreNotFoundException::new);
+
+        return mapIfAllPresent(
+                of(foundStore),
+                categoryService.findCategory(foundStore, categoryName),
+                Store::deleteCategory)
+                .map(StoreResponse::from)
+                .orElseThrow(NoSuchElementException::new);
+    }
+
     /**
      * 카테고리가 없다면 새로 만들어 상품을 추가한다.
      * 카테고리가 있다면 카테고리를 찾아 상품을 추가한다.
      */
     private Category findOrSaveCategory(final AddCategoryRequest request, final Set<Product> products, final Store store) {
-        Category category = categoryService.saveOrFind(store, request.getName(), request.getDisplayName(), products);
+        final Category category = categoryService.saveOrFind(store, request.getName(), request.getDisplayName(), products);
         store.addCategory(category);
         return category;
     }

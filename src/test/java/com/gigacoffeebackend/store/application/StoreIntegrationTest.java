@@ -100,7 +100,6 @@ class StoreIntegrationTest {
                 );
     }
 
-
     private AddStoreRequest getAddStoreRequest(String name, String locationName) {
         return new AddStoreRequest(name, locationName);
     }

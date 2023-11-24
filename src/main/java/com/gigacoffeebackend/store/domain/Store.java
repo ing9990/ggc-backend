@@ -67,4 +67,9 @@ public class Store extends BaseEntity {
         this.name = name;
         this.locationName = location;
     }
+
+    public Store deleteCategory(Category category) {
+        storeCategory.remove(category);
+        return this;
+    }
 }

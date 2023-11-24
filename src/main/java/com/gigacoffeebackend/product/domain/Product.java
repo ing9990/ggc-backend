@@ -39,10 +39,6 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    public static Product makeProductWith(final Store store, final ProductName name, final ProductPrice price, final Category category) {
-        return new Product(store, name, price, category);
-    }
-
     public static Product makeProductWith(final Store store, final ProductName name, final ProductPrice price) {
         return new Product(store, name, price, null);
     }
