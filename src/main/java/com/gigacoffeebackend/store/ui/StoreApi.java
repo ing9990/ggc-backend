@@ -35,4 +35,14 @@ public class StoreApi {
 
         return status(OK).body(ok(response));
     }
+
+    @PutMapping("/{storeId}")
+    ResponseEntity<ApiResponse<TotalStoreResponse>> update(
+            @PathVariable Long storeId,
+            @Valid @RequestBody UpdateStoreRequest updateStoreRequest
+    ) {
+        TotalStoreResponse response = storeIntegration.updateStore(storeId, updateStoreRequest);
+
+        return status(OK).body(ok(response));
+    }
 }

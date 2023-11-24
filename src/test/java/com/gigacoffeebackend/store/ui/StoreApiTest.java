@@ -2,8 +2,10 @@ package com.gigacoffeebackend.store.ui;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gigacoffeebackend.ApiTest;
+import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.application.StoreIntegration;
+import com.gigacoffeebackend.store.domain.StoreName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(StoreApi.class)
 @ActiveProfiles("test")
-class StoreApiHappyCaseTest extends ApiTest {
+class StoreApiTest extends ApiTest {
 
     @Autowired
     private ObjectMapper om;
@@ -38,7 +41,7 @@ class StoreApiHappyCaseTest extends ApiTest {
     void create_store() throws Exception {
         final String name = "할리스커피";
         final String locationName = "합정역점";
-        final Store store = Store.makeStore(name, locationName);
+        final Store store = Store.makeStore(new StoreName(name), new LocationName(locationName));
         final StoreResponse response = StoreResponse.from(store);
 
         when(storeIntegration.addStore(any(AddStoreRequest.class)))
@@ -49,6 +52,7 @@ class StoreApiHappyCaseTest extends ApiTest {
         mockMvc.perform(post("/api/v1/stores")
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
                         .content(om.writeValueAsString(request)))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.storeFullName").value("할리스커피 합정역점"));
     }

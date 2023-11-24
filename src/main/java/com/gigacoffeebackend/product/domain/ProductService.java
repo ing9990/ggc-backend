@@ -2,8 +2,6 @@ package com.gigacoffeebackend.product.domain;
 
 import com.gigacoffeebackend.category.domain.Category;
 import com.gigacoffeebackend.global.exceptions.BusinessException;
-import com.gigacoffeebackend.product.dto.ProductName;
-import com.gigacoffeebackend.product.dto.ProductPrice;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

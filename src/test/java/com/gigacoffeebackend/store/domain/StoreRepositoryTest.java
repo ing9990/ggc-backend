@@ -26,7 +26,7 @@ class StoreRepositoryTest {
         // given
         String name = "메가커피";
         String location = "합정역점";
-        Store store = Store.makeStore(name, location);
+        Store store = Store.makeStore(new StoreName(name), new LocationName(location));
 
         // when
         Store savedStore = storeRepository.save(store);
@@ -41,7 +41,7 @@ class StoreRepositoryTest {
         // given
         String name = "메가커피";
         String location = "합정역점";
-        Store store = Store.makeStore(name, location);
+        Store store = Store.makeStore(new StoreName(name), new LocationName(location));
         Store savedStore = storeRepository.save(store);
 
         // when
@@ -54,7 +54,7 @@ class StoreRepositoryTest {
 
 
     private Store 스토어_생성됨(String name, String location) {
-        Store store = Store.makeStore(name, location);
+        Store store = Store.makeStore(new StoreName(name), new LocationName(location));
         return storeRepository.save(store);
     }
 

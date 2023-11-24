@@ -7,12 +7,15 @@ import com.gigacoffeebackend.store.domain.StoreService;
 import com.gigacoffeebackend.store.ui.AddStoreRequest;
 import com.gigacoffeebackend.store.ui.StoreResponse;
 import com.gigacoffeebackend.store.ui.TotalStoreResponse;
+import com.gigacoffeebackend.store.ui.UpdateStoreRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_NOT_FOUND_AT_UPDATE;
 
 @Service
 @RequiredArgsConstructor
@@ -24,10 +27,21 @@ public class StoreIntegration {
     @Transactional
     public StoreResponse addStore(AddStoreRequest addStoreRequest) {
         Store savedStore = storeService.saveStoreWithDefault(addStoreRequest.getName(), addStoreRequest.getLocation());
+
         return StoreResponse.from(savedStore);
     }
 
-    public TotalStoreResponse findStore(Long storeId) {
+    @Transactional
+    public TotalStoreResponse updateStore(final Long storeId, UpdateStoreRequest updateStoreRequest) {
+        Store foundStore = storeService.findStoreById(storeId)
+                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_AT_UPDATE));
+
+        storeService.updateStore(foundStore, updateStoreRequest.toStoreName(), updateStoreRequest.toLocation());
+
+        return findStore(foundStore.getId());
+    }
+
+    public TotalStoreResponse findStore(final Long storeId) {
         final Store foundStore = storeService.findStoreById(storeId)
                 .orElseThrow(StoreNotFoundException::new);
 

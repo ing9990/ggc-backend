@@ -1,4 +1,4 @@
-package com.gigacoffeebackend.product.dto;
+package com.gigacoffeebackend.product.domain;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
 

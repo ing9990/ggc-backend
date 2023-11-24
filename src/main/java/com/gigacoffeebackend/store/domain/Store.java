@@ -12,6 +12,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.MERGE;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "store",
         uniqueConstraints = @UniqueConstraint(columnNames = {"name", "location_name"})
@@ -23,38 +26,29 @@ public class Store extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 메가커피, 스타벅스, 커피빈 ...
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Embedded
+    private StoreName name;
 
-    // 합정역점, 서면역점, 합정중앙점, 부평점...
-    @Column(name = "location_name", nullable = false)
-    private String locationName;
+    @Embedded
+    private LocationName locationName;
 
-    // 스토어에서 판매 중인 상품들 - 자세한건 Product 도메인에서 관리
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", cascade = MERGE)
     private Set<Product> products = new HashSet<>();
 
-    // 스토어의 관리자가 추가한 카테고리.
-    @OneToMany
+    @OneToMany(cascade = ALL, orphanRemoval = true)
     private Set<Category> storeCategory = new HashSet<>();
 
     @Builder
-    private Store(final String name, final String locationName) {
+    private Store(final StoreName name, final LocationName locationName) {
         this.name = name;
         this.locationName = locationName;
     }
 
-    protected static Store makeStore(String name, String locationName) {
+    public static Store makeStore(StoreName name, LocationName locationName) {
         return Store.builder()
                 .name(name)
                 .locationName(locationName)
                 .build();
-    }
-
-    protected Store withDefault() {
-        storeCategory.add(Category.makeDefault(this));
-        return this;
     }
 
     public String getFullName() {
@@ -67,5 +61,10 @@ public class Store extends BaseEntity {
 
     public void addCategory(final Category category) {
         this.storeCategory.add(category);
+    }
+
+    public void updateNameAndLocationName(StoreName name, LocationName location) {
+        this.name = name;
+        this.locationName = location;
     }
 }

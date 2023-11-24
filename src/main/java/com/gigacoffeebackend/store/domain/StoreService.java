@@ -1,12 +1,13 @@
 package com.gigacoffeebackend.store.domain;
 
+import com.gigacoffeebackend.category.domain.Category;
+import com.gigacoffeebackend.category.domain.CategoryRepository;
 import com.gigacoffeebackend.global.exceptions.BusinessException;
 import com.gigacoffeebackend.product.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_DUPLICATED;
@@ -17,47 +18,37 @@ import static com.gigacoffeebackend.global.exceptions.ErrorCode.STORE_DUPLICATED
 public class StoreService {
 
     private final StoreRepository storeRepository;
+    private final CategoryRepository categoryRepository;
 
     @Transactional
-    public Store saveStoreWithDefault(final String name, final String locationName) {
+    public Store saveStoreWithDefault(final StoreName name, final LocationName locationName) {
         checkStoreDuplicate(name, locationName);
 
-        return storeRepository.save(Store.makeStore(name, locationName).withDefault());
+        Store store = storeRepository.save(Store.makeStore(name, locationName));
+        categoryRepository.save(Category.makeDefault(store));
+
+        return store;
     }
 
-    public Store getStoreByFullName(final String name, final String locationName) {
-        return findStoreByFullName(name, locationName)
-                .orElseThrow(StoreNotFoundException::new);
+    @Transactional
+    public void updateStore(Store foundStore, StoreName storeName, LocationName locationName) {
+        checkStoreDuplicate(storeName, locationName);
+
+        foundStore.updateNameAndLocationName(storeName, locationName);
     }
 
-    public Optional<Store> findStoreByFullName(final String name, final String locationName) {
-        return storeRepository.findStoreByNameAndLocationName(name, locationName);
-    }
-
-    public Optional<Store> findStoreByFullName(final String fullName) {
-        return storeRepository.findStoreByFullName(fullName);
-    }
-
-    public Store getStoreById(final Long storeId) {
-        return storeRepository.findById(storeId)
-                .orElseThrow(StoreNotFoundException::new);
+    @Transactional
+    public void addProductToStore(Store foundStore, Product product) {
+        foundStore.addProduct(product);
     }
 
     public Optional<Store> findStoreById(Long storeId) {
         return storeRepository.findById(storeId);
     }
 
-    private void checkStoreDuplicate(String name, String locationName) {
+    private void checkStoreDuplicate(StoreName name, LocationName locationName) {
         if (storeRepository.existsStoreByNameAndLocationName(name, locationName)) {
             throw new BusinessException(STORE_DUPLICATED);
         }
-    }
-
-    public List<Store> findAll() {
-        return storeRepository.findAll();
-    }
-
-    public void addProductToStore(Store foundStore, Product product) {
-        foundStore.addProduct(product);
     }
 }

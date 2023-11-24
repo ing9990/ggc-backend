@@ -2,7 +2,11 @@ package com.gigacoffeebackend.category.domain;
 
 import com.gigacoffeebackend.product.domain.Product;
 import com.gigacoffeebackend.product.domain.ProductRepository;
+import com.gigacoffeebackend.product.domain.ProductName;
+import com.gigacoffeebackend.product.domain.ProductPrice;
+import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.Store;
+import com.gigacoffeebackend.store.domain.StoreName;
 import com.gigacoffeebackend.store.domain.StoreRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -90,7 +94,7 @@ class CategoryServiceTest {
     }
 
     private Product 상품이_저장됨(Store store, String name, int price) {
-        return productRepository.save(Product.makeProductWith(store, name, price));
+        return productRepository.save(Product.makeProductWith(store, new ProductName(name), new ProductPrice(price)));
     }
 
     private Category 카테고리_생성됨(Store store, String name, String displayName, Set<Product> products) {
@@ -99,7 +103,7 @@ class CategoryServiceTest {
 
 
     private Store 스토어_저장됨(String name, String locationName) {
-        return storeRepository.save(Store.makeStore(name, locationName));
+        return storeRepository.save(Store.makeStore(new StoreName(name), new LocationName(locationName)));
     }
 
 }

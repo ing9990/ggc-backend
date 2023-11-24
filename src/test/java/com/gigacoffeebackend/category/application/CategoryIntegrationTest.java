@@ -3,7 +3,9 @@ package com.gigacoffeebackend.category.application;
 import com.gigacoffeebackend.category.dto.CategoryNames;
 import com.gigacoffeebackend.category.ui.AddCategoryRequest;
 import com.gigacoffeebackend.category.ui.CategoryResponse;
+import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.Store;
+import com.gigacoffeebackend.store.domain.StoreName;
 import com.gigacoffeebackend.store.domain.StoreRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -73,6 +75,6 @@ class CategoryIntegrationTest {
     }
 
     private Store 스토어_저장됨(String name, String locationName) {
-        return storeRepository.save(Store.makeStore(name, locationName));
+        return storeRepository.save(Store.makeStore(new StoreName(name), new LocationName(locationName)));
     }
 }

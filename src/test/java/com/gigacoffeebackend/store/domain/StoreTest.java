@@ -20,11 +20,11 @@ class StoreTest {
         String locationName = "합정역점";
 
         // when
-        Store store = Store.makeStore(name, locationName);
+        Store store = Store.makeStore(new StoreName(name), new LocationName(locationName));
 
         // then
-        assertThat(store.getName()).isEqualTo("메가커피");
-        assertThat(store.getLocationName()).isEqualTo("합정역점");
+        assertThat(store.getName()).isEqualTo(new StoreName("메가커피"));
+        assertThat(store.getLocationName()).isEqualTo(new LocationName("합정역점"));
     }
 
     @DisplayName("스토어의 풀네임은 네임과 지역 명을 더한 값이다.")
@@ -35,7 +35,7 @@ class StoreTest {
         String locationName = "합정역점";
 
         // when
-        Store store = Store.makeStore(name, locationName);
+        Store store = Store.makeStore(new StoreName(name), new LocationName(locationName));
 
         // then
         Assertions.assertThat(store.getFullName()).isEqualTo("메가커피 합정역점");

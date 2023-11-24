@@ -2,27 +2,28 @@ package com.gigacoffeebackend.store.ui;
 
 import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.StoreName;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-@NoArgsConstructor
-@AllArgsConstructor
-public class AddStoreRequest {
+import static lombok.AccessLevel.PROTECTED;
 
-    // 할리스 커피
-    @NotBlank(message = "매장 명이 빈 값입니다.")
+@Getter
+@NoArgsConstructor(access = PROTECTED)
+public class UpdateStoreRequest {
+
+    @NotBlank
     private String name;
 
-    // 합정역 점
-    @NotBlank(message = "매장 위치가 빈 값입니다.")
+    @NotBlank
     private String location;
 
-    public StoreName getName() {
+    public StoreName toStoreName() {
         return new StoreName(name);
     }
 
-    public LocationName getLocation() {
+    public LocationName toLocation() {
         return new LocationName(location);
     }
 }

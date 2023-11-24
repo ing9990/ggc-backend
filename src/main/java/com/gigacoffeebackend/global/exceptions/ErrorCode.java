@@ -41,6 +41,7 @@ public enum ErrorCode {
 
     // Store, Product
     STORE_NOT_FOUND(404, "S01", "찾을 수 없는 스토어입니다."),
+    STORE_NOT_FOUND_AT_UPDATE(404, "S02", "업데이트할 스토어가 없습니다."),
 
     STORE_NOT_FOUND_AT_ADD_PRODUCT(404, "S02", "상품을 추가할 스토어가 없습니다."),
 
