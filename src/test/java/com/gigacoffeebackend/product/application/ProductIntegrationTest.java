@@ -6,7 +6,6 @@ import com.gigacoffeebackend.global.exceptions.BusinessException;
 import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import com.gigacoffeebackend.product.domain.Product;
 import com.gigacoffeebackend.product.domain.ProductName;
-import com.gigacoffeebackend.product.domain.ProductPrice;
 import com.gigacoffeebackend.product.domain.ProductRepository;
 import com.gigacoffeebackend.product.ui.AddProductRequest;
 import com.gigacoffeebackend.product.ui.ProductResponse;
@@ -69,13 +68,35 @@ class ProductIntegrationTest {
     @Test
     void product_price_rounded_to_100() {
         // given
-        Store store = Store.makeStore(new StoreName("안녕커피"), new LocationName("화곡역점"));
+        StoreName name = new StoreName("안녕커피");
+        LocationName location = new LocationName("화곡역점");
+        Store store = Store.makeStore(name, location);
         storeRepository.save(store);
 
         Category category = Category.makeDefault(store);
         categoryRepository.save(category);
 
         AddProductRequest addProductRequest = new AddProductRequest("망고스무디", 4530, category.getName());
+
+        // when // then
+        Assertions.assertThatThrownBy(() -> productIntegration.addProduct(store.getId(), addProductRequest))
+                .isInstanceOf(BusinessException.class)
+                .hasMessage(ErrorCode.PRODUCT_PRICE_IS_INVALID.getMessage());
+    }
+
+    @DisplayName("상품을 추가할 때 가격은 음수가 될 수 없다.")
+    @Test
+    void product_price_is_positive() {
+        // given
+        StoreName name = new StoreName("안녕커피");
+        LocationName location = new LocationName("화곡역점");
+        Store store = Store.makeStore(name, location);
+        storeRepository.save(store);
+
+        Category category = Category.makeDefault(store);
+        categoryRepository.save(category);
+
+        AddProductRequest addProductRequest = new AddProductRequest("망고스무디", -20, category.getName());
 
         // when // then
         Assertions.assertThatThrownBy(() -> productIntegration.addProduct(store.getId(), addProductRequest))

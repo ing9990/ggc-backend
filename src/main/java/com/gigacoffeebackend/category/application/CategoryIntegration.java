@@ -38,8 +38,7 @@ public class CategoryIntegration {
                 .orElseThrow(StoreNotFoundException::new);
 
         Set<Product> products = productService.findAllByIds(request.getProducts());
-        Category category = findOrSaveCategory(request, products, store);
-        return CategoryResponse.from(category);
+        return findOrSaveCategory(request, products, store);
     }
 
     @Transactional
@@ -74,9 +73,9 @@ public class CategoryIntegration {
         return CategoryProductResponse.from(category);
     }
 
-    private Category findOrSaveCategory(final AddCategoryRequest request, final Set<Product> products, final Store store) {
+    private CategoryResponse findOrSaveCategory(final AddCategoryRequest request, final Set<Product> products, final Store store) {
         final Category category = categoryService.saveOrFind(store, request.getName(), request.getDisplayName(), products);
         store.addCategory(category);
-        return category;
+        return CategoryResponse.from(category);
     }
 }
