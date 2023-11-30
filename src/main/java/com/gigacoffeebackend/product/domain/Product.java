@@ -24,11 +24,9 @@ public class Product extends BaseEntity {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    // 아메리카노, 라떼
     @Embedded
     private ProductName name;
 
-    // 4500
     @Embedded
     private ProductPrice price;
 

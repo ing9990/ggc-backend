@@ -25,9 +25,4 @@ public class UserApi {
     public ResponseEntity<ApiResponse<UserResponse>> me(@CurrentUser Accessor accessor) {
         return status(OK).body(ok(userIntegration.findUserByAccesor(accessor)));
     }
-
-    @GetMapping("/test")
-    public String test() {
-        return "1234";
-    }
 }

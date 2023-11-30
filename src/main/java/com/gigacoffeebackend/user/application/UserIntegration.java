@@ -14,7 +14,6 @@ import static com.gigacoffeebackend.user.ui.UserResponse.fromUser;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class UserIntegration {
-
     private final UserService userService;
 
     @Transactional

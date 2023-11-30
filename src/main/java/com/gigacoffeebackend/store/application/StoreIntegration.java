@@ -26,7 +26,7 @@ public class StoreIntegration {
 
     @Transactional
     public StoreResponse addStore(AddStoreRequest addStoreRequest) {
-        Store savedStore = storeService.saveStoreWithDefault(addStoreRequest.getName(), addStoreRequest.getLocation());
+        Store savedStore = storeService.saveStore(addStoreRequest.getName(), addStoreRequest.getLocation());
 
         return StoreResponse.from(savedStore);
     }

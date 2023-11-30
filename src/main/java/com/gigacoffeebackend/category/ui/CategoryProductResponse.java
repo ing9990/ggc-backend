@@ -33,7 +33,8 @@ public class CategoryProductResponse {
     }
 
     private static Set<ProductResponse> toProductResponse(Category category) {
-        return category.getProducts().stream().map(ProductResponse::from)
+        return category.getProducts()
+                .stream().map(ProductResponse::from)
                 .collect(Collectors.toSet());
     }
 }

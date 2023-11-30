@@ -6,7 +6,12 @@ import com.gigacoffeebackend.store.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.reactive.TransactionContext;
+import org.springframework.transaction.reactive.TransactionContextManager;
+import org.springframework.transaction.reactive.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import javax.persistence.PersistenceContext;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -23,16 +28,16 @@ public class ProductService {
     @Transactional
     public Product saveProduct(Store store, final ProductName productName, final ProductPrice productPrice) {
         validateStoreProductDuplicate(store, productName);
-
         return productRepository.save(Product.makeProductWith(store, productName, productPrice));
+    }
+
+    @Transactional
+    public void addCategoryToProduct(Product product, Category category) {
+        product.changeCategory(category);
     }
 
     public Set<Product> findAllByIds(Set<Long> products) {
         return new HashSet<>(productRepository.findAllById(products));
-    }
-
-    public void addCategoryToProduct(Product product, Category category) {
-        product.changeCategory(category);
     }
 
     private void validateStoreProductDuplicate(Store store, ProductName productName) {
@@ -41,7 +46,7 @@ public class ProductService {
         }
     }
 
-    public Optional<Product> findProductByStoreAndProductId(Store foundStore, Long productId) {
-        return productRepository.findProductByStoreAndId(foundStore, productId);
+    public Optional<Product> findProductByStoreAndProductId(Store store, Long productId) {
+        return productRepository.findProductByStoreAndId(store, productId);
     }
 }

@@ -14,16 +14,20 @@ import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreNotFoundException;
 import com.gigacoffeebackend.store.domain.StoreService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.engine.transaction.jta.platform.internal.WebSphereExtendedJtaPlatform;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.reactive.TransactionContext;
+import org.springframework.transaction.reactive.TransactionContextManager;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import javax.transaction.TransactionManager;
 import java.util.Optional;
 import java.util.Set;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.*;
 import static java.util.Optional.of;
 import static org.springframework.data.util.Optionals.ifAllPresent;
-import static org.springframework.data.util.Optionals.mapIfAllPresent;
 
 @Service
 @Transactional(readOnly = true)
@@ -41,6 +45,7 @@ public class ProductIntegration {
         final Product product = productService.saveProduct(foundStore,
                 new ProductName(addProductRequest.getProductName()),
                 new ProductPrice(addProductRequest.getProductPrice()));
+
         storeService.addProductToStore(foundStore, product);
         addCategoryToProductIfPresent(addProductRequest, foundStore, product);
         return ProductResponse.from(product);
