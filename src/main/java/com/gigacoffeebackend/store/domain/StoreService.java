@@ -4,9 +4,7 @@ import com.gigacoffeebackend.category.domain.Category;
 import com.gigacoffeebackend.category.domain.CategoryRepository;
 import com.gigacoffeebackend.global.exceptions.BusinessException;
 import com.gigacoffeebackend.product.domain.Product;
-import com.gigacoffeebackend.store.event.StoreSavedEvent;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,17 +20,12 @@ public class StoreService {
 
     private final StoreRepository storeRepository;
     private final CategoryRepository categoryRepository;
-    private final ApplicationEventPublisher publisher;
 
     @Transactional
     public Store saveStore(final StoreName name, final LocationName locationName) {
         checkStoreDuplicate(name, locationName);
         Store store = storeRepository.save(Store.makeStore(name, locationName));
         categoryRepository.save(Category.makeDefault(store));
-        try {
-            publisher.publishEvent(new StoreSavedEvent(store));
-        } catch (RuntimeException e) {// ignored
-        }
         return store;
     }
 
