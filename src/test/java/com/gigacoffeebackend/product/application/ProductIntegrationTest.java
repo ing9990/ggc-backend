@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+import static com.gigacoffeebackend.global.exceptions.ErrorCode.PRODUCT_PRICE_IS_INVALID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -79,9 +80,10 @@ class ProductIntegrationTest {
         AddProductRequest addProductRequest = new AddProductRequest("망고스무디", 4530, category.getName());
 
         // when // then
-        Assertions.assertThatThrownBy(() -> productIntegration.addProduct(store.getId(), addProductRequest))
+        Assertions.
+                assertThatThrownBy(() -> productIntegration.addProduct(store.getId(), addProductRequest))
                 .isInstanceOf(BusinessException.class)
-                .hasMessage(ErrorCode.PRODUCT_PRICE_IS_INVALID.getMessage());
+                .hasMessage(PRODUCT_PRICE_IS_INVALID.getMessage());
     }
 
     @DisplayName("상품을 추가할 때 가격은 음수가 될 수 없다.")
@@ -101,7 +103,7 @@ class ProductIntegrationTest {
         // when // then
         Assertions.assertThatThrownBy(() -> productIntegration.addProduct(store.getId(), addProductRequest))
                 .isInstanceOf(BusinessException.class)
-                .hasMessage(ErrorCode.PRODUCT_PRICE_IS_INVALID.getMessage());
+                .hasMessage(PRODUCT_PRICE_IS_INVALID.getMessage());
 
     }
 

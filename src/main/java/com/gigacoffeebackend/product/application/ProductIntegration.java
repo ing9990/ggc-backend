@@ -14,14 +14,8 @@ import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreNotFoundException;
 import com.gigacoffeebackend.store.domain.StoreService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.engine.transaction.jta.platform.internal.WebSphereExtendedJtaPlatform;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.reactive.TransactionContext;
-import org.springframework.transaction.reactive.TransactionContextManager;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
-
-import javax.transaction.TransactionManager;
 import java.util.Optional;
 import java.util.Set;
 

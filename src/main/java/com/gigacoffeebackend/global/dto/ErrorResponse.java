@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ErrorResponse {
-
     private String message;
     private int status;
     private String code;
