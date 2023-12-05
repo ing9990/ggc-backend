@@ -5,6 +5,7 @@ import com.gigacoffeebackend.category.ui.AddCategoryRequest;
 import com.gigacoffeebackend.category.ui.CategoryResponse;
 import com.gigacoffeebackend.global.exceptions.BusinessException;
 import com.gigacoffeebackend.product.application.ProductIntegration;
+import com.gigacoffeebackend.product.domain.ProductName;
 import com.gigacoffeebackend.product.ui.AddProductRequest;
 import com.gigacoffeebackend.product.ui.ProductResponse;
 import com.gigacoffeebackend.steps.CategorySteps;
@@ -22,6 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import static org.assertj.core.groups.Tuple.tuple;
@@ -94,10 +96,20 @@ class StoreIntegrationTest {
         Assertions.assertThat(totalStoreResponse.getName()).isEqualTo("메가커피 부평역점");
         Assertions.assertThat(totalStoreResponse.getCategories()).hasSize(1);
         Assertions.assertThat(totalStoreResponse.getCategories())
-                .extracting("name", "displayName")
+                .extracting("name")
                 .containsExactlyInAnyOrder(
-                        tuple("icedcoffee", "아이스 커피")
+                        "icedcoffee"
                 );
+
+        Assertions.assertThat(totalStoreResponse.getCategories())
+                .flatExtracting("products")
+                .extracting("productId", "productName", "productPrice")
+                .containsExactlyInAnyOrder(
+                        tuple(productResponse1.getProductId(), "개쩌는 아이스 아메리카노", BigDecimal.valueOf(1500)),
+                        tuple(productResponse2.getProductId(), "개쩌는 아메리카노", BigDecimal.valueOf(2000)),
+                        tuple(productResponse3.getProductId(), "개쩌는 바닐라 아메리카노", BigDecimal.valueOf(2500))
+                );
+
     }
 
     private AddStoreRequest getAddStoreRequest(String name, String locationName) {

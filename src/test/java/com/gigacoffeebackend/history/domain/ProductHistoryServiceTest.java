@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.groups.Tuple.tuple;
 
 @SpringBootTest
@@ -66,9 +67,9 @@ class ProductHistoryServiceTest {
         StoreHistoriesResponse histories = productHistoryService.findHistoriesByStoreId(storeResponse.getStoreId());
 
         // then
-        Assertions.assertThat(histories).isNotNull();
-        Assertions.assertThat(histories.getHistories()).hasSize(3);
-        Assertions.assertThat(histories.getHistories())
+        assertThat(histories).isNotNull();
+        assertThat(histories.getHistories()).hasSize(3);
+        assertThat(histories.getHistories())
                 .extracting("storeName", "locationName", "productName", "productPrice")
                 .containsExactlyInAnyOrder(
                         tuple("스프링커피", "부평역점", "아이스커피", BigDecimal.valueOf(5000)),

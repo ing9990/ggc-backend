@@ -1,7 +1,6 @@
 package com.gigacoffeebackend.product.domain;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,17 +9,19 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.PRODUCT_PRICE_IS_INVALID;
-import static lombok.AccessLevel.PROTECTED;
 
 @Embeddable
-@NoArgsConstructor(access = PROTECTED)
 public class ProductPrice {
 
     @Column(name = "product_price", nullable = false)
-    private BigDecimal price;
+    private final BigDecimal price;
 
     public ProductPrice(final int price) {
         this.price = BigDecimal.valueOf(price);
+    }
+
+    protected ProductPrice() {
+        price = BigDecimal.ZERO;
     }
 
     public void throwIsNotPositive() {
