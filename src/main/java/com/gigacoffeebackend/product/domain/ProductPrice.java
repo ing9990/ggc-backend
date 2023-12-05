@@ -1,27 +1,26 @@
 package com.gigacoffeebackend.product.domain;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import static com.gigacoffeebackend.global.exceptions.ErrorCode.PRODUCT_PRICE_IS_INVALID;
+import static lombok.AccessLevel.PROTECTED;
 
 @Embeddable
+@NoArgsConstructor(access = PROTECTED)
 public class ProductPrice {
 
-    private static final int DIVIDER = 100;
-
     @Column(name = "product_price", nullable = false)
-    private int price;
+    private BigDecimal price;
 
-    protected ProductPrice() {
-    }
-
-    public ProductPrice(int price) {
-        this.price = price;
+    public ProductPrice(final int price) {
+        this.price = BigDecimal.valueOf(price);
     }
 
     public void throwIsNotPositive() {
@@ -31,30 +30,32 @@ public class ProductPrice {
     }
 
     public void throwIsNotDivisibleBy100() {
-        if (!isDivisible()) {
+        if (!isDivisibleBy100()) {
             throw new BusinessException(PRODUCT_PRICE_IS_INVALID);
         }
     }
 
-    private boolean isPositive() {
-        return this.price > 0;
-    }
-
-    private boolean isDivisible() {
-        return this.price % DIVIDER == 0;
-    }
-
-    public int getValue() {
+    public BigDecimal getValue() {
         return this.price;
     }
 
+    private boolean isPositive() {
+        return price.compareTo(BigDecimal.ZERO) > 0;
+    }
+
+    private boolean isDivisibleBy100() {
+        return price.remainder(BigDecimal.valueOf(100)).equals(BigDecimal.ZERO);
+    }
+
+    @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final ProductPrice productPrice = (ProductPrice) o;
-        return productPrice.price == price;
+        return productPrice.price.compareTo(price) == 0;
     }
 
+    @Override
     public int hashCode() {
         return Objects.hash(price);
     }
