@@ -4,6 +4,8 @@ import com.gigacoffeebackend.product.domain.Product;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -15,7 +17,7 @@ public class ProductResponse {
 
     private Long productId;
     private String productName;
-    private int productPrice;
+    private BigDecimal productPrice;
 
     public static ProductResponse from(Product product) {
         return ProductResponse.builder()

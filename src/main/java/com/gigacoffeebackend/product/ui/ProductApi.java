@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import static com.gigacoffeebackend.global.dto.ApiResponse.ok;
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.ResponseEntity.status;
 
@@ -33,7 +34,7 @@ public class ProductApi {
             @Valid @RequestBody AddProductRequest addProductRequest
     ) {
         final ProductResponse response = productIntegration.addProduct(storeId, addProductRequest);
-        return status(OK).body(ok(response));
+        return status(CREATED).body(ok(response));
     }
 
     @DeleteMapping("/{productId}")

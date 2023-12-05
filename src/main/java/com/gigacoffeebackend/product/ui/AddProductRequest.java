@@ -1,15 +1,18 @@
 package com.gigacoffeebackend.product.ui;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
 public class AddProductRequest {
 
     @NotEmpty(message = "상품 명이 빈 값입니다.")
@@ -20,4 +23,5 @@ public class AddProductRequest {
     private int productPrice;
 
     private String categoryName;
+
 }

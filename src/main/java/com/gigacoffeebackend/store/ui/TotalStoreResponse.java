@@ -1,6 +1,5 @@
 package com.gigacoffeebackend.store.ui;
 
-import com.gigacoffeebackend.category.dto.CategoryNames;
 import com.gigacoffeebackend.category.ui.CategoryResponse;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.*;

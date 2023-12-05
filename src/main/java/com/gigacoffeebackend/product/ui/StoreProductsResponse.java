@@ -7,9 +7,11 @@ import com.gigacoffeebackend.product.domain.Product;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.*;
 
+import static lombok.AccessLevel.PROTECTED;
+
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = PROTECTED)
 @Builder
 public class StoreProductsResponse {
 

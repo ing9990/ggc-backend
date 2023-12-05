@@ -38,13 +38,13 @@ public class ProductService {
         return new HashSet<>(productRepository.findAllById(products));
     }
 
+    public Optional<Product> findProductByStoreAndProductId(Store store, Long productId) {
+        return productRepository.findProductByStoreAndId(store, productId);
+    }
+
     private void validateStoreProductDuplicate(Store store, ProductName productName) {
         if (productRepository.existsByStoreAndName(store, productName)) {
             throw new BusinessException(PRODUCT_DUPLICATE);
         }
-    }
-
-    public Optional<Product> findProductByStoreAndProductId(Store store, Long productId) {
-        return productRepository.findProductByStoreAndId(store, productId);
     }
 }

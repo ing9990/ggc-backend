@@ -12,8 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Document("product_histories")
 @Getter
@@ -37,7 +37,7 @@ public class ProductHistoryCollection {
     private String productName;
 
     @Field("product_price")
-    private int productPrice;
+    private BigDecimal productPrice;
 
     @Field
     @CreatedDate

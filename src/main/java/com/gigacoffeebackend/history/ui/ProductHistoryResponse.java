@@ -3,6 +3,7 @@ package com.gigacoffeebackend.history.ui;
 import com.gigacoffeebackend.history.domain.ProductHistoryCollection;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
@@ -17,13 +18,13 @@ public class ProductHistoryResponse {
 
     private String productName;
 
-    private int productPrice;
+    private BigDecimal productPrice;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
-    public ProductHistoryResponse(String storeName, String locationName, String productName, int productPrice, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public ProductHistoryResponse(String storeName, String locationName, String productName, BigDecimal productPrice, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.storeName = storeName;
         this.locationName = locationName;
         this.productName = productName;
