@@ -15,15 +15,15 @@ public class ProductHistoryService {
 
     private final ProductHistoryRepository productHistoryRepository;
 
-    public ProductHistoryResponse saveProductHistory(final SaveProductHistoryDto saveProductHistoryDto) {
-        ProductHistoryCollection history = productHistoryRepository.save(ProductHistoryCollection.of(
+    public void saveProductHistory(final SaveProductHistoryDto saveProductHistoryDto) {
+        ProductHistoryCollection collection = ProductHistoryCollection.of(
                 saveProductHistoryDto.getStoreId(),
                 saveProductHistoryDto.getStoreName(),
                 saveProductHistoryDto.getLocationName(),
                 saveProductHistoryDto.getProductName(),
-                saveProductHistoryDto.getProductPrice()));
-
-        return ProductHistoryResponse.from(history);
+                saveProductHistoryDto.getProductPrice());
+        
+        productHistoryRepository.save(collection);
     }
 
     public StoreHistoriesResponse findHistoriesByStoreId(Long storeId) {
