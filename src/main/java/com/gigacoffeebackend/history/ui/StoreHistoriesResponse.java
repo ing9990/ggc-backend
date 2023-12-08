@@ -12,9 +12,10 @@ import lombok.*;
 @Builder
 public class StoreHistoriesResponse {
 
-    List<ProductHistoryResponse> histories = new ArrayList<>();
+    private List<ProductHistoryResponse> histories = new ArrayList<>();
 
-    public static StoreHistoriesResponse from(List<ProductHistoryResponse> productHistoryResponses) {
+    public static StoreHistoriesResponse from(
+        List<ProductHistoryResponse> productHistoryResponses) {
         return new StoreHistoriesResponse(productHistoryResponses);
     }
 }

@@ -32,7 +32,7 @@ class CategoryIntegrationTest {
 
     @DisplayName("카테고리를 추가할 수 있다.")
     @Test
-    void make_category_with_request() {
+    void make_category_with() {
         // given
         String name = "메가커피";
         String locationName = "합정역점";
@@ -75,6 +75,7 @@ class CategoryIntegrationTest {
     }
 
     private Store 스토어_저장됨(String name, String locationName) {
-        return storeRepository.save(Store.makeStore(new StoreName(name), new LocationName(locationName)));
+        return storeRepository.save(
+            Store.makeStore(new StoreName(name), new LocationName(locationName)));
     }
 }

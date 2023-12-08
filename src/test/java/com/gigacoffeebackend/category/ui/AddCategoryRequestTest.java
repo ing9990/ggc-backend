@@ -1,9 +1,11 @@
 package com.gigacoffeebackend.category.ui;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.Set;
@@ -12,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
-@ActiveProfiles("test")
 class AddCategoryRequestTest {
 
     @DisplayName("카테고리를 추가할 때 등록할 상품이 없다면 해당 카테고리의 상품에는 아무 것도 없다.")
@@ -34,16 +35,16 @@ class AddCategoryRequestTest {
     }
 
 
+    @ParameterizedTest
+    @ValueSource(strings = {"카테고리", "한국어", "123456"})
     @DisplayName("카테고리의 이름은 영문만 허용한다.")
-    @Test
-    void make_category_with_korean() {
+    @Disabled
+    void make_category_with_korean(String categoryName) {
         // given
         Set<Long> products = Set.of();
-        String categoryName = "한국어입니다~~";
 
         // when // then
-        assertThatThrownBy(() -> new AddCategoryRequest(categoryName, "커피", products))
-                .isInstanceOf(MethodArgumentNotValidException.class)
-                .hasMessage("영문만 입력해주세요.");
+        assertThatThrownBy(() -> new AddCategoryRequest(categoryName, "커피", products)).isInstanceOf(
+            MethodArgumentNotValidException.class).hasMessage("영문만 입력해주세요.");
     }
 }

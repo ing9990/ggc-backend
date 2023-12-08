@@ -2,18 +2,13 @@ package com.gigacoffeebackend.history.domain;
 
 import com.gigacoffeebackend.history.ui.StoreHistoriesResponse;
 import com.gigacoffeebackend.product.application.ProductIntegration;
-import com.gigacoffeebackend.product.domain.ProductName;
-import com.gigacoffeebackend.product.domain.ProductPrice;
 import com.gigacoffeebackend.product.ui.AddProductRequest;
 import com.gigacoffeebackend.product.ui.ProductResponse;
 import com.gigacoffeebackend.steps.ProductSteps;
 import com.gigacoffeebackend.steps.StoreSteps;
 import com.gigacoffeebackend.store.application.StoreIntegration;
-import com.gigacoffeebackend.store.domain.StoreService;
 import com.gigacoffeebackend.store.ui.AddStoreRequest;
 import com.gigacoffeebackend.store.ui.StoreResponse;
-import org.assertj.core.api.Assertions;
-import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,23 +54,27 @@ class ProductHistoryServiceTest {
         AddProductRequest addProductRequest3 = ProductSteps.상품등록요청_생성("아메리카노", 4500, "all");
 
         StoreResponse storeResponse = storeIntegration.addStore(addStoreRequest);
-        ProductResponse productResponse = productIntegration.addProduct(storeResponse.getStoreId(), addProductRequest);
-        ProductResponse productResponse2 = productIntegration.addProduct(storeResponse.getStoreId(), addProductRequest2);
-        ProductResponse productResponse3 = productIntegration.addProduct(storeResponse.getStoreId(), addProductRequest3);
+        ProductResponse productResponse = productIntegration.addProduct(storeResponse.getStoreId(),
+            addProductRequest);
+        ProductResponse productResponse2 = productIntegration.addProduct(storeResponse.getStoreId(),
+            addProductRequest2);
+        ProductResponse productResponse3 = productIntegration.addProduct(storeResponse.getStoreId(),
+            addProductRequest3);
 
         // when
-        StoreHistoriesResponse histories = productHistoryService.findHistoriesByStoreId(storeResponse.getStoreId());
+        StoreHistoriesResponse histories = productHistoryService.findHistoriesByStoreId(
+            storeResponse.getStoreId());
 
         // then
         assertThat(histories).isNotNull();
         assertThat(histories.getHistories()).hasSize(3);
         assertThat(histories.getHistories())
-                .extracting("storeName", "locationName", "productName", "productPrice")
-                .containsExactlyInAnyOrder(
-                        tuple("스프링커피", "부평역점", "아이스커피", BigDecimal.valueOf(5000)),
-                        tuple("스프링커피", "부평역점", "초코라떼", BigDecimal.valueOf(6500)),
-                        tuple("스프링커피", "부평역점", "아메리카노", BigDecimal.valueOf(4500))
-                );
+            .extracting("storeName", "locationName", "productName", "productPrice")
+            .containsExactlyInAnyOrder(
+                tuple("스프링커피", "부평역점", "아이스커피", BigDecimal.valueOf(5000)),
+                tuple("스프링커피", "부평역점", "초코라떼", BigDecimal.valueOf(6500)),
+                tuple("스프링커피", "부평역점", "아메리카노", BigDecimal.valueOf(4500))
+            );
     }
 
 

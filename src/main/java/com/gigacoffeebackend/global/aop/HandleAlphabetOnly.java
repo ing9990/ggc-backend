@@ -9,7 +9,7 @@ public class HandleAlphabetOnly implements ConstraintValidator<AlphabetOnly, Str
 
     @Override
     public boolean isValid(String value,
-                           ConstraintValidatorContext context) {
+        ConstraintValidatorContext context) {
         return isAlphabet(value);
     }
 
