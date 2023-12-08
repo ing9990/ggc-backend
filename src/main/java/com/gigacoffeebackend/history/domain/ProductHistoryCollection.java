@@ -1,5 +1,6 @@
 package com.gigacoffeebackend.history.domain;
 
+import com.gigacoffeebackend.product.domain.ProductEventType;
 import com.gigacoffeebackend.product.domain.ProductName;
 import com.gigacoffeebackend.product.domain.ProductPrice;
 import com.gigacoffeebackend.store.domain.LocationName;
@@ -39,6 +40,9 @@ public class ProductHistoryCollection {
     @Field("product_price")
     private BigDecimal productPrice;
 
+    @Field("type")
+    private String storedType;
+
     @Field
     @CreatedDate
     private LocalDateTime createdAt;
@@ -47,19 +51,24 @@ public class ProductHistoryCollection {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    private ProductHistoryCollection(Long storeId, StoreName storeName, LocationName locationName, ProductName productName, ProductPrice productPrice) {
+    private ProductHistoryCollection(Long storeId, StoreName storeName, LocationName locationName,
+        ProductName productName, ProductPrice productPrice, String type) {
         this.storeId = storeId;
         this.storeName = storeName.toString();
         this.locationName = locationName.toString();
         this.productName = productName.toString();
         this.productPrice = productPrice.getValue();
+        this.storedType = type;
     }
 
     protected ProductHistoryCollection() {
     }
 
-    public static ProductHistoryCollection of(Long storeId, final StoreName storeName, final LocationName locationName, final ProductName productName, final ProductPrice productPrice) {
-        return new ProductHistoryCollection(storeId, storeName, locationName, productName, productPrice);
+    public static ProductHistoryCollection of(Long storeId, final StoreName storeName,
+        final LocationName locationName, final ProductName productName,
+        final ProductPrice productPrice, final ProductEventType type) {
+        return new ProductHistoryCollection(storeId, storeName, locationName, productName,
+            productPrice, type.getStoredType());
     }
 }
 

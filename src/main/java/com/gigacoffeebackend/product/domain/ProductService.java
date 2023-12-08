@@ -22,10 +22,12 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public Product saveProduct(Store store, final ProductName productName, final ProductPrice productPrice) {
+    public Product saveProduct(Store store, final ProductName productName,
+        final ProductPrice productPrice) {
         validateStoreProductDuplicate(store, productName);
         Product savedProduct = Product.makeProductWith(store, productName, productPrice);
-        publisher.publishEvent(new ProductSavedEvent(savedProduct));
+        publisher.publishEvent(
+            new ProductSavedEvent(ProductEventSource.fromSaved(savedProduct)));
         return productRepository.save(savedProduct);
     }
 

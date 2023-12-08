@@ -18,7 +18,8 @@ public class ProductHistoryApi {
 
     @GetMapping
     ResponseEntity<ApiResponse<StoreHistoriesResponse>> storeHistories(@PathVariable Long storeId) {
-        final StoreHistoriesResponse response = productHistoryService.findHistoriesByStoreId(storeId);
+        final StoreHistoriesResponse response = productHistoryService.findHistoriesByStoreId(
+            storeId);
 
         return ResponseEntity.ok(ApiResponse.ok(response));
     }

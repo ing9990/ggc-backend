@@ -36,6 +36,7 @@ public enum ErrorCode {
     PRODUCT_NAME_IS_EMPTY(400, "S05", "상품명이 빈 값입니다."),
     PRODUCT_PRICE_IS_INVALID(400, "S06", "가격이 음수거나 100원 단위로 나누어 떨어지지 않습니다."),
     PRODUCT_NOT_FOUND(404, "S07", "상품을 찾을 수 없습니다."),
+    PRODUCT_NAME_IS_INVALID(400, "S08", "상품 이름은 한글, 영문만 허용합니다."),
 
     CATEGORY_NOT_FOUND(404, "C01", "찾을 수 없는 카테고리입니다."),
     CATEGORY_NAME_IS_NOT_ALPHABET(400, "C02", "카테고리 이름이 영어가 아닙니다."),

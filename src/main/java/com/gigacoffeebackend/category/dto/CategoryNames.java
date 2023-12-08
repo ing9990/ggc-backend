@@ -16,7 +16,7 @@ public class CategoryNames {
         return categories.stream().filter(item -> item.equals(name)).findFirst();
     }
 
-    public CategoryNames addAll(Collection<String> names) {
+    public CategoryNames addAll(final Collection<String> names) {
         categories.addAll(names);
         return this;
     }

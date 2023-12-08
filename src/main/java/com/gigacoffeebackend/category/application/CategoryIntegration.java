@@ -35,7 +35,7 @@ public class CategoryIntegration {
     @Transactional
     public CategoryResponse addCategory(final Long storeId, final AddCategoryRequest request) {
         final Store store = storeService.findStoreById(storeId)
-                .orElseThrow(StoreNotFoundException::new);
+            .orElseThrow(StoreNotFoundException::new);
 
         Set<Product> products = productService.findAllByIds(request.getProducts());
         return findOrSaveCategory(request, products, store);
@@ -44,37 +44,39 @@ public class CategoryIntegration {
     @Transactional
     public StoreResponse deleteCategory(final Long storeId, final String categoryName) {
         final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(StoreNotFoundException::new);
+            .orElseThrow(StoreNotFoundException::new);
 
         return mapIfAllPresent(
-                of(foundStore),
-                categoryService.findCategory(foundStore, categoryName),
-                Store::deleteCategory)
-                .map(StoreResponse::from)
-                .orElseThrow(NoSuchElementException::new);
+            of(foundStore),
+            categoryService.findCategory(foundStore, categoryName),
+            Store::deleteCategory)
+            .map(StoreResponse::from)
+            .orElseThrow(NoSuchElementException::new);
     }
 
     public CategoryNames findCategories(final Long storeId) {
         final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(StoreNotFoundException::new);
+            .orElseThrow(StoreNotFoundException::new);
 
         Set<String> categoryNames = foundStore.getCategories().stream().map(Category::getName)
-                .collect(Collectors.toSet());
+            .collect(Collectors.toSet());
 
         return new CategoryNames().addAll(categoryNames);
     }
 
     public CategoryProductResponse findProducts(final Long storeId, final String categoryName) {
         final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(StoreNotFoundException::new);
+            .orElseThrow(StoreNotFoundException::new);
 
         final Category category = categoryService.getCategory(foundStore, categoryName);
 
         return CategoryProductResponse.from(category);
     }
 
-    private CategoryResponse findOrSaveCategory(final AddCategoryRequest request, final Set<Product> products, final Store store) {
-        final Category category = categoryService.saveOrFind(store, request.getName(), request.getDisplayName(), products);
+    private CategoryResponse findOrSaveCategory(final AddCategoryRequest request,
+        final Set<Product> products, final Store store) {
+        final Category category = categoryService.saveOrFind(store, request.getName(),
+            request.getDisplayName(), products);
         store.addCategory(category);
         return CategoryResponse.from(category);
     }

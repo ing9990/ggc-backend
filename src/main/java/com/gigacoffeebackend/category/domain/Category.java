@@ -38,7 +38,8 @@ public class Category extends BaseEntity {
         this.products = products;
     }
 
-    public static Category makeCategory(Store store, String name, String displayName, Set<Product> products) {
+    public static Category makeCategory(Store store, String name, String displayName,
+        Set<Product> products) {
         return new Category(store, name, displayName, products);
     }
 

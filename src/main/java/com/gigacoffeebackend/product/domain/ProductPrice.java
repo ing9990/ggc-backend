@@ -18,6 +18,12 @@ public class ProductPrice {
 
     public ProductPrice(final int price) {
         this.price = BigDecimal.valueOf(price);
+        isValid();
+    }
+
+    public ProductPrice(final BigDecimal price) {
+        this.price = price;
+        isValid();
     }
 
     protected ProductPrice() {
@@ -40,6 +46,11 @@ public class ProductPrice {
         return this.price;
     }
 
+    private void isValid() {
+        throwIsNotDivisibleBy100();
+        throwIsNotPositive();
+    }
+
     private boolean isPositive() {
         return price.compareTo(BigDecimal.ZERO) > 0;
     }
@@ -50,8 +61,12 @@ public class ProductPrice {
 
     @Override
     public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         final ProductPrice productPrice = (ProductPrice) o;
         return productPrice.price.compareTo(price) == 0;
     }

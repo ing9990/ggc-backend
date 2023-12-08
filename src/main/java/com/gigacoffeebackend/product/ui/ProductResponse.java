@@ -21,9 +21,9 @@ public class ProductResponse {
 
     public static ProductResponse from(Product product) {
         return ProductResponse.builder()
-                .productId(product.getId())
-                .productName(product.getName().toString())
-                .productPrice(product.getPrice().getValue())
-                .build();
+            .productId(product.getId())
+            .productName(product.getName().toString())
+            .productPrice(product.getPrice().getValue())
+            .build();
     }
 }

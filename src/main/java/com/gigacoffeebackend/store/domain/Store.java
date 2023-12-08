@@ -17,11 +17,12 @@ import static javax.persistence.CascadeType.MERGE;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "store",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"name", "location_name"})
+    uniqueConstraints = @UniqueConstraint(columnNames = {"name", "location_name"})
 )
 @Entity
 @Getter
 public class Store extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -46,9 +47,9 @@ public class Store extends BaseEntity {
 
     public static Store makeStore(StoreName name, LocationName locationName) {
         return Store.builder()
-                .name(name)
-                .locationName(locationName)
-                .build();
+            .name(name)
+            .locationName(locationName)
+            .build();
     }
 
     public String getFullName() {

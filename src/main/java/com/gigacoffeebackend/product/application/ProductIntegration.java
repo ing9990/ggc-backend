@@ -34,14 +34,15 @@ public class ProductIntegration {
     private final CategoryService categoryService;
 
     @Transactional
-    public ProductResponse addProduct(final Long storeId, final AddProductRequest addProductRequest) {
+    public ProductResponse addProduct(final Long storeId,
+        final AddProductRequest addProductRequest) {
         final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_ON_ADD_PRODUCT));
+            .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_ON_ADD_PRODUCT));
         final Product product = productService.saveProduct(foundStore,
-                new ProductName(addProductRequest.getProductName()),
-                new ProductPrice(addProductRequest.getProductPrice()));
+            new ProductName(addProductRequest.getProductName()),
+            new ProductPrice(addProductRequest.getProductPrice()));
 
-        storeService.addProductToStore(foundStore, product);
+        // storeService.addProductToStore(foundStore, product);
         addCategoryToProductIfPresent(addProductRequest, foundStore, product);
         return ProductResponse.from(product);
     }
@@ -49,23 +50,25 @@ public class ProductIntegration {
     @Transactional
     public StoreProductsResponse deleteProduct(Long storeId, Long productId) {
         final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND));
-        ifAllPresent(
-                of(foundStore), productService.findProductByStoreAndProductId(foundStore, productId),
-                Store::deleteProduct
-        );
+            .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND));
+        ifAllPresent(of(foundStore),
+            productService.findProductByStoreAndProductId(foundStore, productId),
+            storeService::deleteProduct);
         return StoreProductsResponse.of(foundStore);
     }
 
     public StoreProductsResponse findStore(final Long storeId) {
         final Store foundStore = storeService.findStoreById(storeId)
-                .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_ON_ADD_PRODUCT));
+            .orElseThrow(() -> new StoreNotFoundException(STORE_NOT_FOUND_ON_ADD_PRODUCT));
         final Set<Product> products = foundStore.getProducts();
         return StoreProductsResponse.of(foundStore, products);
     }
 
-    private void addCategoryToProductIfPresent(AddProductRequest addProductRequest, Store foundStore, Product product) {
-        Optional<Category> category = categoryService.findCategory(foundStore, addProductRequest.getCategoryName());
+    private void addCategoryToProductIfPresent(AddProductRequest addProductRequest,
+        Store foundStore, Product product) {
+        Optional<Category> category = categoryService.findCategory(foundStore,
+            addProductRequest.getCategoryName());
+
         if (category.isEmpty()) {
             throw new BusinessException(CATEGORY_NOT_FOUND_IN_STORE);
         }
