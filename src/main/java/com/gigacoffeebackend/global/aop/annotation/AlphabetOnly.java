@@ -1,7 +1,5 @@
 package com.gigacoffeebackend.global.aop.annotation;
 
-import com.gigacoffeebackend.global.aop.HandleAlphabetOnly;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Retention;

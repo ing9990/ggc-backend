@@ -1,6 +1,4 @@
-package com.gigacoffeebackend.global.aop;
-
-import com.gigacoffeebackend.global.aop.annotation.AlphabetOnly;
+package com.gigacoffeebackend.global.aop.annotation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

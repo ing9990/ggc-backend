@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.global.config;
 
-import com.gigacoffeebackend.global.aop.CurrentUserResolver;
+import com.gigacoffeebackend.global.aop.annotation.HandleCurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -12,10 +12,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResolveArgument implements WebMvcConfigurer {
 
-    private final CurrentUserResolver currentUserResolver;
+    private final HandleCurrentUser handleCurrentUser;
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(currentUserResolver);
+        resolvers.add(handleCurrentUser);
     }
 }

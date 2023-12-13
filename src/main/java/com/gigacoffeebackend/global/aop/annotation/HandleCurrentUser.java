@@ -1,8 +1,8 @@
-package com.gigacoffeebackend.global.aop;
+package com.gigacoffeebackend.global.aop.annotation;
 
 import com.gigacoffeebackend.auth.application.AuthException;
 import com.gigacoffeebackend.auth.application.infra.RefreshTokenException;
-import com.gigacoffeebackend.global.aop.annotation.CurrentUser;
+import com.gigacoffeebackend.global.aop.BearerAuthorizationExtractor;
 import com.gigacoffeebackend.global.exceptions.ErrorCode;
 import com.gigacoffeebackend.user.domain.Accessor;
 import com.gigacoffeebackend.auth.application.infra.JwtProvider;
@@ -22,7 +22,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @RequiredArgsConstructor
 @Component
-public class CurrentUserResolver implements HandlerMethodArgumentResolver {
+public class HandleCurrentUser implements HandlerMethodArgumentResolver {
 
     private final JwtProvider jwtProvider;
     private final BearerAuthorizationExtractor extractor;

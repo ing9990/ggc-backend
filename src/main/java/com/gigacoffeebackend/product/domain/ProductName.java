@@ -21,7 +21,6 @@ public class ProductName {
     private String name;
 
     protected ProductName() {
-
     }
 
     public ProductName(String name) {
