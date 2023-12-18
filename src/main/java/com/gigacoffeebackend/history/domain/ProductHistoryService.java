@@ -1,7 +1,6 @@
 package com.gigacoffeebackend.history.domain;
 
 import static com.gigacoffeebackend.product.domain.ProductEventType.CREATED;
-import static com.gigacoffeebackend.product.domain.ProductEventType.DELETED;
 
 import com.gigacoffeebackend.history.dto.ProductHistoryDto;
 import com.gigacoffeebackend.history.ui.ProductHistoryResponse;
@@ -29,19 +28,6 @@ public class ProductHistoryService {
         );
         productHistoryRepository.save(collection);
     }
-
-    public void deleteProductHistory(final ProductHistoryDto productHistoryDto) {
-        ProductHistoryCollection collection = ProductHistoryCollection.of(
-            productHistoryDto.getStoreId(),
-            productHistoryDto.getStoreName(),
-            productHistoryDto.getLocationName(),
-            productHistoryDto.getProductName(),
-            productHistoryDto.getProductPrice(),
-            DELETED
-        );
-        productHistoryRepository.save(collection);
-    }
-
 
     public StoreHistoriesResponse findHistoriesByStoreId(Long storeId) {
         List<ProductHistoryCollection> histories = productHistoryRepository.findProductHistoriesByStoreId(

@@ -46,9 +46,12 @@ class CategoryIntegrationTest {
         CategoryResponse categoryResponse = categoryIntegration.addCategory(storeId, request);
 
         // then
-        assertThat(categoryResponse).isNotNull();
-        assertThat(categoryResponse.getName()).isEqualTo("coffee");
-        assertThat(categoryResponse.getProducts()).isEmpty();
+        assertThat(categoryResponse)
+            .isNotNull();
+        assertThat(categoryResponse.getName())
+            .isEqualTo("coffee");
+        assertThat(categoryResponse.getProducts())
+            .isEmpty();
     }
 
     @DisplayName("스토어 아이디로 카테고리들을 가져올 수 있다.")
@@ -68,10 +71,14 @@ class CategoryIntegrationTest {
         CategoryNames categories = categoryIntegration.findCategories(storeId);
 
         // then
-        assertThat(categories).isNotNull();
-        assertThat(categories.getCategories()).isNotNull();
-        assertThat(categories.getCategories()).hasSize(1);
-        assertThat(categories.getCategories()).containsExactly("coffee");
+        assertThat(categories)
+            .isNotNull();
+        assertThat(categories.getCategories())
+            .isNotNull();
+        assertThat(categories.getCategories())
+            .hasSize(1);
+        assertThat(categories.getCategories())
+            .containsExactly("coffee");
     }
 
     private Store 스토어_저장됨(String name, String locationName) {

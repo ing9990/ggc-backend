@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,21 +30,18 @@ class ProductNameTest {
         // given
 
         // when //then
-        Assertions.assertThatThrownBy(new ProductName(name)::isValid)
-            .isInstanceOf(BusinessException.class)
-            .hasMessage(PRODUCT_NAME_IS_EMPTY.getMessage());
+        Assertions.assertThatThrownBy(new ProductName(name)::isValid).isInstanceOf(BusinessException.class).hasMessage(PRODUCT_NAME_IS_EMPTY.getMessage());
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "상품 이름에 빈칸 허용하도록 변경됨.")
     @DisplayName("상품 이름에 특수문자가 포함되면 예외를 던진다.")
     @ValueSource(strings = {"Iced Americano", "**(@(!"})
+    @Disabled
     void throws_exception_if_product_name_is_invalid(String name) {
         // given
 
         // when //then
-        Assertions.assertThatThrownBy(new ProductName(name)::isValid)
-            .isInstanceOf(BusinessException.class)
-            .hasMessage("빈칸 또는 특수문자는 사용 불가합니다.: [" + name + "]");
+        Assertions.assertThatThrownBy(new ProductName(name)::isValid).isInstanceOf(BusinessException.class).hasMessage("빈칸 또는 특수문자는 사용 불가합니다.: [" + name + "]");
     }
 
     @DisplayName("상품 이름은 인스턴스와 상관없이 값으로 동등성을 비교한다.")

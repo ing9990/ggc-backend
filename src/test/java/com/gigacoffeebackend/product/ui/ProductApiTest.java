@@ -32,7 +32,7 @@ class ProductApiTest extends ApiTest {
     @Test
     void add_product() throws Exception {
         // given
-        AddProductRequest request = new AddProductRequest("시원한 커피", 5000, "icecoffee");
+        AddProductRequest request = new AddProductRequest("시원한커피", 5000, "icecoffee");
         Store store = Store.makeStore(new StoreName("안녕커피"), new LocationName("합정역점"));
         Product product = Product.makeProductWith(store, new ProductName(request.getProductName()), new ProductPrice(request.getProductPrice()));
         ProductResponse response = ProductResponse.from(product);
@@ -47,7 +47,7 @@ class ProductApiTest extends ApiTest {
                 )
                 .andDo(print())
                 .andExpect(status().is(CREATED.value()))
-                .andExpect(jsonPath("$.data.productName").value("시원한 커피"))
+                .andExpect(jsonPath("$.data.productName").value("시원한커피"))
                 .andExpect(jsonPath("$.data.productPrice").value(5000));
     }
 }

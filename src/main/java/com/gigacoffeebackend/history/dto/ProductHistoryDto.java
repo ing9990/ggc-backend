@@ -36,6 +36,7 @@ public class ProductHistoryDto {
 
     public static ProductHistoryDto from(ProductEventSource source) {
         return ProductHistoryDto.builder()
+            .storeId(source.getStoreId())
             .storeName(new StoreName(source.getStoreName()))
             .locationName(new LocationName(source.getLocationName()))
             .productName(new ProductName(source.getProductName()))

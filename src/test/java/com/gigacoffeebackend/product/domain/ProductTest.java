@@ -20,10 +20,10 @@ class ProductTest {
         Store store = Store.makeStore(new StoreName("xx커피"), new LocationName("합정역점"));
 
         // when
-        Product product = Product.makeProductWith(store, new ProductName("시그니처 커피"), new ProductPrice(4500));
+        Product product = Product.makeProductWith(store, new ProductName("시그니처커피"), new ProductPrice(4500));
 
         // then
-        Assertions.assertThat(product.getName()).isEqualTo(new ProductName("시그니처 커피"));
+        Assertions.assertThat(product.getName()).isEqualTo(new ProductName("시그니처커피"));
         Assertions.assertThat(product.getPrice()).isEqualTo(new ProductPrice(4500));
         Assertions.assertThat(product.getCategory()).isNull();
     }

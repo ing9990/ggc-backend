@@ -31,12 +31,6 @@ public class ProductName {
         if (!StringUtils.hasText(name)) {
             throw new BusinessException(PRODUCT_NAME_IS_EMPTY);
         }
-
-        if (!NAME_PATTERN.matcher(name).matches()) {
-            throw new InvalidNamingException("빈칸 또는 특수문자는 사용 불가합니다.", name,
-                PRODUCT_NAME_IS_INVALID);
-        }
-
     }
 
     public String toString() {

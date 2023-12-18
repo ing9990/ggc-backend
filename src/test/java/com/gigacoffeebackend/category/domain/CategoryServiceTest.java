@@ -62,16 +62,17 @@ class CategoryServiceTest {
         Category category = categoryService.saveOrFind(store, name, displayName, Set.of(product3));
 
         // then
-        assertThat(category.getName()).isEqualTo("coffee");
-        assertThat(category.getDisplayName()).isEqualTo("커피");
-
+        assertThat(category.getName())
+            .isEqualTo("coffee");
+        assertThat(category.getDisplayName())
+            .isEqualTo("커피");
         assertThat(category.getProducts())
             .hasSize(3)
             .extracting("name", "price")
             .containsExactlyInAnyOrder(
-                tuple("아메리카노", 2000),
-                tuple("아이스티", 1500),
-                tuple("레몬에이드", 3500)
+                tuple(new ProductName("아메리카노"), new ProductPrice(2000)),
+                tuple(new ProductName("아이스티"), new ProductPrice(1500)),
+                tuple(new ProductName("레몬에이드"), new ProductPrice(3500))
             );
     }
 
@@ -81,7 +82,6 @@ class CategoryServiceTest {
         // given
         String name = "coffee";
         String displayName = "커피";
-
         Store store = 스토어_저장됨("메가커피", "합정역점");
 
         // when

@@ -42,7 +42,7 @@ public class ProductIntegration {
             new ProductName(addProductRequest.getProductName()),
             new ProductPrice(addProductRequest.getProductPrice()));
 
-        // storeService.addProductToStore(foundStore, product);
+        storeService.addProductToStore(foundStore, product);
         addCategoryToProductIfPresent(addProductRequest, foundStore, product);
         return ProductResponse.from(product);
     }

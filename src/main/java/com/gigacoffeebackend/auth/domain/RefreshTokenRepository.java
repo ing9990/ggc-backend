@@ -13,15 +13,6 @@ public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Stri
 
     boolean existsByToken(final String token);
 
-    @Query("select t.userId from RefreshToken t where t.token = ?1")
-    Long findUserIdByRefreshToken(String refreshToken);
-
-    @Query("select (count(r) > 0) from RefreshToken r where r.userId = ?1")
-    boolean existsByUserId(Long id);
-
-    @Query("select r from RefreshToken r where r.userId = ?1")
-    Optional<RefreshToken> findRefreshTokenByUserId(Long id);
-
     @Query("select r from RefreshToken r where r.token = ?1")
     Optional<RefreshToken> findByToken(String refreshTokenRequest);
 

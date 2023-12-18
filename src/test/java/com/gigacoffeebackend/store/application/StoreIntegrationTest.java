@@ -79,7 +79,7 @@ class StoreIntegrationTest {
         Long storeId = storeResponse.getStoreId();
 
         AddCategoryRequest addCategoryRequest = CategorySteps.카테고리생성_요청("icedcoffee", "아이스 커피", Set.of());
-        CategoryResponse categoryResponse = categoryIntegration.addCategory(storeId, addCategoryRequest);
+        categoryIntegration.addCategory(storeId, addCategoryRequest);
 
         AddProductRequest productRequest1 = ProductSteps.상품등록요청_생성("개쩌는 아이스 아메리카노", 1500, "icedcoffee");
         ProductResponse productResponse1 = productIntegration.addProduct(storeId, productRequest1);

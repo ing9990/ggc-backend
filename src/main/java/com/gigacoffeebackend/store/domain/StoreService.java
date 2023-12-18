@@ -33,8 +33,7 @@ public class StoreService {
     }
 
     @Transactional
-    public void updateStore(final Store foundStore, final StoreName storeName,
-        final LocationName locationName) {
+    public void updateStore(final Store foundStore, final StoreName storeName, final LocationName locationName) {
         try {
             checkStoreDuplicate(storeName, locationName);
         } catch (BusinessException e) {

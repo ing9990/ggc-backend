@@ -27,20 +27,13 @@ public class LoginApi {
 
     @GetMapping("/login/{provider}")
     public ResponseEntity<ApiResponse<AccessTokenResponse>> loginWithOAuth(
-        @PathVariable final String provider,
-        @RequestParam(value = "code") String code,
-        final HttpServletResponse response
-    ) {
+        @PathVariable final String provider, @RequestParam(value = "code") String code,
+        final HttpServletResponse response) {
         final AccessAndRefreshToken accessAndRefreshToken = loginService.connect(provider, code);
 
         final ResponseCookie cookie = ResponseCookie.from(REFRESH_TOKEN,
-                accessAndRefreshToken.getRefreshToken())
-            .maxAge(COOKIE_AGE_SECONDS)
-            .sameSite("None")
-            .secure(true)
-            .httpOnly(false)
-            .path("/")
-            .build();
+                accessAndRefreshToken.getRefreshToken()).maxAge(COOKIE_AGE_SECONDS).sameSite("None")
+            .secure(true).httpOnly(false).path("/").build();
         response.addHeader(SET_COOKIE, cookie.toString());
 
         return ResponseEntity.status(CREATED)
@@ -50,22 +43,14 @@ public class LoginApi {
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AccessTokenResponse>> loginWithInfo(
         @Valid @RequestBody final OAuthLoginRequest oAuthLoginRequest,
-        final HttpServletResponse response
-    ) {
+        final HttpServletResponse response) {
         final AccessAndRefreshToken accessAndRefreshToken = loginService.connect(
-            oAuthLoginRequest.getSocialLoginId(),
-            oAuthLoginRequest.getNickname(),
-            oAuthLoginRequest.getImage()
-        );
+            oAuthLoginRequest.getSocialLoginId(), oAuthLoginRequest.getNickname(),
+            oAuthLoginRequest.getImage());
 
         final ResponseCookie cookie = ResponseCookie.from(REFRESH_TOKEN,
-                accessAndRefreshToken.getRefreshToken())
-            .maxAge(COOKIE_AGE_SECONDS)
-            .sameSite("None")
-            .secure(true)
-            .httpOnly(false)
-            .path("/")
-            .build();
+                accessAndRefreshToken.getRefreshToken()).maxAge(COOKIE_AGE_SECONDS).sameSite("None")
+            .secure(true).httpOnly(false).path("/").build();
         response.addHeader(SET_COOKIE, cookie.toString());
         return ResponseEntity.status(CREATED)
             .body(ApiResponse.ok(new AccessTokenResponse(accessAndRefreshToken.getAccessToken())));

@@ -52,18 +52,13 @@ class ProductHistoryServiceTest {
         AddProductRequest addProductRequest = ProductSteps.상품등록요청_생성("아이스커피", 5000, "all");
         AddProductRequest addProductRequest2 = ProductSteps.상품등록요청_생성("초코라떼", 6500, "all");
         AddProductRequest addProductRequest3 = ProductSteps.상품등록요청_생성("아메리카노", 4500, "all");
-
         StoreResponse storeResponse = storeIntegration.addStore(addStoreRequest);
-        ProductResponse productResponse = productIntegration.addProduct(storeResponse.getStoreId(),
-            addProductRequest);
-        ProductResponse productResponse2 = productIntegration.addProduct(storeResponse.getStoreId(),
-            addProductRequest2);
-        ProductResponse productResponse3 = productIntegration.addProduct(storeResponse.getStoreId(),
-            addProductRequest3);
+        productIntegration.addProduct(storeResponse.getStoreId(), addProductRequest);
+        productIntegration.addProduct(storeResponse.getStoreId(), addProductRequest2);
+        productIntegration.addProduct(storeResponse.getStoreId(), addProductRequest3);
 
         // when
-        StoreHistoriesResponse histories = productHistoryService.findHistoriesByStoreId(
-            storeResponse.getStoreId());
+        StoreHistoriesResponse histories = productHistoryService.findHistoriesByStoreId(storeResponse.getStoreId());
 
         // then
         assertThat(histories).isNotNull();

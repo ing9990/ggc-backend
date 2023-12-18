@@ -49,7 +49,7 @@ class StoreRepositoryTest {
 
         // then
         Assertions.assertThat(foundStore).isPresent();
-        Assertions.assertThat(foundStore.get().getName()).isEqualTo("메가커피");
+        Assertions.assertThat(foundStore.get().getName()).isEqualTo(new StoreName("메가커피"));
     }
 
 
