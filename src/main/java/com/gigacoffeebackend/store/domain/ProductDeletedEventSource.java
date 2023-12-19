@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.store.domain;
 
-import com.gigacoffeebackend.product.domain.Product;
+import com.gigacoffeebackend.products.product.domain.Product;
 
 public class ProductDeletedEventSource {
 

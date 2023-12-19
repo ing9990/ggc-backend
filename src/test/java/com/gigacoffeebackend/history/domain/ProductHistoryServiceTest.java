@@ -1,14 +1,13 @@
 package com.gigacoffeebackend.history.domain;
 
-import com.gigacoffeebackend.history.ui.StoreHistoriesResponse;
-import com.gigacoffeebackend.product.application.ProductIntegration;
-import com.gigacoffeebackend.product.ui.AddProductRequest;
-import com.gigacoffeebackend.product.ui.ProductResponse;
+import com.gigacoffeebackend.history.ui.response.StoreHistoriesResponse;
+import com.gigacoffeebackend.products.product.application.ProductIntegration;
+import com.gigacoffeebackend.products.product.ui.request.AddProductRequest;
 import com.gigacoffeebackend.steps.ProductSteps;
 import com.gigacoffeebackend.steps.StoreSteps;
 import com.gigacoffeebackend.store.application.StoreIntegration;
-import com.gigacoffeebackend.store.ui.AddStoreRequest;
-import com.gigacoffeebackend.store.ui.StoreResponse;
+import com.gigacoffeebackend.store.ui.request.AddStoreRequest;
+import com.gigacoffeebackend.store.ui.response.StoreResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,5 +1,6 @@
 package com.gigacoffeebackend.category.ui;
 
+import com.gigacoffeebackend.category.ui.request.AddCategoryRequest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

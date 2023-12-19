@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.steps;
 
-import com.gigacoffeebackend.store.ui.AddStoreRequest;
+import com.gigacoffeebackend.store.ui.request.AddStoreRequest;
 
 
 public class StoreSteps {

@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.steps;
 
-import com.gigacoffeebackend.product.ui.AddProductRequest;
+import com.gigacoffeebackend.products.product.ui.request.AddProductRequest;
 
 public class ProductSteps {
 

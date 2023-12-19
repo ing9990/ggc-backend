@@ -2,6 +2,10 @@ package com.gigacoffeebackend.store.ui;
 
 import com.gigacoffeebackend.global.dto.ApiResponse;
 import com.gigacoffeebackend.store.application.StoreIntegration;
+import com.gigacoffeebackend.store.ui.request.AddStoreRequest;
+import com.gigacoffeebackend.store.ui.request.UpdateStoreRequest;
+import com.gigacoffeebackend.store.ui.response.StoreResponse;
+import com.gigacoffeebackend.store.ui.response.TotalStoreResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

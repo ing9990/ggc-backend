@@ -1,7 +1,7 @@
 package com.gigacoffeebackend.category.domain;
 
 import com.gigacoffeebackend.global.dto.BaseEntity;
-import com.gigacoffeebackend.product.domain.Product;
+import com.gigacoffeebackend.products.product.domain.Product;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.AccessLevel;
 import lombok.Getter;

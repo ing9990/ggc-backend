@@ -1,10 +1,10 @@
 package com.gigacoffeebackend.history.domain;
 
-import static com.gigacoffeebackend.product.domain.ProductEventType.CREATED;
+import static com.gigacoffeebackend.products.product.domain.ProductEventType.CREATED;
 
 import com.gigacoffeebackend.history.dto.ProductHistoryDto;
-import com.gigacoffeebackend.history.ui.ProductHistoryResponse;
-import com.gigacoffeebackend.history.ui.StoreHistoriesResponse;
+import com.gigacoffeebackend.history.ui.response.ProductHistoryResponse;
+import com.gigacoffeebackend.history.ui.response.StoreHistoriesResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

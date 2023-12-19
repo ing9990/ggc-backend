@@ -1,15 +1,15 @@
 package com.gigacoffeebackend.store.application;
 
-import com.gigacoffeebackend.category.ui.CategoryResponse;
+import com.gigacoffeebackend.category.ui.response.CategoryResponse;
 import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreName;
 import com.gigacoffeebackend.store.domain.StoreNotFoundException;
 import com.gigacoffeebackend.store.domain.StoreService;
-import com.gigacoffeebackend.store.ui.AddStoreRequest;
-import com.gigacoffeebackend.store.ui.StoreResponse;
-import com.gigacoffeebackend.store.ui.TotalStoreResponse;
-import com.gigacoffeebackend.store.ui.UpdateStoreRequest;
+import com.gigacoffeebackend.store.ui.request.AddStoreRequest;
+import com.gigacoffeebackend.store.ui.response.StoreResponse;
+import com.gigacoffeebackend.store.ui.response.TotalStoreResponse;
+import com.gigacoffeebackend.store.ui.request.UpdateStoreRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

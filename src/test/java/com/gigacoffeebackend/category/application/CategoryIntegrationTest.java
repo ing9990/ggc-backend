@@ -1,8 +1,8 @@
 package com.gigacoffeebackend.category.application;
 
 import com.gigacoffeebackend.category.dto.CategoryNames;
-import com.gigacoffeebackend.category.ui.AddCategoryRequest;
-import com.gigacoffeebackend.category.ui.CategoryResponse;
+import com.gigacoffeebackend.category.ui.request.AddCategoryRequest;
+import com.gigacoffeebackend.category.ui.response.CategoryResponse;
 import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreName;
