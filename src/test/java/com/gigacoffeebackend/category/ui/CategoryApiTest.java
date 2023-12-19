@@ -2,6 +2,7 @@ package com.gigacoffeebackend.category.ui;
 
 import com.gigacoffeebackend.ApiTest;
 import com.gigacoffeebackend.category.application.CategoryIntegration;
+import com.gigacoffeebackend.category.ui.request.AddCategoryRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

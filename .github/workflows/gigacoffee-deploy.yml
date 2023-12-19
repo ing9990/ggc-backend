@@ -25,20 +25,21 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew bootJar
 
-      - name: Deploy use SCP
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{secrets.HOST}}
-          username: ${{secrets.USERNAME}}
-          key: ${{secrets.KEY}}
-          source: "./build/libs/gigacoffee-backend.jar"
-          target: "/root/gigacoffee/"
-
-      - name: Run Application use SSH
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{secrets.HOST}}
-          username: ${{secrets.USERNAME}}
-          key: ${{secrets.KEY}}
-          script: sh /root/gigacoffee/deploy.sh
-          script_stop: true
+# GCP 서버 중단으로 자동 배포 기능 중지
+#      - name: Deploy use SCP
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{secrets.HOST}}
+#          username: ${{secrets.USERNAME}}
+#          key: ${{secrets.KEY}}
+#          source: "./build/libs/gigacoffee-backend.jar"
+#          target: "/root/gigacoffee/"
+#
+#      - name: Run Application use SSH
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{secrets.HOST}}
+#          username: ${{secrets.USERNAME}}
+#          key: ${{secrets.KEY}}
+#          script: sh /root/gigacoffee/deploy.sh
+#          script_stop: true

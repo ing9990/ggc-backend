@@ -1,9 +1,9 @@
 package com.gigacoffeebackend.history.dto;
 
-import com.gigacoffeebackend.product.domain.ProductEventSource;
-import com.gigacoffeebackend.product.domain.Product;
-import com.gigacoffeebackend.product.domain.ProductName;
-import com.gigacoffeebackend.product.domain.ProductPrice;
+import com.gigacoffeebackend.products.product.domain.ProductEventSource;
+import com.gigacoffeebackend.products.product.domain.Product;
+import com.gigacoffeebackend.products.product.domain.ProductName;
+import com.gigacoffeebackend.products.product.domain.ProductPrice;
 import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreName;

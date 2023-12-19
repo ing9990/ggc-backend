@@ -2,6 +2,7 @@ package com.gigacoffeebackend.history.ui;
 
 import com.gigacoffeebackend.global.dto.ApiResponse;
 import com.gigacoffeebackend.history.domain.ProductHistoryService;
+import com.gigacoffeebackend.history.ui.response.StoreHistoriesResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

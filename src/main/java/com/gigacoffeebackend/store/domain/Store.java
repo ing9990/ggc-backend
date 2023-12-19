@@ -2,7 +2,7 @@ package com.gigacoffeebackend.store.domain;
 
 import com.gigacoffeebackend.category.domain.Category;
 import com.gigacoffeebackend.global.dto.BaseEntity;
-import com.gigacoffeebackend.product.domain.Product;
+import com.gigacoffeebackend.products.product.domain.Product;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.CascadeType.MERGE;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "store",

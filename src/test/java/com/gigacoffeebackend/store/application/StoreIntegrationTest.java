@@ -1,20 +1,18 @@
 package com.gigacoffeebackend.store.application;
 
 import com.gigacoffeebackend.category.application.CategoryIntegration;
-import com.gigacoffeebackend.category.ui.AddCategoryRequest;
-import com.gigacoffeebackend.category.ui.CategoryResponse;
+import com.gigacoffeebackend.category.ui.request.AddCategoryRequest;
 import com.gigacoffeebackend.global.exceptions.BusinessException;
-import com.gigacoffeebackend.product.application.ProductIntegration;
-import com.gigacoffeebackend.product.domain.ProductName;
-import com.gigacoffeebackend.product.ui.AddProductRequest;
-import com.gigacoffeebackend.product.ui.ProductResponse;
+import com.gigacoffeebackend.products.product.application.ProductIntegration;
+import com.gigacoffeebackend.products.product.ui.request.AddProductRequest;
+import com.gigacoffeebackend.products.product.ui.response.ProductResponse;
 import com.gigacoffeebackend.steps.CategorySteps;
 import com.gigacoffeebackend.steps.ProductSteps;
 import com.gigacoffeebackend.steps.StoreSteps;
 import com.gigacoffeebackend.store.domain.StoreService;
-import com.gigacoffeebackend.store.ui.AddStoreRequest;
-import com.gigacoffeebackend.store.ui.StoreResponse;
-import com.gigacoffeebackend.store.ui.TotalStoreResponse;
+import com.gigacoffeebackend.store.ui.request.AddStoreRequest;
+import com.gigacoffeebackend.store.ui.response.StoreResponse;
+import com.gigacoffeebackend.store.ui.response.TotalStoreResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

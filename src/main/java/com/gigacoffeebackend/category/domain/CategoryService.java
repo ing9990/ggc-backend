@@ -1,7 +1,6 @@
 package com.gigacoffeebackend.category.domain;
 
-import com.gigacoffeebackend.global.exceptions.BusinessException;
-import com.gigacoffeebackend.product.domain.Product;
+import com.gigacoffeebackend.products.product.domain.Product;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,7 @@ public class CategoryService {
 
     public Category getCategory(final Store store, final String name) {
         return categoryRepository.findCategoryByStoreAndName(store, name)
-                .orElseThrow(() -> new BusinessException(CATEGORY_NOT_FOUND_IN_STORE));
+                .orElseThrow(() -> new CategoryNotFoundException(CATEGORY_NOT_FOUND_IN_STORE));
     }
 
     public Optional<Category> findCategory(final Store store, final String name) {

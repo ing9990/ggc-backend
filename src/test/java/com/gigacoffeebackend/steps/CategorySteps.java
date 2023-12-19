@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.steps;
 
-import com.gigacoffeebackend.category.ui.AddCategoryRequest;
+import com.gigacoffeebackend.category.ui.request.AddCategoryRequest;
 
 import java.util.Set;
 
