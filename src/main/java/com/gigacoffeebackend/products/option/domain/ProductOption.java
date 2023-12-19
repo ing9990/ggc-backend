@@ -7,7 +7,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
 import com.gigacoffeebackend.products.product.domain.Product;
-import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ public class ProductOption {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Long optionId;
+    private Long id;
 
     @ManyToOne(cascade = ALL)
     private Product product;

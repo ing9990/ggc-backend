@@ -19,7 +19,7 @@ public class ProductOptionResponse {
 
     public static ProductOptionResponse from(ProductOption option){
         return ProductOptionResponse.builder()
-            .id(option.getOptionId())
+            .id(option.getId())
             .name(option.getName().toString())
             .price(option.getPrice().getValue())
             .build();
