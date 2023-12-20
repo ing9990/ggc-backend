@@ -1,6 +1,7 @@
 package com.gigacoffeebackend.option.domain;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.groups.Tuple.tuple;
 
 import com.gigacoffeebackend.product.domain.Product;
@@ -12,7 +13,6 @@ import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreName;
 import com.gigacoffeebackend.store.domain.StoreRepository;
 import java.util.Set;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +44,10 @@ class ProductOptionRepositoryTest {
         ProductOption savedOption = productOptionRepository.save(option);
 
         // when
-        Set<ProductOption> options = product.getOptions();
+        Set<ProductOption> options = savedOption.getProduct().getOptions();
 
         // then
-        Assertions.assertThat(options)
+        assertThat(options)
             .extracting("name", "price", "visible")
             .containsExactlyInAnyOrder(
                 tuple(
