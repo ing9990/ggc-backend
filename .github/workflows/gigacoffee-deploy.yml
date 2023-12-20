@@ -6,6 +6,7 @@ on:
       - master
       - 'develop/*'
       - 'release/*'
+      - 'ci/*'
 
 jobs:
   build_and_deploy:
@@ -24,6 +25,18 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew bootJar
+
+      - name: action-slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          author_name: Sloth Backend - dev
+          fields: repo,commit,message,author
+          mention: here
+          if_mention: failure,cancelled
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
 
 # GCP 서버 중단으로 자동 배포 기능 중지
 #      - name: Deploy use SCP
