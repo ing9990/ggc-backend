@@ -1,8 +1,8 @@
 package com.gigacoffeebackend.history.domain;
 
 import com.gigacoffeebackend.history.ui.response.StoreHistoriesResponse;
-import com.gigacoffeebackend.products.product.application.ProductIntegration;
-import com.gigacoffeebackend.products.product.ui.request.AddProductRequest;
+import com.gigacoffeebackend.product.application.ProductIntegration;
+import com.gigacoffeebackend.product.ui.request.AddProductRequest;
 import com.gigacoffeebackend.steps.ProductSteps;
 import com.gigacoffeebackend.steps.StoreSteps;
 import com.gigacoffeebackend.store.application.StoreIntegration;

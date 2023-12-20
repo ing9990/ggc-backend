@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.category.domain;
 
-import com.gigacoffeebackend.products.product.domain.Product;
+import com.gigacoffeebackend.product.domain.Product;
 import com.gigacoffeebackend.store.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

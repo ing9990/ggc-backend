@@ -4,7 +4,7 @@ import static com.gigacoffeebackend.global.exceptions.ErrorCode.PRODUCT_NAME_IS_
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
-import com.gigacoffeebackend.products.product.domain.ProductName;
+import com.gigacoffeebackend.product.domain.ProductName;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;

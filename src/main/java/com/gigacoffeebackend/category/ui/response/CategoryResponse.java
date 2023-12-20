@@ -1,8 +1,8 @@
 package com.gigacoffeebackend.category.ui.response;
 
 import com.gigacoffeebackend.category.domain.Category;
-import com.gigacoffeebackend.products.product.domain.Product;
-import com.gigacoffeebackend.products.product.ui.response.ProductResponse;
+import com.gigacoffeebackend.product.domain.Product;
+import com.gigacoffeebackend.product.ui.response.ProductResponse;
 import lombok.*;
 
 import java.util.List;
