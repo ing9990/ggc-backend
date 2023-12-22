@@ -1,6 +1,6 @@
 package com.gigacoffeebackend.history.domain;
 
-import static com.gigacoffeebackend.products.product.domain.ProductEventType.CREATED;
+import static com.gigacoffeebackend.product.domain.ProductEventType.CREATED;
 
 import com.gigacoffeebackend.history.dto.ProductHistoryDto;
 import com.gigacoffeebackend.history.ui.response.ProductHistoryResponse;

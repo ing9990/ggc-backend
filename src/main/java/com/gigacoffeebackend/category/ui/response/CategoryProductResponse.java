@@ -1,7 +1,7 @@
 package com.gigacoffeebackend.category.ui.response;
 
 import com.gigacoffeebackend.category.domain.Category;
-import com.gigacoffeebackend.products.product.ui.response.ProductResponse;
+import com.gigacoffeebackend.product.ui.response.ProductResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

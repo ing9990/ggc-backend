@@ -1,8 +1,8 @@
 package com.gigacoffeebackend.history.domain;
 
-import com.gigacoffeebackend.products.product.domain.ProductEventType;
-import com.gigacoffeebackend.products.product.domain.ProductName;
-import com.gigacoffeebackend.products.product.domain.ProductPrice;
+import com.gigacoffeebackend.product.domain.ProductEventType;
+import com.gigacoffeebackend.product.domain.ProductName;
+import com.gigacoffeebackend.product.domain.ProductPrice;
 import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.StoreName;
 import lombok.Getter;

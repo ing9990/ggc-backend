@@ -4,7 +4,7 @@ import static com.gigacoffeebackend.global.exceptions.ErrorCode.PRODUCT_PRICE_IS
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gigacoffeebackend.global.exceptions.BusinessException;
-import com.gigacoffeebackend.products.product.domain.ProductPrice;
+import com.gigacoffeebackend.product.domain.ProductPrice;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

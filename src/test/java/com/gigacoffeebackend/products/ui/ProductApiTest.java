@@ -1,13 +1,13 @@
 package com.gigacoffeebackend.products.ui;
 
 import com.gigacoffeebackend.ApiTest;
-import com.gigacoffeebackend.products.product.application.ProductIntegration;
-import com.gigacoffeebackend.products.product.domain.Product;
-import com.gigacoffeebackend.products.product.domain.ProductName;
-import com.gigacoffeebackend.products.product.domain.ProductPrice;
-import com.gigacoffeebackend.products.product.ui.request.AddProductRequest;
-import com.gigacoffeebackend.products.product.ui.ProductApi;
-import com.gigacoffeebackend.products.product.ui.response.ProductResponse;
+import com.gigacoffeebackend.product.application.ProductIntegration;
+import com.gigacoffeebackend.product.domain.Product;
+import com.gigacoffeebackend.product.domain.ProductName;
+import com.gigacoffeebackend.product.domain.ProductPrice;
+import com.gigacoffeebackend.product.ui.request.AddProductRequest;
+import com.gigacoffeebackend.product.ui.ProductApi;
+import com.gigacoffeebackend.product.ui.response.ProductResponse;
 import com.gigacoffeebackend.store.domain.LocationName;
 import com.gigacoffeebackend.store.domain.Store;
 import com.gigacoffeebackend.store.domain.StoreName;
